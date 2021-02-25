@@ -30,19 +30,19 @@ public class MovementController : MonoBehaviour
     {
         currentTile = GetTargetTile(gameObject);
         currentTile.current = true;
+        //currentTile.selectable = false;
     }
 
     public Tile GetTargetTile(GameObject target)
     {
-        RaycastHit2D hit = Physics2D.Raycast(target.transform.position, -Vector2.up);
-        //RaycastHit2D hit;
+        Vector3 playerTilePos = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
+
+        RaycastHit2D hit = Physics2D.Raycast(playerTilePos, new Vector3(0, 0, 1), 1f, 9);
+
         Tile tile = null;
 
-        //Debug.Log(Physics2D.Raycast(target.transform.position, -Vector3.up, 1));
-        //Physics.Raycast
         if (hit.collider != null)
         {
-            //Debug.Log("works");
             tile = hit.collider.GetComponent<Tile>();
             
         }

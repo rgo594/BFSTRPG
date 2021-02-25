@@ -55,7 +55,6 @@ public class Tile : MonoBehaviour
     public void FindNeighbors(Tile target)
     {
         Reset();
-        //float jumpHeight = 1f;
 
         CheckTile(new Vector2(0,1), target);
         CheckTile(new Vector2(0,-1), target);
