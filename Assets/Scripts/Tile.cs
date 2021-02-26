@@ -21,7 +21,8 @@ public class Tile : MonoBehaviour
     {
         if (current)
         {
-            GetComponent<Renderer>().material.color = Color.magenta;
+            selectable = false;
+            GetComponent<Renderer>().material.color = Color.yellow;
         }
         else if (target)
         {

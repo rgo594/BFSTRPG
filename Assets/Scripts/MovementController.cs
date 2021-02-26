@@ -14,7 +14,7 @@ public class MovementController : MonoBehaviour
 
     public bool moving = false;
     public int move = 5;
-    public float moveSpeed = 2;
+    public float moveSpeed = 5;
 
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
@@ -95,6 +95,86 @@ public class MovementController : MonoBehaviour
             }
         }
     }
+
+    public void MoveToTile(Tile tile)
+    {
+        path.Clear();
+        tile.target = true;
+        moving = true;
+
+        Tile next = tile;
+        while (next != null)
+        {
+            path.Push(next);
+            next = next.parent;
+        }
+    }
+
+    public void Move()
+    {
+        if (path.Count > 0)
+        {
+            //returns obj at the top of the stack without removing;
+            Tile t = path.Peek();
+            Vector3 target = t.transform.position;
+
+            //Calculate the units position on top of the target tile
+            //target.y += halfHeight + t.GetComponent<Collider>().bounds.extents.y;
+
+            if (Vector3.Distance(transform.position, target) >= 0.05f)
+            {
+                //bool jump = transform.position.y != target.y;
+
+                CalculateHeading(target);
+                SetHorizontalVelocity();
+           
+
+                //Locomotion
+                //transform.forward = heading;
+                transform.position += velocity * Time.deltaTime;
+            }
+            else
+            {
+                transform.position = target;
+                path.Pop();
+            }
+        }
+        else
+        {
+            RemoveSelectableTiles();
+            moving = false;
+
+            //TurnManager.EndTurn();
+        }
+    }
+
+    void SetHorizontalVelocity()
+    {
+        velocity = heading * moveSpeed;
+    }
+
+    void CalculateHeading(Vector3 target)
+    {
+        heading = new Vector3(target.x - transform.position.x, target.y - transform.position.y, target.z - transform.position.z);
+        heading.Normalize();
+    }
+
+    protected void RemoveSelectableTiles()
+    {
+        if (currentTile != null)
+        {
+            currentTile.current = false;
+            currentTile = null;
+        }
+
+        foreach (Tile tile in selectableTiles)
+        {
+            tile.Reset();
+        }
+
+        selectableTiles.Clear();
+    }
+
 
     // Update is called once per frame
     void Update()

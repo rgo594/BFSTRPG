@@ -12,7 +12,7 @@ public class PlayerMove : MovementController
 
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward);
+        //Debug.DrawRay(transform.position, transform.forward);
 /*        if (!turn)
         {
             return;
@@ -25,7 +25,7 @@ public class PlayerMove : MovementController
         }
         else
         {
-            //Move();
+            Move();
         }
     }
 
@@ -34,9 +34,9 @@ public class PlayerMove : MovementController
         if (Input.GetMouseButtonUp(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
 
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (hit)
             {
                 if (hit.collider.tag == "Tile")
                 {
@@ -44,7 +44,7 @@ public class PlayerMove : MovementController
 
                     if (t.selectable)
                     {
-                        //MoveToTile(t);
+                        MoveToTile(t);
                     }
                 }
             }
