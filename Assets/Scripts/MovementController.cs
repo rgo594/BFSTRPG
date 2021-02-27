@@ -19,24 +19,27 @@ public class MovementController : MonoBehaviour
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
 
-    public Tile actualTargetTile;
+    //public Tile actualTargetTile;
 
-    protected void init()
+    protected void Init()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
+
+        TurnManager.AddUnit(this);
     }
 
     public void GetCurrentTile()
     {
         currentTile = GetTargetTile(gameObject);
         currentTile.current = true;
-        //currentTile.selectable = false;
     }
 
     public Tile GetTargetTile(GameObject target)
     {
         Vector3 playerTilePos = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
 
+        //Casts a ray from under the board to tile player character is standing on.
+        //Only works because it ignores character layer, cant get raycast to not hit player character
         RaycastHit2D hit = Physics2D.Raycast(playerTilePos, new Vector3(0, 0, 1), 1f, 9);
 
         Tile tile = null;
@@ -52,8 +55,6 @@ public class MovementController : MonoBehaviour
 
     public void ComputeAdjacencyLists(Tile target)
     {
-        //tiles = GameObject.FindGameObjectsWithTag("Tile");
-
         foreach (GameObject tile in tiles)
         {
             Tile startTile = tile.GetComponent<Tile>();
@@ -70,11 +71,10 @@ public class MovementController : MonoBehaviour
 
         process.Enqueue(currentTile);
         currentTile.visited = true;
-        //currentTile.parent = ??  leave as null 
-
 
         while (process.Count > 0)
         {
+            //remove and return the tile
             Tile dequeuedTile = process.Dequeue();
 
             selectableTiles.Add(dequeuedTile);
@@ -82,6 +82,7 @@ public class MovementController : MonoBehaviour
 
             if (dequeuedTile.distance < move)
             {
+                //changes flags of tiles adjacent to the currentTile (the one the character is on), adds those tiles to the queue, then iterates through newly queued tiles adjacent tiles.
                 foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
                     if (!tile.visited)
@@ -115,22 +116,15 @@ public class MovementController : MonoBehaviour
         if (path.Count > 0)
         {
             //returns obj at the top of the stack without removing;
-            Tile t = path.Peek();
-            Vector3 target = t.transform.position;
-
-            //Calculate the units position on top of the target tile
-            //target.y += halfHeight + t.GetComponent<Collider>().bounds.extents.y;
+            Tile nextTileInPath = path.Peek();
+            Vector3 target = nextTileInPath.transform.position;
 
             if (Vector3.Distance(transform.position, target) >= 0.05f)
             {
-                //bool jump = transform.position.y != target.y;
-
                 CalculateHeading(target);
                 SetHorizontalVelocity();
            
-
                 //Locomotion
-                //transform.forward = heading;
                 transform.position += velocity * Time.deltaTime;
             }
             else
@@ -144,7 +138,7 @@ public class MovementController : MonoBehaviour
             RemoveSelectableTiles();
             moving = false;
 
-            //TurnManager.EndTurn();
+            TurnManager.EndTurn();
         }
     }
 
@@ -155,7 +149,7 @@ public class MovementController : MonoBehaviour
 
     void CalculateHeading(Vector3 target)
     {
-        heading = new Vector3(target.x - transform.position.x, target.y - transform.position.y, target.z - transform.position.z);
+        heading = target - transform.position;
         heading.Normalize();
     }
 
@@ -175,10 +169,12 @@ public class MovementController : MonoBehaviour
         selectableTiles.Clear();
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public void BeginTurn()
     {
-        
+        turn = true;
+    }
+    public void EndTurn()
+    {
+        turn = false;
     }
 }

@@ -7,17 +7,15 @@ public class PlayerMove : MovementController
     // Start is called before the first frame update
     void Start()
     {
-        init();
+        Init();
     }
 
     void Update()
     {
-        //Debug.DrawRay(transform.position, transform.forward);
-/*        if (!turn)
+        if (!turn)
         {
             return;
-        }*/
-
+        }
         if (!moving)
         {
             FindSelectableTiles();
@@ -40,11 +38,11 @@ public class PlayerMove : MovementController
             {
                 if (hit.collider.tag == "Tile")
                 {
-                    Tile t = hit.collider.GetComponent<Tile>();
+                    Tile clickedTile = hit.collider.GetComponent<Tile>();
 
-                    if (t.selectable)
+                    if (clickedTile.selectable)
                     {
-                        MoveToTile(t);
+                        MoveToTile(clickedTile);
                     }
                 }
             }

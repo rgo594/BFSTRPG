@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     public bool current = false;
     public bool target = false;
     public bool selectable = false;
+    public bool moving = false;
 
     public List<Tile> adjacencyList = new List<Tile>();
 
@@ -19,6 +20,7 @@ public class Tile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (current)
         {
             selectable = false;
@@ -67,6 +69,8 @@ public class Tile : MonoBehaviour
     public void CheckTile(Vector3 direction, Tile target)
     {
         Vector3 halfExtents = new Vector3(0.25f, 0.25f);
+
+        //creates a box to detect any objects with colliders, not sure what angle parameter does
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + direction, halfExtents, 1f);
         
         foreach (Collider2D item in colliders)
