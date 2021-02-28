@@ -23,11 +23,8 @@ public class TurnManager : MonoBehaviour
     {
         List<MovementController> teamList = units[turnKey.Peek()];
 
-        Debug.Log(units[turnKey.Peek()][1]);
-
         foreach (MovementController unit in teamList)
         {
-            //Debug.Log(unit);
             turnTeam.Enqueue(unit);
         }
 

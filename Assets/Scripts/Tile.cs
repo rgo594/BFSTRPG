@@ -78,8 +78,11 @@ public class Tile : MonoBehaviour
             Tile tile = item.GetComponent<Tile>();
             if (tile != null && tile.walkable)
             {
-                RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, Vector2.up);
-                if (hit || (tile == target))
+
+                RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
+
+                //responsible for filtering out tiles blocked by obstacles and other characters
+                if (hit.collider.tag == "Tile" || (tile == target))
                 {
                     adjacencyList.Add(tile);
                 }
