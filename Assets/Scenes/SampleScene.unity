@@ -251,6 +251,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &14038889
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +384,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &41853301
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +559,91 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
+--- !u!1 &94550283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 94550284}
+  - component: {fileID: 94550285}
+  m_Layer: 9
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &94550284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94550283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 890637138}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &94550285
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94550283}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 1857188551261513057, guid: ed342112f7a2d3c42988615b9c512934,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &136100457
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +774,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &191288596
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,6 +907,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &207599949
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +1040,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &214525565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,6 +1173,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &255951410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1306,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &270878319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1439,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &274349630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1572,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &276168703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,6 +1705,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &277992754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,6 +1838,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &280279465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,6 +1971,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &288983364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,6 +2104,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &295863938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,6 +2237,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &320387919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2243,6 +2370,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &338687422
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,6 +2503,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &366972783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,6 +2636,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &379589883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +2769,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &392111539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,6 +2902,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &439061583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2893,6 +3035,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &443289998
 GameObject:
   m_ObjectHideFlags: 0
@@ -3023,6 +3168,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &444066128
 GameObject:
   m_ObjectHideFlags: 0
@@ -3153,6 +3301,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &458140945
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,6 +3434,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &462205104
 GameObject:
   m_ObjectHideFlags: 0
@@ -3413,6 +3567,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &479698990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3543,6 +3700,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &505372887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,6 +3833,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3886,6 +4049,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &556035128
 GameObject:
   m_ObjectHideFlags: 0
@@ -4016,6 +4182,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &559813425
 GameObject:
   m_ObjectHideFlags: 0
@@ -4188,6 +4357,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &584929078
 GameObject:
   m_ObjectHideFlags: 0
@@ -4318,6 +4490,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &588279611
 GameObject:
   m_ObjectHideFlags: 0
@@ -4448,6 +4623,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &616539753
 GameObject:
   m_ObjectHideFlags: 0
@@ -4578,6 +4756,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &624529553
 GameObject:
   m_ObjectHideFlags: 0
@@ -4708,6 +4889,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &629959453
 GameObject:
   m_ObjectHideFlags: 0
@@ -4838,6 +5022,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &633490576
 GameObject:
   m_ObjectHideFlags: 0
@@ -4968,6 +5155,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &644180954
 GameObject:
   m_ObjectHideFlags: 0
@@ -5098,6 +5288,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &648196823
 GameObject:
   m_ObjectHideFlags: 0
@@ -5228,6 +5421,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &661523437
 GameObject:
   m_ObjectHideFlags: 0
@@ -5400,6 +5596,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &726923248
 GameObject:
   m_ObjectHideFlags: 0
@@ -5530,6 +5729,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &740281082
 GameObject:
   m_ObjectHideFlags: 0
@@ -5702,6 +5904,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &757061481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5832,6 +6037,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &789310993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6004,6 +6212,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &829922996
 GameObject:
   m_ObjectHideFlags: 0
@@ -6134,6 +6345,85 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
+--- !u!1 &890637137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 890637138}
+  - component: {fileID: 890637140}
+  - component: {fileID: 890637139}
+  m_Layer: 9
+  m_Name: NPC
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &890637138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890637137}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5, y: -7, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 94550284}
+  m_Father: {fileID: 2080493839}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &890637139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890637137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e0188b02b70ad489ed4ec8dab947b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn: 0
+  moving: 0
+  move: 5
+  moveSpeed: 5
+  actualTargetTile: {fileID: 0}
+--- !u!61 &890637140
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890637137}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &892995293
 GameObject:
   m_ObjectHideFlags: 0
@@ -6264,6 +6554,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &893137302
 GameObject:
   m_ObjectHideFlags: 0
@@ -6476,6 +6769,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1041249430
 GameObject:
   m_ObjectHideFlags: 0
@@ -6606,6 +6902,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1050186902
 GameObject:
   m_ObjectHideFlags: 0
@@ -6736,6 +7035,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1050297143
 GameObject:
   m_ObjectHideFlags: 0
@@ -6866,6 +7168,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1059384462
 GameObject:
   m_ObjectHideFlags: 0
@@ -6996,6 +7301,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1068669520
 GameObject:
   m_ObjectHideFlags: 0
@@ -7126,6 +7434,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1124618501
 GameObject:
   m_ObjectHideFlags: 0
@@ -7256,6 +7567,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1135602230
 GameObject:
   m_ObjectHideFlags: 0
@@ -7386,6 +7700,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1146192007
 GameObject:
   m_ObjectHideFlags: 0
@@ -7399,11 +7716,11 @@ GameObject:
   - component: {fileID: 1146192008}
   m_Layer: 9
   m_Name: Other
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1146192008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7420,6 +7737,7 @@ MonoBehaviour:
   moving: 0
   move: 5
   moveSpeed: 5
+  actualTargetTile: {fileID: 0}
 --- !u!61 &1146192009
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7453,13 +7771,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146192007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7, y: -4, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 893137303}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 2080493839}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1172205845
 GameObject:
@@ -7591,6 +7909,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1173329932
 GameObject:
   m_ObjectHideFlags: 0
@@ -7721,6 +8042,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1215466545
 GameObject:
   m_ObjectHideFlags: 0
@@ -7851,6 +8175,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1217064728
 GameObject:
   m_ObjectHideFlags: 0
@@ -7981,6 +8308,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1229273118
 GameObject:
   m_ObjectHideFlags: 0
@@ -8111,6 +8441,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1261244514
 GameObject:
   m_ObjectHideFlags: 0
@@ -8241,6 +8574,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1270535678
 GameObject:
   m_ObjectHideFlags: 0
@@ -8371,6 +8707,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1274950761
 GameObject:
   m_ObjectHideFlags: 0
@@ -8501,6 +8840,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1310533582
 GameObject:
   m_ObjectHideFlags: 0
@@ -8631,6 +8973,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1314238250
 GameObject:
   m_ObjectHideFlags: 0
@@ -8761,6 +9106,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1321903423
 GameObject:
   m_ObjectHideFlags: 0
@@ -8891,6 +9239,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1326946965
 GameObject:
   m_ObjectHideFlags: 0
@@ -9021,6 +9372,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1329006064
 GameObject:
   m_ObjectHideFlags: 0
@@ -9151,6 +9505,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1367516514
 GameObject:
   m_ObjectHideFlags: 0
@@ -9281,6 +9638,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1379181523
 GameObject:
   m_ObjectHideFlags: 0
@@ -9493,6 +9853,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1422593072
 GameObject:
   m_ObjectHideFlags: 0
@@ -9506,7 +9869,7 @@ GameObject:
   - component: {fileID: 1422593073}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9527,6 +9890,7 @@ MonoBehaviour:
   moving: 0
   move: 5
   moveSpeed: 5
+  actualTargetTile: {fileID: 0}
 --- !u!4 &1422593074
 Transform:
   m_ObjectHideFlags: 0
@@ -9534,13 +9898,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422593072}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: -4, z: -1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1379181524}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 2080493839}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1422593075
 BoxCollider2D:
@@ -9698,6 +10062,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1432025297
 GameObject:
   m_ObjectHideFlags: 0
@@ -9867,6 +10234,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1464160856
 GameObject:
   m_ObjectHideFlags: 0
@@ -9997,6 +10367,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1468806438
 GameObject:
   m_ObjectHideFlags: 0
@@ -10127,6 +10500,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1511307871
 GameObject:
   m_ObjectHideFlags: 0
@@ -10257,6 +10633,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1513251484
 GameObject:
   m_ObjectHideFlags: 0
@@ -10387,6 +10766,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1526830428
 GameObject:
   m_ObjectHideFlags: 0
@@ -10517,6 +10899,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1527928226
 GameObject:
   m_ObjectHideFlags: 0
@@ -10647,6 +11032,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1530139680
 GameObject:
   m_ObjectHideFlags: 0
@@ -10777,6 +11165,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1530477813
 GameObject:
   m_ObjectHideFlags: 0
@@ -10907,6 +11298,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1540195076
 GameObject:
   m_ObjectHideFlags: 0
@@ -10948,7 +11342,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540652419
 GameObject:
@@ -11080,6 +11474,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1547575996
 GameObject:
   m_ObjectHideFlags: 0
@@ -11210,6 +11607,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1580141478
 GameObject:
   m_ObjectHideFlags: 0
@@ -11340,6 +11740,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1619345772
 GameObject:
   m_ObjectHideFlags: 0
@@ -11555,6 +11958,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1726037718
 GameObject:
   m_ObjectHideFlags: 0
@@ -11685,6 +12091,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1726435402
 GameObject:
   m_ObjectHideFlags: 0
@@ -11815,6 +12224,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1734806779
 GameObject:
   m_ObjectHideFlags: 0
@@ -11987,6 +12399,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1788943752
 GameObject:
   m_ObjectHideFlags: 0
@@ -12117,6 +12532,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1801665883
 GameObject:
   m_ObjectHideFlags: 0
@@ -12247,6 +12665,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1822621315
 GameObject:
   m_ObjectHideFlags: 0
@@ -12377,6 +12798,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1865438107
 GameObject:
   m_ObjectHideFlags: 0
@@ -12507,6 +12931,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1875691429
 GameObject:
   m_ObjectHideFlags: 0
@@ -12679,6 +13106,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1900647223
 GameObject:
   m_ObjectHideFlags: 0
@@ -12809,6 +13239,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1905055462
 GameObject:
   m_ObjectHideFlags: 0
@@ -12939,6 +13372,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1925187076
 GameObject:
   m_ObjectHideFlags: 0
@@ -13069,6 +13505,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1926883711
 GameObject:
   m_ObjectHideFlags: 0
@@ -13199,6 +13638,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1929724557
 GameObject:
   m_ObjectHideFlags: 0
@@ -13329,6 +13771,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1933212148
 GameObject:
   m_ObjectHideFlags: 0
@@ -13459,6 +13904,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1938040344
 GameObject:
   m_ObjectHideFlags: 0
@@ -13589,6 +14037,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1944781307
 GameObject:
   m_ObjectHideFlags: 0
@@ -13719,6 +14170,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &1980386815
 GameObject:
   m_ObjectHideFlags: 0
@@ -13849,6 +14303,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2015776035
 GameObject:
   m_ObjectHideFlags: 0
@@ -13979,6 +14436,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2037977791
 GameObject:
   m_ObjectHideFlags: 0
@@ -14109,6 +14569,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2040768203
 GameObject:
   m_ObjectHideFlags: 0
@@ -14239,6 +14702,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2046824489
 GameObject:
   m_ObjectHideFlags: 0
@@ -14369,6 +14835,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2057733182
 GameObject:
   m_ObjectHideFlags: 0
@@ -14499,6 +14968,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2074505339
 GameObject:
   m_ObjectHideFlags: 0
@@ -14629,6 +15101,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2077807701
 GameObject:
   m_ObjectHideFlags: 0
@@ -14759,6 +15234,42 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
+--- !u!1 &2080493838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080493839}
+  m_Layer: 0
+  m_Name: Characters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080493839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080493838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1146192010}
+  - {fileID: 1422593074}
+  - {fileID: 890637138}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2086499165
 GameObject:
   m_ObjectHideFlags: 0
@@ -14889,6 +15400,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2099349597
 GameObject:
   m_ObjectHideFlags: 0
@@ -15019,6 +15533,9 @@ MonoBehaviour:
   visited: 0
   parent: {fileID: 0}
   distance: 0
+  g: 0
+  h: 0
+  f: 0
 --- !u!1 &2142103564
 GameObject:
   m_ObjectHideFlags: 0

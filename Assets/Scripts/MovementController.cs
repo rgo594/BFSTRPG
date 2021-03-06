@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
 
-    //public Tile actualTargetTile;
+    public Tile actualTargetTile;
 
     protected void Init()
     {
@@ -47,7 +47,6 @@ public class MovementController : MonoBehaviour
         if (hit.collider != null)
         {
             tile = hit.collider.GetComponent<Tile>();
-            
         }
 
         return tile;
@@ -167,6 +166,122 @@ public class MovementController : MonoBehaviour
         }
 
         selectableTiles.Clear();
+    }
+
+    protected Tile FindLowestF(List<Tile> list)
+    {
+
+        Tile lowest = list[0];
+
+        foreach (Tile t in list)
+        {
+            if (t.f < lowest.f)
+            {
+                lowest = t;
+            }
+        }
+
+        list.Remove(lowest);
+
+        //returns tile with shortest distance
+        return lowest;
+    }
+
+    protected Tile FindEndTile(Tile t)
+    {
+        Stack<Tile> tempPath = new Stack<Tile>();
+
+        Tile next = t.parent;
+        while (next != null)
+        {
+            tempPath.Push(next);
+            next = next.parent;
+
+        }
+
+        if (tempPath.Count <= move)
+        {
+            //if the tile is within range this is the tile we move towards
+            return t.parent;
+        }
+
+        Tile endTile = null;
+        for (int i = 0; i <= move; i++)
+        {
+            //if the tile is out of range use this tile
+            endTile = tempPath.Pop();
+        }
+        return endTile;
+    }
+
+    public void FindPath(Tile target)
+    {
+        ComputeAdjacencyLists(target);
+        GetCurrentTile();
+
+        List<Tile> openList = new List<Tile>();
+        List<Tile> closedList = new List<Tile>();
+
+        openList.Add(currentTile);
+
+        currentTile.h = Vector3.Distance(currentTile.transform.position, target.transform.position);
+        currentTile.f = currentTile.h;
+
+        //29:14 part 6: explais the three steps of A*
+        while (openList.Count > 0)
+        {
+            Tile lowest = FindLowestF(openList);
+
+            closedList.Add(lowest);
+
+            if (lowest == target)
+            {
+                actualTargetTile = FindEndTile(lowest);
+                MoveToTile(actualTargetTile);
+                return;
+            }
+
+            foreach (Tile tile in lowest.adjacencyList)
+            {
+
+                if (closedList.Contains(tile))
+                {
+                    //do nothing, already processed
+                }
+                else if (openList.Contains(tile))
+                {
+                    //this case is triggered when multiple paths exist in the open list, and compares them to find the shortest path among them
+                    //determines which path is better if multiple exists
+                    float tempG = lowest.g + Vector3.Distance(tile.transform.position, lowest.transform.position);
+                    if (tempG < tile.g)
+                    {
+                        tile.parent = lowest;
+
+                        tile.g = tempG;
+                        tile.f = tile.g + tile.h;
+                    }
+                }
+                else
+                {
+                    //completely unprocessed tile =
+
+                    tile.parent = lowest;
+
+                    //distance to the beginning
+                    //the g of the parent plus the distance to the parent
+                    tile.g = lowest.g + Vector3.Distance(tile.transform.position, lowest.transform.position);
+                    //estimated distance to the end
+                    tile.h = Vector3.Distance(tile.transform.position, target.transform.position);
+                    tile.f = tile.g + tile.h;
+
+                    openList.Add(tile);
+                }
+            }
+        }
+
+        //18:20 part 6
+        //todo - what do you do if there is no path to the target tile
+        Debug.Log("Path not found");
     }
 
     public void BeginTurn()

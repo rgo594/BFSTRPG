@@ -17,6 +17,14 @@ public class Tile : MonoBehaviour
     public Tile parent = null;
     public int distance = 0;
 
+    //For A*
+    //g = cost from the parent to the current tile
+    public float g = 0;
+    //h = the cost from the processed tile to the destination
+    public float h = 0;
+    //f = g+h (used for finding the best case path with the minimal amount of time
+    public float f = 0;
+
     // Update is called once per frame
     void Update()
     {
@@ -24,7 +32,7 @@ public class Tile : MonoBehaviour
         if (current)
         {
             selectable = false;
-            GetComponent<Renderer>().material.color = Color.yellow;
+            GetComponent<Renderer>().material.color = Color.black;
         }
         else if (target)
         {
@@ -52,7 +60,7 @@ public class Tile : MonoBehaviour
         parent = null;
         distance = 0;
 
-        //f = g = h = 0;
+        f = g = h = 0;
     }
 
     public void FindNeighbors(Tile target)
