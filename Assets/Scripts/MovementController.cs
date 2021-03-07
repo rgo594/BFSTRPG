@@ -137,7 +137,16 @@ public class MovementController : MonoBehaviour
             RemoveSelectableTiles();
             moving = false;
 
-            TurnManager.EndTurn();
+            if(gameObject.tag == "Enemy")
+            {
+                //TODO add enemy behavior for once it reaches the target
+                TurnManager.EndTurn();
+            }
+            else
+            {
+                gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            }
+            
         }
     }
 
@@ -291,5 +300,10 @@ public class MovementController : MonoBehaviour
     public void EndTurn()
     {
         turn = false;
+        if(gameObject.tag == "Character")
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        
     }
 }
