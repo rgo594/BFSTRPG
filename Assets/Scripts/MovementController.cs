@@ -13,6 +13,7 @@ public class MovementController : MonoBehaviour
     Tile currentTile;
 
     public bool moving = false;
+    public bool unitMenuPresent = false;
     public int move = 5;
     public float moveSpeed = 5;
 
@@ -144,11 +145,13 @@ public class MovementController : MonoBehaviour
             }
             else
             {
-                gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                ToggleUnitMenu(true);
             }
-            
+
         }
     }
+
+
 
     void SetHorizontalVelocity()
     {
@@ -293,6 +296,12 @@ public class MovementController : MonoBehaviour
         Debug.Log("Path not found");
     }
 
+    protected void ToggleUnitMenu(bool presence)
+    {
+        gameObject.transform.GetChild(1).gameObject.SetActive(presence);
+        unitMenuPresent = presence;
+    }
+
     public void BeginTurn()
     {
         turn = true;
@@ -302,7 +311,7 @@ public class MovementController : MonoBehaviour
         turn = false;
         if(gameObject.tag == "Character")
         {
-            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            ToggleUnitMenu(false);
         }
         
     }
