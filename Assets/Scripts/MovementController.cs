@@ -30,9 +30,9 @@ public class MovementController : MonoBehaviour
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
 
-        if (gameObject.tag == "Enemy")
+        if (gameObject.tag != "Character")
         {
-            TurnManager.AddUnit(this);
+            TurnManager.AddNpcUnit(this);
         }  
     }
 
@@ -136,23 +136,25 @@ public class MovementController : MonoBehaviour
             }
             else
             {
-                transform.position = target;
+                //temporary fix for keeping unit z axis unaffected by calculateHeading
+                transform.position = new Vector3(target.x, target.y, -1);
                 path.Pop();
             }
         }
         else
         {
-            RemoveSelectableTiles();
+            //RemoveSelectableTiles();
             moving = false;
 
             if(gameObject.tag == "Enemy")
             {
+                RemoveSelectableTiles();
                 //TODO add enemy behavior for once it reaches the target
-                TurnManager.EndTurn();   
+                TurnManager.EndNpcTurn();   
             }
             else
             {
-                turnManager.EndCharacterTurn(gameObject);
+                turnManager.EndPlayerCharacterTurn(gameObject);
                 turnManager.characterTurnCounter++;
             }
 
@@ -166,6 +168,7 @@ public class MovementController : MonoBehaviour
 
     void CalculateHeading(Vector3 target)
     {
+        //TODO find a way to do, target - transform.position, without affecting z axis (can sometimes cause unit to be unclickable)
         heading = target - transform.position;
         heading.Normalize();
     }
@@ -306,12 +309,6 @@ public class MovementController : MonoBehaviour
     {
         gameObject.transform.GetChild(1).gameObject.SetActive(presence);
         unitMenuPresent = presence;
-    }
-
-    public IEnumerator fuckUnity()
-    {
-        yield return new WaitForEndOfFrame();
-        turn = true;
     }
 
     public void BeginTurn()

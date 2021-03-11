@@ -15,7 +15,7 @@ public class UnitMenu : MonoBehaviour
 
     public void OnMouseDown()
     {
-        TurnManager.EndTurn();
+        TurnManager.EndNpcTurn();
     }
 
     public void OnMouseOver()
