@@ -13,7 +13,7 @@ public class TurnManager : MonoBehaviour
     public bool characterSelected = false;
     public bool teamTurn = true;
     public int characterTurnCounter = 0;
-
+    GameObject currentCharacter = null;
     private void Start()
     {
         playerTeamCount = FindObjectsOfType<PlayerMove>().Length;
@@ -22,7 +22,13 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SelectPlayerCharacter();
+
+        //prevents being able to select characters during enemy turn
+        if(characterTurnCounter != playerTeamCount)
+        {
+            SelectPlayerCharacter();
+        }
+
         //only gets called once
         if (turnTeam.Count == 0)
         {
@@ -31,7 +37,6 @@ public class TurnManager : MonoBehaviour
         
         if (characterTurnCounter == playerTeamCount)
         {
-            Debug.Log(characterTurnCounter == playerTeamCount);
             StartTurn();
         }
 
@@ -55,13 +60,44 @@ public class TurnManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
 
-            if (hit.collider.gameObject.tag == "Character" && characterSelected == false)
+            //GameObject previousCharacter = null;
+
+            
+            if (hit.collider.gameObject.tag == "Character")
             {
-                hit.collider.gameObject.GetComponent<PlayerMove>().turn = true;
-                characterSelected = true;
+                var player = hit.collider.gameObject.GetComponent<PlayerMove>();
+
+                if(currentCharacter != null)
+                {
+                    if (hit.collider.gameObject.name != currentCharacter.name)
+                    {
+                        currentCharacter.GetComponent<PlayerMove>().selected = false;
+                        currentCharacter.GetComponent<PlayerMove>().turn = false;
+                        currentCharacter.GetComponent<PlayerMove>().RemoveSelectableTiles();
+                        characterSelected = false;
+                    }
+                }
+
+
+                if (player.turn == false)
+                {
+                    currentCharacter = hit.collider.gameObject;
+                    player.turn = true;
+                    player.selected = true;
+                    characterSelected = true;
+                }
+                else
+                {
+                    player.selected = false;
+                    player.turn = false;
+                    player.RemoveSelectableTiles();
+                    characterSelected = false;
+                }
+                Debug.Log(currentCharacter);
             }
         }
     }
+
 
     public void EndCharacterTurn(GameObject character)
     {
@@ -111,7 +147,12 @@ public class TurnManager : MonoBehaviour
         else
         {
             var turnManager = FindObjectOfType<TurnManager>();
+
+            //resets player turn
+            //if there are three teams wont work properly
             turnManager.characterTurnCounter = 0;
+
+            //responsible for resetting ai
             string team = turnKey.Dequeue();
             turnKey.Enqueue(team);
             InitTeamTurnQueue();

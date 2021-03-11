@@ -1,0 +1,2 @@
+ai needs to prioritze enemy with lowest health within range, rather than exclusively distance
+bug where ai sometimes overlaps with player? (seems rare)

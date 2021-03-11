@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMove : MovementController
 {
+    public bool selected = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class PlayerMove : MovementController
         }
     }
 
-    void CheckMouse()
+    public void CheckMouse()
     {
         if (Input.GetMouseButtonUp(0))
         {

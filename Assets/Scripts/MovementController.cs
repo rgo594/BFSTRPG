@@ -170,7 +170,7 @@ public class MovementController : MonoBehaviour
         heading.Normalize();
     }
 
-    protected void RemoveSelectableTiles()
+    public void RemoveSelectableTiles()
     {
         if (currentTile != null)
         {
