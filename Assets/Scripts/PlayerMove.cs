@@ -16,7 +16,7 @@ public class PlayerMove : MovementController
         {
             return;
         }
-        if (!moving & !unitMenuPresent)
+        if (!moving)
         {
             FindSelectableTiles();
             CheckMouse();

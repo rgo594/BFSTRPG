@@ -22,11 +22,18 @@ public class MovementController : MonoBehaviour
 
     public Tile actualTargetTile;
 
+    public TurnManager turnManager;
+
     protected void Init()
     {
+        turnManager = FindObjectOfType<TurnManager>();
+
         tiles = GameObject.FindGameObjectsWithTag("Tile");
 
-        TurnManager.AddUnit(this);
+        if (gameObject.tag == "Enemy")
+        {
+            TurnManager.AddUnit(this);
+        }  
     }
 
     public void GetCurrentTile()
@@ -141,17 +148,16 @@ public class MovementController : MonoBehaviour
             if(gameObject.tag == "Enemy")
             {
                 //TODO add enemy behavior for once it reaches the target
-                TurnManager.EndTurn();
+                TurnManager.EndTurn();   
             }
             else
             {
-                ToggleUnitMenu(true);
+                turnManager.EndCharacterTurn(gameObject);
+                turnManager.characterTurnCounter++;
             }
 
         }
     }
-
-
 
     void SetHorizontalVelocity()
     {
@@ -302,17 +308,23 @@ public class MovementController : MonoBehaviour
         unitMenuPresent = presence;
     }
 
+    public IEnumerator fuckUnity()
+    {
+        yield return new WaitForEndOfFrame();
+        turn = true;
+    }
+
     public void BeginTurn()
     {
         turn = true;
     }
+
     public void EndTurn()
     {
-        turn = false;
-        if(gameObject.tag == "Character")
+        if (gameObject.tag == "Character")
         {
             ToggleUnitMenu(false);
         }
-        
+        turn = false;  
     }
 }
