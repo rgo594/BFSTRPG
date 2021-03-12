@@ -33,7 +33,6 @@ public class EnemyMove : MovementController
 
     void CalculatePath()
     {
-
         Tile targetTile = GetTargetTile(target);
         FindPath(targetTile);
     }

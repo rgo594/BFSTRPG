@@ -13,21 +13,27 @@ public class TurnManager : MonoBehaviour
     //Queue of each unit in current team (ex. [ NPC, NPC(1) ] )
     static Queue<MovementController> unitTurnOrder = new Queue<MovementController>();
 
-    int playerTeamCount;
-    public int characterTurnCounter = 0;
+    public int playerCharacterCount;
+    public int playerCharacterPhaseCounter = 0;
+
+    //increases everytime an ai switches turn ex. Ally turn -> Enemy turn; aiTurnCounter = 1;
+    public int aiTurnCounter = 0;
+    //When the aiTeamCount and aiTurnCounter match, the player turn starts
+    public int aiTeamCount = 0;
 
     GameObject currentCharacter = null;
 
     private void Start()
     {
-        playerTeamCount = FindObjectsOfType<PlayerMove>().Length;
+        playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
+        aiTeamCount = teamTurnOrder.Count;
     }
 
     // Update is called once per frame
     void Update()
     {
         //prevents being able to select characters during enemy turn
-        if(characterTurnCounter != playerTeamCount)
+        if(playerCharacterPhaseCounter != playerCharacterCount)
         {
             SelectPlayerCharacter();
         }
@@ -37,7 +43,7 @@ public class TurnManager : MonoBehaviour
             InitUnitTurnOrder();
         }
         
-        if (characterTurnCounter == playerTeamCount)
+        if (playerCharacterPhaseCounter == playerCharacterCount)
         {
             StartNpcTurn();
         }
@@ -151,8 +157,15 @@ public class TurnManager : MonoBehaviour
         {
             var turnManager = FindObjectOfType<TurnManager>();
 
+            turnManager.aiTurnCounter++;
+
+            if(turnManager.aiTurnCounter == turnManager.aiTeamCount)
+            {
+                turnManager.playerCharacterPhaseCounter = 0;
+                turnManager.aiTurnCounter = 0;
+            }
             //switches to players turn (if there are three teams wont work properly)
-            turnManager.characterTurnCounter = 0;
+
 
             //responsible for resetting ai
             string team = teamTurnOrder.Dequeue();

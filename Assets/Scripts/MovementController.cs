@@ -69,6 +69,7 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    //BFS
     public void FindSelectableTiles()
     {
         ComputeAdjacencyLists(null);
@@ -146,7 +147,7 @@ public class MovementController : MonoBehaviour
             //RemoveSelectableTiles();
             moving = false;
 
-            if(gameObject.tag == "Enemy")
+            if(gameObject.tag != "Character")
             {
                 RemoveSelectableTiles();
                 //TODO add enemy behavior for once it reaches the target
@@ -155,7 +156,7 @@ public class MovementController : MonoBehaviour
             else
             {
                 turnManager.EndPlayerCharacterTurn(gameObject);
-                turnManager.characterTurnCounter++;
+                turnManager.playerCharacterPhaseCounter++;
             }
 
         }
@@ -235,6 +236,7 @@ public class MovementController : MonoBehaviour
         return endTile;
     }
 
+    //A*
     public void FindPath(Tile target)
     {
         ComputeAdjacencyLists(target);
@@ -248,7 +250,7 @@ public class MovementController : MonoBehaviour
         currentTile.h = Vector3.Distance(currentTile.transform.position, target.transform.position);
         currentTile.f = currentTile.h;
 
-        //29:14 part 6: explais the three steps of A*
+        //29:14 part 6: explains the three steps of A*
         while (openList.Count > 0)
         {
             Tile lowest = FindLowestF(openList);
