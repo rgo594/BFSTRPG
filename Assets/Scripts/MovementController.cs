@@ -26,7 +26,8 @@ public class MovementController : MonoBehaviour
     public GameObject unitMenuController;
 
     public bool UnitMenuPresent = false;
-    GameObject preventClicking;
+
+    public Vector3 originalPosition;
 
     protected void Init()
     {
@@ -35,8 +36,6 @@ public class MovementController : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
-
-        preventClicking = GameObject.Find("PreventClicking");
 
         if (gameObject.tag != "Character")
         {
@@ -163,12 +162,10 @@ public class MovementController : MonoBehaviour
             else
             {
                 //prevents move tile mpa reappearing
-                //preventClicking.GetComponent<BoxCollider2D>().enabled = true;
                 var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
                 turnManager.characterSelected = true;
                 ToggleUnitMenu(true);
 
-                gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 unitMenu.GetComponent<UnitMenu>().SetUnit(gameObject);
             }
 
@@ -184,7 +181,7 @@ public class MovementController : MonoBehaviour
 
     public void EndPlayerCharacterTurn()
     {
-        //preventClicking.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
         turnManager.playerCharacterTurnCounter++;
         turnManager.EndPlayerCharacterTurn(gameObject);
         UnitMenuPresent = false;

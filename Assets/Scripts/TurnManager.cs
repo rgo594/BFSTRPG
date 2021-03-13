@@ -34,9 +34,12 @@ public class TurnManager : MonoBehaviour
     void Update()
     {
         //prevents being able to select characters during enemy turn
-        if(playerCharacterTurnCounter != playerCharacterCount && !characterSelected)
+        if(playerCharacterTurnCounter != playerCharacterCount)
         {
-            SelectPlayerCharacter();
+            if (!characterSelected)
+            {
+                SelectPlayerCharacter();
+            }
         }
 
         if (unitTurnOrder.Count == 0)
@@ -59,6 +62,8 @@ public class TurnManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && hit.collider != null)
         {
             bool characterMoving = false;
+
+
 
             if(currentCharacter != null)
             {
@@ -90,6 +95,8 @@ public class TurnManager : MonoBehaviour
                     player.GetComponent<PlayerMove>().ToggleUnitMenu(true);
                 }
 
+
+
                 //characterSelected = true;
             }
         }
@@ -98,6 +105,7 @@ public class TurnManager : MonoBehaviour
     public void StartPlayerCharacterTurn(GameObject character)
     {
         character.GetComponent<PlayerMove>().turn = true;
+        character.GetComponent<PlayerMove>().originalPosition = character.gameObject.transform.position;
     }
 
     public void EndPlayerCharacterTurn(GameObject character)

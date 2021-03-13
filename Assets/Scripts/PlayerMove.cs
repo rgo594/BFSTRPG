@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MovementController
 {
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +18,16 @@ public class PlayerMove : MovementController
         {
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
+
         if (!turn)
         {
             return;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            gameObject.transform.position = originalPosition;
+            ToggleUnitMenu(false);
+            turnManager.characterSelected = false;
         }
         if (!moving && !UnitMenuPresent)
         {
