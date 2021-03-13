@@ -164,6 +164,7 @@ public class MovementController : MonoBehaviour
             {
                 //prevents move tile mpa reappearing
                 //preventClicking.GetComponent<BoxCollider2D>().enabled = true;
+                turnManager.characterSelected = true;
                 UnitMenuPresent = true;
                 var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
                 unitMenu.SetActive(true);

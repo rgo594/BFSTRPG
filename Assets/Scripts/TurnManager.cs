@@ -22,7 +22,7 @@ public class TurnManager : MonoBehaviour
     public int aiTeamCount = 0;
 
     GameObject currentCharacter = null;
-    bool characterSelected = false;
+    public bool characterSelected = false;
 
     private void Start()
     {
@@ -89,7 +89,7 @@ public class TurnManager : MonoBehaviour
                     EndPlayerCharacterTurn(player);
                 }
 
-                characterSelected = true;
+                //characterSelected = true;
             }
         }
     }
