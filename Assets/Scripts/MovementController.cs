@@ -164,10 +164,9 @@ public class MovementController : MonoBehaviour
             {
                 //prevents move tile mpa reappearing
                 //preventClicking.GetComponent<BoxCollider2D>().enabled = true;
-                turnManager.characterSelected = true;
-                UnitMenuPresent = true;
                 var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
-                unitMenu.SetActive(true);
+                turnManager.characterSelected = true;
+                ToggleUnitMenu(true);
 
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 unitMenu.GetComponent<UnitMenu>().SetUnit(gameObject);
@@ -175,6 +174,13 @@ public class MovementController : MonoBehaviour
 
         }
     }
+
+    public void ToggleUnitMenu(bool toggle)
+    {
+        var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
+        UnitMenuPresent = toggle;
+        unitMenu.SetActive(toggle);
+    } 
 
     public void EndPlayerCharacterTurn()
     {
@@ -329,12 +335,6 @@ public class MovementController : MonoBehaviour
         Debug.Log("Path not found");
     }
 
-    protected void ToggleUnitMenu(bool presence)
-    {
-        gameObject.transform.GetChild(1).gameObject.SetActive(presence);
-        unitMenuPresent = presence;
-    }
-
     public void BeginTurn()
     {
         turn = true;
@@ -342,10 +342,6 @@ public class MovementController : MonoBehaviour
 
     public void EndTurn()
     {
-        if (gameObject.tag == "Character")
-        {
-            ToggleUnitMenu(false);
-        }
         turn = false;  
     }
 }

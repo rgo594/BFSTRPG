@@ -86,7 +86,8 @@ public class TurnManager : MonoBehaviour
                 }
                 else
                 {
-                    EndPlayerCharacterTurn(player);
+                    //EndPlayerCharacterTurn(player);
+                    player.GetComponent<PlayerMove>().ToggleUnitMenu(true);
                 }
 
                 //characterSelected = true;
