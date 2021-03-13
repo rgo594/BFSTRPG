@@ -26,6 +26,7 @@ public class MovementController : MonoBehaviour
     public GameObject unitMenuController;
 
     public bool UnitMenuPresent = false;
+    GameObject preventClicking;
 
     protected void Init()
     {
@@ -34,6 +35,8 @@ public class MovementController : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
+
+        preventClicking = GameObject.Find("PreventClicking");
 
         if (gameObject.tag != "Character")
         {
@@ -160,6 +163,7 @@ public class MovementController : MonoBehaviour
             else
             {
                 //prevents move tile mpa reappearing
+                //preventClicking.GetComponent<BoxCollider2D>().enabled = true;
                 UnitMenuPresent = true;
                 var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
                 unitMenu.SetActive(true);
@@ -173,6 +177,7 @@ public class MovementController : MonoBehaviour
 
     public void EndPlayerCharacterTurn()
     {
+        //preventClicking.GetComponent<BoxCollider2D>().enabled = false;
         turnManager.playerCharacterTurnCounter++;
         turnManager.EndPlayerCharacterTurn(gameObject);
         UnitMenuPresent = false;

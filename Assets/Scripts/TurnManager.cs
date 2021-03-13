@@ -22,6 +22,7 @@ public class TurnManager : MonoBehaviour
     public int aiTeamCount = 0;
 
     GameObject currentCharacter = null;
+    bool characterSelected = false;
 
     private void Start()
     {
@@ -33,7 +34,7 @@ public class TurnManager : MonoBehaviour
     void Update()
     {
         //prevents being able to select characters during enemy turn
-        if(playerCharacterTurnCounter != playerCharacterCount)
+        if(playerCharacterTurnCounter != playerCharacterCount && !characterSelected)
         {
             SelectPlayerCharacter();
         }
@@ -87,6 +88,8 @@ public class TurnManager : MonoBehaviour
                 {
                     EndPlayerCharacterTurn(player);
                 }
+
+                characterSelected = true;
             }
         }
     }
@@ -100,6 +103,7 @@ public class TurnManager : MonoBehaviour
     {
         character.GetComponent<PlayerMove>().turn = false;
         character.GetComponent<PlayerMove>().RemoveSelectableTiles();
+        characterSelected = false;
     }
 
     static void InitUnitTurnOrder()
