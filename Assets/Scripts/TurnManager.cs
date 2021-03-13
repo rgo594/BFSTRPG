@@ -8,16 +8,16 @@ public class TurnManager : MonoBehaviour
     public static Dictionary<string, List<MovementController>> teamUnits = new Dictionary<string, List<MovementController>>();
 
     //Queue of each team (ex. ["Enemy", "Ally"] )
-    public static Queue<string> teamTurnOrder = new Queue<string>();
+    public static Queue<string> teamPhaseOrder = new Queue<string>();
 
     //Queue of each unit in current team (ex. [ NPC, NPC(1) ] )
     static Queue<MovementController> unitTurnOrder = new Queue<MovementController>();
 
     public int playerCharacterCount;
-    public int playerCharacterPhaseCounter = 0;
+    public int playerCharacterTurnCounter = 0;
 
     //increases everytime an ai switches turn ex. Ally turn -> Enemy turn; aiTurnCounter = 1;
-    public int aiTurnCounter = 0;
+    public int aiPhaseCounter = 0;
     //When the aiTeamCount and aiTurnCounter match, the player turn starts
     public int aiTeamCount = 0;
 
@@ -26,14 +26,14 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
-        aiTeamCount = teamTurnOrder.Count;
+        aiTeamCount = teamPhaseOrder.Count;
     }
 
     // Update is called once per frame
     void Update()
     {
         //prevents being able to select characters during enemy turn
-        if(playerCharacterPhaseCounter != playerCharacterCount)
+        if(playerCharacterTurnCounter != playerCharacterCount)
         {
             SelectPlayerCharacter();
         }
@@ -43,7 +43,7 @@ public class TurnManager : MonoBehaviour
             InitUnitTurnOrder();
         }
         
-        if (playerCharacterPhaseCounter == playerCharacterCount)
+        if (playerCharacterTurnCounter == playerCharacterCount)
         {
             StartNpcTurn();
         }
@@ -52,13 +52,20 @@ public class TurnManager : MonoBehaviour
 
     public void SelectPlayerCharacter()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && hit.collider != null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
+            bool characterMoving = false;
 
-            if (hit.collider.gameObject.tag == "Character")
+            if(currentCharacter != null)
+            {
+                //so you can't select a character while another one is already moving
+                characterMoving = currentCharacter.GetComponent<PlayerMove>().moving;
+            }
+
+            if (hit.collider.gameObject.tag == "Character" && !characterMoving)
             {
                 var player = hit.collider.gameObject;
 
@@ -98,7 +105,7 @@ public class TurnManager : MonoBehaviour
     static void InitUnitTurnOrder()
     {
         //Grabs first teams unit list in teamUnits
-        List<MovementController> teamList = teamUnits[teamTurnOrder.Peek()];
+        List<MovementController> teamList = teamUnits[teamPhaseOrder.Peek()];
 
         foreach (MovementController unit in teamList)
         {
@@ -119,10 +126,10 @@ public class TurnManager : MonoBehaviour
             //add list value to key (currently will be null instead of empty list). ex. {"Enemy" : [] }
             teamUnits[unit.tag] = list;
 
-            if (!teamTurnOrder.Contains(unit.tag))
+            if (!teamPhaseOrder.Contains(unit.tag))
             {
                 //adds team to turn order
-                teamTurnOrder.Enqueue(unit.tag);
+                teamPhaseOrder.Enqueue(unit.tag);
             }
         }
         else
@@ -157,19 +164,19 @@ public class TurnManager : MonoBehaviour
         {
             var turnManager = FindObjectOfType<TurnManager>();
 
-            turnManager.aiTurnCounter++;
+            turnManager.aiPhaseCounter++;
 
-            if(turnManager.aiTurnCounter == turnManager.aiTeamCount)
+            if(turnManager.aiPhaseCounter == turnManager.aiTeamCount)
             {
-                turnManager.playerCharacterPhaseCounter = 0;
-                turnManager.aiTurnCounter = 0;
+                turnManager.playerCharacterTurnCounter = 0;
+                turnManager.aiPhaseCounter = 0;
             }
             //switches to players turn (if there are three teams wont work properly)
 
 
             //responsible for resetting ai
-            string team = teamTurnOrder.Dequeue();
-            teamTurnOrder.Enqueue(team);
+            string team = teamPhaseOrder.Dequeue();
+            teamPhaseOrder.Enqueue(team);
             InitUnitTurnOrder();
         }
     }

@@ -6,27 +6,17 @@ using TMPro;
 public class UnitMenu : MonoBehaviour
 {
     Color originalColor;
+    public GameObject selectedUnit;
 
-    // Start is called before the first frame update
-    void Start()
+    public void EndTurn()
     {
-        originalColor = gameObject.GetComponent<TextMeshPro>().color;
+        selectedUnit.GetComponent<PlayerMove>().EndPlayerCharacterTurn();
+        gameObject.SetActive(false);
     }
 
-    public void OnMouseDown()
+    public void SetUnit(GameObject unit)
     {
-        TurnManager.EndNpcTurn();
-    }
-
-    public void OnMouseOver()
-    {
-        //gameObject.GetComponent<MeshRenderer>().materials[0].color = Color.green;
-        gameObject.GetComponent<TextMeshPro>().color = Color.green;
-    }
-
-    public void OnMouseExit()
-    {
-        gameObject.GetComponent<TextMeshPro>().color = originalColor;
+        selectedUnit = unit;
     }
 
 }

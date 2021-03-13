@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MovementController
 {
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,11 +14,15 @@ public class PlayerMove : MovementController
 
     void Update()
     {
+        if (turnManager.playerCharacterTurnCounter == turnManager.playerCharacterCount)
+        {
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
         if (!turn)
         {
             return;
         }
-        if (!moving)
+        if (!moving && !UnitMenuPresent)
         {
             FindSelectableTiles();
             CheckMouse();

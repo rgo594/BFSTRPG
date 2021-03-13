@@ -23,9 +23,14 @@ public class MovementController : MonoBehaviour
     public Tile actualTargetTile;
 
     public TurnManager turnManager;
+    public GameObject unitMenuController;
+
+    public bool UnitMenuPresent = false;
 
     protected void Init()
     {
+        unitMenuController = GameObject.Find("UnitMenuController");
+
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -144,22 +149,33 @@ public class MovementController : MonoBehaviour
         }
         else
         {
-            //RemoveSelectableTiles();
+            RemoveSelectableTiles();
             moving = false;
 
             if(gameObject.tag != "Character")
             {
-                RemoveSelectableTiles();
                 //TODO add enemy behavior for once it reaches the target
                 TurnManager.EndNpcTurn();   
             }
             else
             {
-                turnManager.EndPlayerCharacterTurn(gameObject);
-                turnManager.playerCharacterPhaseCounter++;
+                //prevents move tile mpa reappearing
+                UnitMenuPresent = true;
+                var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
+                unitMenu.SetActive(true);
+
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                unitMenu.GetComponent<UnitMenu>().SetUnit(gameObject);
             }
 
         }
+    }
+
+    public void EndPlayerCharacterTurn()
+    {
+        turnManager.playerCharacterTurnCounter++;
+        turnManager.EndPlayerCharacterTurn(gameObject);
+        UnitMenuPresent = false;
     }
 
     void SetHorizontalVelocity()
