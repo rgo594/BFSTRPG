@@ -31,6 +31,7 @@ public class PlayerMove : MovementController
         if (turnManager.playerCharacterTurnCounter == turnManager.playerCharacterCount)
         {
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
 
         if (!turn)
