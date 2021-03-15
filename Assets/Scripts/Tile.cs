@@ -24,27 +24,26 @@ public class Tile : MonoBehaviour
     public float h = 0;
     //f = g+h (used for finding the best case path with the minimal amount of time
     public float f = 0;
-
+    
     // Update is called once per frame
     void Update()
     {
-        
         if (current)
         {
             selectable = false;
-            GetComponent<Renderer>().material.color = Color.black;
+            GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         else if (target)
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            GetComponent<SpriteRenderer>().color = Color.green;
         }
         else if (selectable)
         {
-            GetComponent<Renderer>().material.color = Color.red;
+            GetComponent<SpriteRenderer>().color = new Color32(53, 64, 241, 120);
         }
         else
         {
-            GetComponent<Renderer>().material.color = Color.white;
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
     public void Reset()

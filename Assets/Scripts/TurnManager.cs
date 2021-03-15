@@ -24,6 +24,8 @@ public class TurnManager : MonoBehaviour
     GameObject currentCharacter = null;
     public bool characterSelected = false;
 
+    public Component[] compList; 
+
     private void Start()
     {
         playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
@@ -46,12 +48,12 @@ public class TurnManager : MonoBehaviour
         {
             InitUnitTurnOrder();
         }
-        
+
+        //player phase ends when playerCharacterTurnCounter matches playerCharacterCount
         if (playerCharacterTurnCounter == playerCharacterCount)
         {
             StartNpcTurn();
         }
-
     }
 
     public void SelectPlayerCharacter()
@@ -61,17 +63,17 @@ public class TurnManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && hit.collider != null)
         {
+
             bool characterMoving = false;
-
-
 
             if(currentCharacter != null)
             {
                 //so you can't select a character while another one is already moving
                 characterMoving = currentCharacter.GetComponent<PlayerMove>().moving;
+
             }
 
-            if (hit.collider.gameObject.tag == "Character" && !characterMoving)
+            if (hit.collider.gameObject.tag == "Player" && !characterMoving)
             {
                 var player = hit.collider.gameObject;
 
@@ -80,7 +82,7 @@ public class TurnManager : MonoBehaviour
                     //prevents being able to click multiple units at the same time
                     if (hit.collider.gameObject.name != currentCharacter.name)
                     {
-                        EndPlayerCharacterTurn(currentCharacter);
+                        ResetPlayerCharacter(currentCharacter);
                     }
                 }
 
@@ -94,10 +96,6 @@ public class TurnManager : MonoBehaviour
                     //EndPlayerCharacterTurn(player);
                     player.GetComponent<PlayerMove>().ToggleUnitMenu(true);
                 }
-
-
-
-                //characterSelected = true;
             }
         }
     }
@@ -108,7 +106,7 @@ public class TurnManager : MonoBehaviour
         character.GetComponent<PlayerMove>().originalPosition = character.gameObject.transform.position;
     }
 
-    public void EndPlayerCharacterTurn(GameObject character)
+    public void ResetPlayerCharacter(GameObject character)
     {
         character.GetComponent<PlayerMove>().turn = false;
         character.GetComponent<PlayerMove>().RemoveSelectableTiles();
@@ -141,13 +139,13 @@ public class TurnManager : MonoBehaviour
 
             if (!teamPhaseOrder.Contains(unit.tag))
             {
-                //adds team to turn order
+                //adds team to phase order
                 teamPhaseOrder.Enqueue(unit.tag);
             }
         }
         else
         {
-            //makes the list variable equal the specific list value tied to the team key in the teamUnits dictionary. ex. unitTeams = {"Enemy" : [] } list = []
+            //makes the list variable equal the value of a team key (which is a tag like "Enemy") in the teamUnits dictionary. ex. teamUnits = {"Enemy" : [] } list = [] <-- same list as the value of "Enemy"
             list = teamUnits[unit.tag];
         }
 
@@ -179,15 +177,14 @@ public class TurnManager : MonoBehaviour
 
             turnManager.aiPhaseCounter++;
 
+            //switches to player phase
             if(turnManager.aiPhaseCounter == turnManager.aiTeamCount)
             {
                 turnManager.playerCharacterTurnCounter = 0;
                 turnManager.aiPhaseCounter = 0;
             }
-            //switches to players turn (if there are three teams wont work properly)
 
-
-            //responsible for resetting ai
+            //responsible for resetting ai phase
             string team = teamPhaseOrder.Dequeue();
             teamPhaseOrder.Enqueue(team);
             InitUnitTurnOrder();

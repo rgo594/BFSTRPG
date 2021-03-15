@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
-  - Character
   - Enemy
   - Ally
   - UI
@@ -20,7 +19,7 @@ TagManager:
   - 
   - Tile
   - Character
-  - 
+  - Enemy
   - 
   - 
   - 

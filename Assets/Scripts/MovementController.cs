@@ -10,10 +10,10 @@ public class MovementController : MonoBehaviour
     GameObject[] tiles;
 
     Stack<Tile> path = new Stack<Tile>();
-    Tile currentTile;
+    public Tile currentTile;
 
     public bool moving = false;
-    public bool unitMenuPresent = false;
+    //public bool unitMenuPresent = false;
     public int move = 5;
     public float moveSpeed = 5;
 
@@ -25,22 +25,25 @@ public class MovementController : MonoBehaviour
     public TurnManager turnManager;
     public GameObject unitMenuController;
 
-    public bool UnitMenuPresent = false;
+    public bool unitMenuPresent = false;
 
     public Vector3 originalPosition;
 
+    public Collider2D standingTile = null;
+
     protected void Init()
     {
+        
         unitMenuController = GameObject.Find("UnitMenuController");
 
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
 
-        if (gameObject.tag != "Character")
+        if (gameObject.tag != "Player")
         {
             TurnManager.AddNpcUnit(this);
-        }  
+        }
     }
 
     public void GetCurrentTile()
@@ -85,6 +88,7 @@ public class MovementController : MonoBehaviour
         Queue<Tile> process = new Queue<Tile>();
 
         process.Enqueue(currentTile);
+
         currentTile.visited = true;
 
         while (process.Count > 0)
@@ -138,7 +142,7 @@ public class MovementController : MonoBehaviour
             {
                 CalculateHeading(target);
                 SetHorizontalVelocity();
-           
+
                 //Locomotion
                 transform.position += velocity * Time.deltaTime;
             }
@@ -154,10 +158,11 @@ public class MovementController : MonoBehaviour
             RemoveSelectableTiles();
             moving = false;
 
-            if(gameObject.tag != "Character")
+            if (gameObject.tag != "Player")
             {
                 //TODO add enemy behavior for once it reaches the target
-                TurnManager.EndNpcTurn();   
+                standingTile = Physics2D.OverlapBox(gameObject.transform.position, new Vector2(0.8f, 0.8f), 1f, 1);
+                TurnManager.EndNpcTurn();
             }
             else
             {
@@ -170,21 +175,6 @@ public class MovementController : MonoBehaviour
             }
 
         }
-    }
-
-    public void ToggleUnitMenu(bool toggle)
-    {
-        var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
-        UnitMenuPresent = toggle;
-        unitMenu.SetActive(toggle);
-    } 
-
-    public void EndPlayerCharacterTurn()
-    {
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        turnManager.playerCharacterTurnCounter++;
-        turnManager.EndPlayerCharacterTurn(gameObject);
-        UnitMenuPresent = false;
     }
 
     void SetHorizontalVelocity()
@@ -332,6 +322,27 @@ public class MovementController : MonoBehaviour
         Debug.Log("Path not found");
     }
 
+    public void ToggleUnitMenu(bool toggle)
+    {
+        var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
+        unitMenuPresent = toggle;
+        unitMenu.SetActive(toggle);
+    }
+
+    public void EndPlayerCharacterTurn()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.grey;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        turnManager.playerCharacterTurnCounter++;
+        turnManager.ResetPlayerCharacter(gameObject);
+        unitMenuPresent = false;
+    }
+
+    public void SetMove(int mv)
+    {
+        move = mv;
+    }
+
     public void BeginTurn()
     {
         turn = true;
@@ -339,6 +350,6 @@ public class MovementController : MonoBehaviour
 
     public void EndTurn()
     {
-        turn = false;  
+        turn = false;
     }
 }

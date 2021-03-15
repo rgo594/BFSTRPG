@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyMove : MovementController
 {
     GameObject target;
+    public int health = 100;
+    public int attack = 25;
 
     void Start()
     {
@@ -39,7 +41,7 @@ public class EnemyMove : MovementController
 
     void FindNearestTarget()
     {
-        GameObject[] targets = GameObject.FindGameObjectsWithTag("Character");
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
 
         GameObject nearest = null;
         float distance = Mathf.Infinity;

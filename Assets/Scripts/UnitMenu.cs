@@ -5,18 +5,21 @@ using TMPro;
 
 public class UnitMenu : MonoBehaviour
 {
-    Color originalColor;
     public GameObject selectedUnit;
 
-    public void EndTurn()
+    public void InitEndTurn()
     {
         selectedUnit.GetComponent<PlayerMove>().EndPlayerCharacterTurn();
         gameObject.SetActive(false);
+    }
+
+    public void InitAttack()
+    {
+        selectedUnit.GetComponent<PlayerMove>().attackAction = true;
     }
 
     public void SetUnit(GameObject unit)
     {
         selectedUnit = unit;
     }
-
 }
