@@ -123,6 +123,7 @@ public class MovementController : MonoBehaviour
                 {
                     if (!tile.visited && !attackable)
                     {
+
                         dequeuedTile.selectable = true;
                         tile.parent = dequeuedTile;
                         tile.visited = true;
@@ -133,8 +134,8 @@ public class MovementController : MonoBehaviour
                     {
                         if (tile.detectedEnemy != null && !tile.enemyAdded)
                         {
-                            detectedEnemies.Add(tile.detectedEnemy.gameObject);
                             tile.enemyAdded = true;
+                            detectedEnemies.Add(tile.detectedEnemy.gameObject);
                         }
                         tile.visited = true;
                         tile.parent = dequeuedTile;

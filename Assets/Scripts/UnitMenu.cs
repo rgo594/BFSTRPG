@@ -15,6 +15,7 @@ public class UnitMenu : MonoBehaviour
 
     public void InitAttack()
     {
+        TurnManager.attackStep = true;
         selectedUnit.GetComponent<PlayerMove>().attackAction = true;
     }
 

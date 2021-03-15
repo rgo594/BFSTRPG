@@ -24,6 +24,8 @@ public class TurnManager : MonoBehaviour
     GameObject currentCharacter = null;
     public bool characterSelected = false;
 
+    public static bool attackStep = false;
+
     public Component[] compList; 
 
     private void Start()

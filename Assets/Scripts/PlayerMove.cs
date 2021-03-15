@@ -13,6 +13,8 @@ public class PlayerMove : MovementController
 
     public float attackRange = 1f;
 
+    public static bool ra = false;
+
     void Start()
     {
         //Debug.Log(LayerMask.GetMask("Enemy"));
@@ -39,6 +41,7 @@ public class PlayerMove : MovementController
         }
         if (!moving && Input.GetMouseButtonUp(1))
         {
+            ra = true;
             ResetCharacterTurn();
         }
         if (!moving && !unitMenuPresent && !attackAction)
@@ -52,10 +55,14 @@ public class PlayerMove : MovementController
         }
         if (unitMenuPresent)
         {
-            enemiesInRange = true;
+            ra = false;
+            //detects enemies
+            FindSelectableTiles(true);
         }
-        if (enemiesInRange)
+        if(detectedEnemies.Count > 0)
         {
+            //if there are enemies in range show attack button
+            enemiesInRange = true;
             ToggleAttackButton(true);
         }
         else
@@ -64,8 +71,8 @@ public class PlayerMove : MovementController
         }
         if (attackAction)
         {
+            //if attack button clicked allow clicking on enemy for damage step
             ToggleUnitMenu(false);
-            FindSelectableTiles(true);
             StartCoroutine(AttackEnemy());
         }
     }
@@ -77,10 +84,12 @@ public class PlayerMove : MovementController
 
     private void ResetCharacterTurn()
     {
+        TurnManager.attackStep = false;
         gameObject.transform.position = originalPosition;
         ToggleUnitMenu(false);
         turnManager.characterSelected = false;
         attackAction = false;
+        detectedEnemies.Clear();
     }
 
     public void SelectTile()
@@ -105,23 +114,6 @@ public class PlayerMove : MovementController
         }
     }
 
-/*    public void DetectEnemies()
-    {
-        float detectRange = (attackRange + 0.8f) + attackRange;
-        Vector3 halfExtents = new Vector3(detectRange, detectRange, -1f);
-
-        //creates a box to detect any objects with colliders, not sure what angle parameter does
-        detectedEnemies = Physics2D.OverlapBoxAll(transform.position, halfExtents, 1f, 1024);
-        if (detectedEnemies.Length > 0)
-        {
-            enemiesInRange = true;
-        }
-        else
-        {
-            enemiesInRange = false;
-        }
-    }*/
-
     IEnumerator AttackEnemy()
     {
         yield return new WaitUntil(() => attackAction == true);
@@ -132,7 +124,6 @@ public class PlayerMove : MovementController
         foreach (GameObject enemy in detectedEnemies)
         {
             var enemyMove = enemy.GetComponent<EnemyMove>();
-            //enemyMove.standingTile.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
             if (Input.GetMouseButtonUp(0))
             {
