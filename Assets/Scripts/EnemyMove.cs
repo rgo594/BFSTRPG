@@ -24,7 +24,7 @@ public class EnemyMove : MovementController
         {
             FindNearestTarget();
             CalculatePath();
-            FindSelectableTiles();
+            FindSelectableTiles(false);
             actualTargetTile.target = true;
         }
         else

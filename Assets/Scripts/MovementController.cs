@@ -31,6 +31,11 @@ public class MovementController : MonoBehaviour
 
     public Collider2D standingTile = null;
 
+    public int attRange = 2;
+
+    public List<GameObject> detectedEnemies = new List<GameObject>();
+    public bool enemiesInRange = false;
+
     protected void Init()
     {
         
@@ -70,19 +75,19 @@ public class MovementController : MonoBehaviour
         return tile;
     }
 
-    public void ComputeAdjacencyLists(Tile target)
+    public void ComputeAdjacencyLists(Tile target, bool attackable)
     {
         foreach (GameObject tile in tiles)
         {
             Tile startTile = tile.GetComponent<Tile>();
-            startTile.FindNeighbors(target);
+            startTile.FindNeighbors(target, attackable);
         }
     }
 
     //BFS
-    public void FindSelectableTiles()
+    public void FindSelectableTiles(bool attackable)
     {
-        ComputeAdjacencyLists(null);
+        ComputeAdjacencyLists(null, attackable);
         GetCurrentTile();
 
         Queue<Tile> process = new Queue<Tile>();
@@ -96,19 +101,46 @@ public class MovementController : MonoBehaviour
             //remove and return the tile
             Tile dequeuedTile = process.Dequeue();
 
-            selectableTiles.Add(dequeuedTile);
-            dequeuedTile.selectable = true;
+            int range;
 
-            if (dequeuedTile.distance < move)
+            if(attackable)
             {
+                range = attRange;
+            }
+            else
+            {
+                range = move;
+            }
+
+
+            selectableTiles.Add(dequeuedTile);
+
+            if (dequeuedTile.distance < range)
+            {
+                //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                 //changes flags of tiles adjacent to the currentTile (the one the character is on), adds those tiles to the queue, then iterates through newly queued tiles adjacent tiles.
                 foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
-                    if (!tile.visited)
+                    if (!tile.visited && !attackable)
                     {
+                        dequeuedTile.selectable = true;
                         tile.parent = dequeuedTile;
                         tile.visited = true;
                         tile.distance = 1 + dequeuedTile.distance;
+                        process.Enqueue(tile);
+                    }
+                    else if(!tile.visited && attackable)
+                    {
+                        if (tile.detectedEnemy != null && !tile.enemyAdded)
+                        {
+                            detectedEnemies.Add(tile.detectedEnemy.gameObject);
+                            tile.enemyAdded = true;
+                        }
+                        tile.visited = true;
+                        tile.parent = dequeuedTile;
+
+                        tile.distance = 1 + dequeuedTile.distance;
+                        tile.attackable = true;
                         process.Enqueue(tile);
                     }
                 }
@@ -254,7 +286,7 @@ public class MovementController : MonoBehaviour
     //A*
     public void FindPath(Tile target)
     {
-        ComputeAdjacencyLists(target);
+        ComputeAdjacencyLists(target, false);
         GetCurrentTile();
 
         List<Tile> openList = new List<Tile>();

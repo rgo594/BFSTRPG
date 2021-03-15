@@ -7,10 +7,9 @@ public class PlayerMove : MovementController
     int health = 100;
     int attack = 25;
 
-    public bool enemiesInRange = false;
     public bool attackAction = false;
 
-    public Collider2D[] detectedEnemies;
+    //public Collider2D[] detectedEnemies;
 
     public float attackRange = 1f;
 
@@ -22,7 +21,7 @@ public class PlayerMove : MovementController
 
     private void OnDrawGizmos()
     {
-        float detectRange = (attackRange + 0.8f) + attackRange;
+        float detectRange = (attackRange + 1f) + attackRange;
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, new Vector3(detectRange, detectRange));
     }
@@ -40,27 +39,48 @@ public class PlayerMove : MovementController
         }
         if (!moving && Input.GetMouseButtonUp(1))
         {
-            gameObject.transform.position = originalPosition;
-            ToggleUnitMenu(false);
-            turnManager.characterSelected = false;
+            ResetCharacterTurn();
         }
         if (!moving && !unitMenuPresent && !attackAction)
         {
-            FindSelectableTiles();
+            FindSelectableTiles(false);
             SelectTile();
         }
         else
         {
             Move();
         }
-        if(unitMenuPresent)
+        if (unitMenuPresent)
         {
-            DetectEnemies();
+            enemiesInRange = true;
+        }
+        if (enemiesInRange)
+        {
+            ToggleAttackButton(true);
+        }
+        else
+        {
+            ToggleAttackButton(false);
         }
         if (attackAction)
         {
+            ToggleUnitMenu(false);
+            FindSelectableTiles(true);
             StartCoroutine(AttackEnemy());
         }
+    }
+
+    private void ToggleAttackButton(bool active)
+    {
+        unitMenuController.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(active);
+    }
+
+    private void ResetCharacterTurn()
+    {
+        gameObject.transform.position = originalPosition;
+        ToggleUnitMenu(false);
+        turnManager.characterSelected = false;
+        attackAction = false;
     }
 
     public void SelectTile()
@@ -85,7 +105,7 @@ public class PlayerMove : MovementController
         }
     }
 
-    public void DetectEnemies()
+/*    public void DetectEnemies()
     {
         float detectRange = (attackRange + 0.8f) + attackRange;
         Vector3 halfExtents = new Vector3(detectRange, detectRange, -1f);
@@ -96,7 +116,11 @@ public class PlayerMove : MovementController
         {
             enemiesInRange = true;
         }
-    }
+        else
+        {
+            enemiesInRange = false;
+        }
+    }*/
 
     IEnumerator AttackEnemy()
     {
@@ -105,17 +129,17 @@ public class PlayerMove : MovementController
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
 
 
-        foreach (Collider2D enemy in detectedEnemies)
+        foreach (GameObject enemy in detectedEnemies)
         {
             var enemyMove = enemy.GetComponent<EnemyMove>();
-            enemyMove.standingTile.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+            //enemyMove.standingTile.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
             if (Input.GetMouseButtonUp(0))
             {
                
-                if (hit.collider.gameObject == enemy.gameObject)
+                if (hit.collider.gameObject == enemy)
                 {
-                    var targetedEnemy = enemy.gameObject.GetComponent<EnemyMove>();
+                    var targetedEnemy = enemy.GetComponent<EnemyMove>();
                     targetedEnemy.health -= attack;
                     attackAction = false;
 

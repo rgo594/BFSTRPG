@@ -9,8 +9,13 @@ public class Tile : MonoBehaviour
     public bool target = false;
     public bool selectable = false;
     public bool moving = false;
+    public bool attackable = false;
+    public bool enemyAdded = false;
+
+    public Collider2D detectedEnemy = null;
 
     public List<Tile> adjacencyList = new List<Tile>();
+    public List<Tile> attackAdjacencyList = new List<Tile>();
 
     //Needed BFS (Breadth First Search)
     public bool visited = false;
@@ -41,6 +46,11 @@ public class Tile : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = new Color32(53, 64, 241, 120);
         }
+        else if(attackable)
+        {
+            DetectEnemy();
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
         else
         {
             GetComponent<SpriteRenderer>().color = Color.white;
@@ -54,6 +64,7 @@ public class Tile : MonoBehaviour
         current = false;
         target = false;
         selectable = false;
+        attackable = false;
 
         visited = false;
         parent = null;
@@ -62,18 +73,22 @@ public class Tile : MonoBehaviour
         f = g = h = 0;
     }
 
-    public void FindNeighbors(Tile target)
+    public void FindNeighbors(Tile target, bool attackable)
     {
         Reset();
 
-        CheckTile(new Vector2(0,1), target);
-        CheckTile(new Vector2(0,-1), target);
-        CheckTile(Vector3.right, target);
-        CheckTile(Vector3.left, target);
-
+        CheckTile(new Vector2(0,1), target, attackable);
+        CheckTile(new Vector2(0,-1), target, attackable);
+        CheckTile(Vector3.right, target, attackable);
+        CheckTile(Vector3.left, target, attackable);
     }
 
-    public void CheckTile(Vector3 direction, Tile target)
+    public void DetectEnemy()
+    {
+        detectedEnemy = Physics2D.OverlapBox(transform.position, new Vector2(0.8f,0.8f), 1f, 1024);
+    }
+
+    public void CheckTile(Vector3 direction, Tile target, bool attackable)
     {
         Vector3 halfExtents = new Vector3(0.25f, 0.25f);
 
@@ -83,9 +98,13 @@ public class Tile : MonoBehaviour
         foreach (Collider2D item in colliders)
         {
             Tile tile = item.GetComponent<Tile>();
-            if (tile != null && tile.walkable)
-            {
 
+            if(tile != null && attackable)
+            {
+                adjacencyList.Add(tile);
+            }
+            else if (tile != null && tile.walkable)
+            {
                 RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
 
                 //responsible for filtering out tiles blocked by obstacles and other characters
