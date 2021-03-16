@@ -36,6 +36,10 @@ public class MovementController : MonoBehaviour
     public List<GameObject> detectedEnemies = new List<GameObject>();
     public bool enemiesInRange = false;
 
+    public static bool ra = false;
+
+    public bool actionCompleted = false;
+
     protected void Init()
     {
         
@@ -85,7 +89,7 @@ public class MovementController : MonoBehaviour
     }
 
     //BFS
-    public void FindSelectableTiles(bool attackable)
+    public void FindAttackAbleTiles(bool attackable)
     {
         ComputeAdjacencyLists(null, attackable);
         GetCurrentTile();
@@ -103,7 +107,7 @@ public class MovementController : MonoBehaviour
 
             int range;
 
-            if(attackable)
+            if (attackable)
             {
                 range = attRange;
             }
@@ -121,16 +125,7 @@ public class MovementController : MonoBehaviour
                 //changes flags of tiles adjacent to the currentTile (the one the character is on), adds those tiles to the queue, then iterates through newly queued tiles adjacent tiles.
                 foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
-                    if (!tile.visited && !attackable)
-                    {
-
-                        dequeuedTile.selectable = true;
-                        tile.parent = dequeuedTile;
-                        tile.visited = true;
-                        tile.distance = 1 + dequeuedTile.distance;
-                        process.Enqueue(tile);
-                    }
-                    else if(!tile.visited && attackable)
+                    if (!tile.visited && attackable)
                     {
                         if (tile.detectedEnemy != null && !tile.enemyAdded)
                         {
@@ -142,6 +137,42 @@ public class MovementController : MonoBehaviour
 
                         tile.distance = 1 + dequeuedTile.distance;
                         tile.attackable = true;
+                        process.Enqueue(tile);
+                    }
+                }
+            }
+        }
+    }
+
+    public void FindSelectableTiles()
+    {
+        ComputeAdjacencyLists(null, false);
+        GetCurrentTile();
+
+        Queue<Tile> process = new Queue<Tile>();
+
+        process.Enqueue(currentTile);
+
+        currentTile.visited = true;
+
+        while (process.Count > 0)
+        {
+            //remove and return the tile
+            Tile dequeuedTile = process.Dequeue();
+
+            selectableTiles.Add(dequeuedTile);
+            dequeuedTile.selectable = true;
+
+            if (dequeuedTile.distance < move)
+            {
+                //changes flags of tiles adjacent to the currentTile (the one the character is on), adds those tiles to the queue, then iterates through newly queued tiles adjacent tiles.
+                foreach (Tile tile in dequeuedTile.adjacencyList)
+                {
+                    if (!tile.visited)
+                    {
+                        tile.parent = dequeuedTile;
+                        tile.visited = true;
+                        tile.distance = 1 + dequeuedTile.distance;
                         process.Enqueue(tile);
                     }
                 }
@@ -200,11 +231,14 @@ public class MovementController : MonoBehaviour
             else
             {
                 //prevents move tile mpa reappearing
-                var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
-                turnManager.characterSelected = true;
-                ToggleUnitMenu(true);
+                //if(!actionCompleted)
+                //{ 
+                    var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
+                    turnManager.characterSelected = true;
+                    ToggleUnitMenu(true);
 
-                unitMenu.GetComponent<UnitMenu>().SetUnit(gameObject);
+                    unitMenu.GetComponent<UnitMenu>().SetUnit(gameObject);
+                //}
             }
 
         }
@@ -364,11 +398,15 @@ public class MovementController : MonoBehaviour
 
     public void EndPlayerCharacterTurn()
     {
+        ra = true;
+        TurnManager.attackStep = false;
         gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.grey;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        actionCompleted = true;
+        //gameObject.GetComponent<BoxCollider2D>().enabled = false;
         turnManager.playerCharacterTurnCounter++;
         turnManager.ResetPlayerCharacter(gameObject);
         unitMenuPresent = false;
+        detectedEnemies.Clear();
     }
 
     public void SetMove(int mv)

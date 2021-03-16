@@ -9,33 +9,22 @@ public class PlayerMove : MovementController
 
     public bool attackAction = false;
 
-    //public Collider2D[] detectedEnemies;
-
-    public float attackRange = 1f;
-
-    public static bool ra = false;
-
     void Start()
     {
         //Debug.Log(LayerMask.GetMask("Enemy"));
         Init();
     }
 
-    private void OnDrawGizmos()
-    {
-        float detectRange = (attackRange + 1f) + attackRange;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector3(detectRange, detectRange));
-    }
     void Update()
     {  
         if (turnManager.playerCharacterTurnCounter == turnManager.playerCharacterCount)
         {
+            actionCompleted = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
             gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
 
-        if (!turn)
+        if (!turn || actionCompleted)
         {
             return;
         }
@@ -44,9 +33,9 @@ public class PlayerMove : MovementController
             ra = true;
             ResetCharacterTurn();
         }
-        if (!moving && !unitMenuPresent && !attackAction)
+        if (!moving && !unitMenuPresent && !attackAction && !actionCompleted)
         {
-            FindSelectableTiles(false);
+            FindSelectableTiles();
             SelectTile();
         }
         else
@@ -57,7 +46,7 @@ public class PlayerMove : MovementController
         {
             ra = false;
             //detects enemies
-            FindSelectableTiles(true);
+            FindAttackAbleTiles(true);
         }
         if(detectedEnemies.Count > 0)
         {
@@ -94,7 +83,7 @@ public class PlayerMove : MovementController
 
     public void SelectTile()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !actionCompleted)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);

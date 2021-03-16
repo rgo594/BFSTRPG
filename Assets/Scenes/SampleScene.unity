@@ -248,6 +248,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -383,6 +385,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -748,6 +752,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -965,6 +971,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -1360,6 +1368,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -1495,6 +1505,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -1630,6 +1642,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -1765,6 +1779,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -1900,6 +1916,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -2035,6 +2053,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -2170,6 +2190,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -2305,6 +2327,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -2440,6 +2464,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -2575,6 +2601,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -2710,6 +2738,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -2845,6 +2875,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -2980,6 +3012,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -3248,6 +3282,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -3383,6 +3419,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -3518,6 +3556,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -3653,6 +3693,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -3788,6 +3830,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -3852,7 +3896,9 @@ MonoBehaviour:
   unitMenuPresent: 0
   originalPosition: {x: 0, y: 0, z: 0}
   standingTile: {fileID: 0}
-  range: 1
+  attRange: 2
+  detectedEnemies: []
+  enemiesInRange: 0
   health: 100
   attack: 25
 --- !u!61 &443575819
@@ -4008,6 +4054,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -4143,6 +4191,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -4278,6 +4328,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -4413,6 +4465,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -4548,6 +4602,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -4683,6 +4739,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -4818,6 +4876,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -4995,6 +5055,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -5130,6 +5192,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -5265,6 +5329,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -5400,6 +5466,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -5535,6 +5603,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -5670,6 +5740,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -5805,6 +5877,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -5940,6 +6014,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -6075,6 +6151,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -6334,6 +6412,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -6469,6 +6549,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -6729,6 +6811,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -6864,6 +6948,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -7122,6 +7208,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -7257,6 +7345,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -7291,7 +7381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890637137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: -7, z: -1}
+  m_LocalPosition: {x: 5, y: -4, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 94550284}
@@ -7321,7 +7411,9 @@ MonoBehaviour:
   unitMenuPresent: 0
   originalPosition: {x: 0, y: 0, z: 0}
   standingTile: {fileID: 0}
-  range: 1
+  attRange: 2
+  detectedEnemies: []
+  enemiesInRange: 0
   health: 100
   attack: 25
 --- !u!61 &890637140
@@ -7477,6 +7569,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -7693,6 +7787,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -7828,6 +7924,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -7963,6 +8061,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -8098,6 +8198,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -8233,6 +8335,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -8368,6 +8472,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -8569,6 +8675,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -8704,6 +8812,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -8753,10 +8863,10 @@ MonoBehaviour:
   unitMenuPresent: 0
   originalPosition: {x: 0, y: 0, z: 0}
   standingTile: {fileID: 0}
-  range: 1
+  attRange: 2
+  detectedEnemies: []
   enemiesInRange: 0
   attackAction: 0
-  detectedEnemies: []
   attackRange: 1
 --- !u!61 &1146192009
 BoxCollider2D:
@@ -8792,7 +8902,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146192007}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11, y: 0, z: -1}
+  m_LocalPosition: {x: 6, y: -4, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 893137303}
@@ -8855,7 +8965,9 @@ MonoBehaviour:
   unitMenuPresent: 0
   originalPosition: {x: 0, y: 0, z: 0}
   standingTile: {fileID: 0}
-  range: 1
+  attRange: 2
+  detectedEnemies: []
+  enemiesInRange: 0
   health: 100
   attack: 25
 --- !u!61 &1151926565
@@ -9011,6 +9123,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -9146,6 +9260,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -9281,6 +9397,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -9416,6 +9534,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -9551,6 +9671,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -9686,6 +9808,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -9821,6 +9945,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -9956,6 +10082,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -9982,7 +10110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1293352270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10221,6 +10349,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -10356,6 +10486,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -10491,6 +10623,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -10626,6 +10760,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -10761,6 +10897,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -10896,6 +11034,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -11112,6 +11252,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -11161,10 +11303,10 @@ MonoBehaviour:
   unitMenuPresent: 0
   originalPosition: {x: 0, y: 0, z: 0}
   standingTile: {fileID: 0}
-  range: 1
+  attRange: 2
+  detectedEnemies: []
   enemiesInRange: 0
   attackAction: 0
-  detectedEnemies: []
   attackRange: 1
 --- !u!4 &1422593074
 Transform:
@@ -11334,6 +11476,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -11508,6 +11652,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -11643,6 +11789,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -11778,6 +11926,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -11913,6 +12063,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -12048,6 +12200,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -12183,6 +12337,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -12318,6 +12474,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -12453,6 +12611,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -12588,6 +12748,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -12772,6 +12934,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -12907,6 +13071,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -13042,6 +13208,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -13262,6 +13430,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -13428,6 +13598,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -13563,6 +13735,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -13740,6 +13914,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -13875,6 +14051,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -14010,6 +14188,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -14145,6 +14325,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -14379,6 +14561,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -14745,6 +14929,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -14880,6 +15066,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -15015,6 +15203,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -15150,6 +15340,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -15285,6 +15477,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -15420,6 +15614,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -15555,6 +15751,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -15690,6 +15888,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -15825,6 +16025,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -15960,6 +16162,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -16095,6 +16299,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -16230,6 +16436,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -16365,6 +16573,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -16500,6 +16710,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -16765,6 +16977,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -16900,6 +17114,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -17035,6 +17251,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -17205,6 +17423,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0
@@ -17340,6 +17560,8 @@ MonoBehaviour:
   selectable: 0
   moving: 0
   attackable: 0
+  enemyAdded: 0
+  detectedEnemy: {fileID: 0}
   adjacencyList: []
   attackAdjacencyList: []
   visited: 0

@@ -88,7 +88,7 @@ public class TurnManager : MonoBehaviour
                     }
                 }
 
-                if (player.GetComponent<PlayerMove>().turn == false)
+                if (player.GetComponent<PlayerMove>().turn == false && !player.GetComponent<PlayerMove>().actionCompleted)
                 {
                     currentCharacter = player;
                     StartPlayerCharacterTurn(player);
@@ -96,16 +96,22 @@ public class TurnManager : MonoBehaviour
                 else
                 {
                     //EndPlayerCharacterTurn(player);
-                    player.GetComponent<PlayerMove>().ToggleUnitMenu(true);
+                    if(!player.GetComponent<PlayerMove>().actionCompleted)
+                    {
+                        player.GetComponent<PlayerMove>().ToggleUnitMenu(true);
+                    }
                 }
             }
         }
     }
 
-    public void StartPlayerCharacterTurn(GameObject character)
+    public void StartPlayerCharacterTurn(GameObject c)
     {
-        character.GetComponent<PlayerMove>().turn = true;
-        character.GetComponent<PlayerMove>().originalPosition = character.gameObject.transform.position;
+        var character = c.GetComponent<PlayerMove>();
+        //character.actionCompleted = false;
+        TurnManager.attackStep = false;
+        character.turn = true;
+        character.originalPosition = character.gameObject.transform.position;
     }
 
     public void ResetPlayerCharacter(GameObject character)
