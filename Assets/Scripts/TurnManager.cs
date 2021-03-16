@@ -22,11 +22,7 @@ public class TurnManager : MonoBehaviour
     public int aiTeamCount = 0;
 
     GameObject currentCharacter = null;
-    public bool characterSelected = false;
-
-    public static bool attackStep = false;
-
-    public Component[] compList; 
+    public bool characterSelected = false; 
 
     private void Start()
     {
@@ -54,7 +50,7 @@ public class TurnManager : MonoBehaviour
         //player phase ends when playerCharacterTurnCounter matches playerCharacterCount
         if (playerCharacterTurnCounter == playerCharacterCount)
         {
-            StartNpcTurn();
+            StartNpcPhase();
         }
     }
 
@@ -65,40 +61,37 @@ public class TurnManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && hit.collider != null)
         {
-
             bool characterMoving = false;
 
-            if(currentCharacter != null)
+            //so you can't select a character while another one is already moving
+            if (currentCharacter != null)
             {
-                //so you can't select a character while another one is already moving
                 characterMoving = currentCharacter.GetComponent<PlayerMove>().moving;
-
             }
 
             if (hit.collider.gameObject.tag == "Player" && !characterMoving)
             {
-                var player = hit.collider.gameObject;
+                var player = hit.collider.gameObject.GetComponent<PlayerMove>();
 
                 if (currentCharacter != null)
                 {
                     //prevents being able to click multiple units at the same time
                     if (hit.collider.gameObject.name != currentCharacter.name)
                     {
-                        ResetPlayerCharacter(currentCharacter);
+                        ChangePlayerCharacter(currentCharacter);
                     }
                 }
 
-                if (player.GetComponent<PlayerMove>().turn == false && !player.GetComponent<PlayerMove>().actionCompleted)
+                if (!player.turn && !player.actionCompleted)
                 {
-                    currentCharacter = player;
-                    StartPlayerCharacterTurn(player);
+                    currentCharacter = player.gameObject;
+                    StartPlayerCharacterTurn(player.gameObject);
                 }
                 else
                 {
-                    //EndPlayerCharacterTurn(player);
-                    if(!player.GetComponent<PlayerMove>().actionCompleted)
+                    if(!player.actionCompleted)
                     {
-                        player.GetComponent<PlayerMove>().ToggleUnitMenu(true);
+                        player.ToggleUnitMenu(true);
                     }
                 }
             }
@@ -108,13 +101,13 @@ public class TurnManager : MonoBehaviour
     public void StartPlayerCharacterTurn(GameObject c)
     {
         var character = c.GetComponent<PlayerMove>();
-        //character.actionCompleted = false;
-        TurnManager.attackStep = false;
+
+        PlayerMove.attackStep = false;
         character.turn = true;
         character.originalPosition = character.gameObject.transform.position;
     }
-
-    public void ResetPlayerCharacter(GameObject character)
+   
+    public void ChangePlayerCharacter(GameObject character)
     {
         character.GetComponent<PlayerMove>().turn = false;
         character.GetComponent<PlayerMove>().RemoveSelectableTiles();
@@ -162,7 +155,7 @@ public class TurnManager : MonoBehaviour
 
     }
 
-    public static void StartNpcTurn()
+    public static void StartNpcPhase()
     {
         if (unitTurnOrder.Count > 0)
         {
@@ -177,7 +170,7 @@ public class TurnManager : MonoBehaviour
 
         if (unitTurnOrder.Count > 0)
         {
-            StartNpcTurn();
+            StartNpcPhase();
         }
         else
         {

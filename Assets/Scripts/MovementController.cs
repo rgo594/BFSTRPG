@@ -23,20 +23,19 @@ public class MovementController : MonoBehaviour
     public Tile actualTargetTile;
 
     public TurnManager turnManager;
+
+    //player tags
+    public int attackRange = 2;
+
     public GameObject unitMenuController;
 
     public bool unitMenuPresent = false;
 
     public Vector3 originalPosition;
-
-    public Collider2D standingTile = null;
-
-    public int attRange = 2;
-
     public List<GameObject> detectedEnemies = new List<GameObject>();
     public bool enemiesInRange = false;
 
-    public static bool ra = false;
+    public static bool addDetectedEnemies = false;
 
     public bool actionCompleted = false;
 
@@ -105,24 +104,11 @@ public class MovementController : MonoBehaviour
             //remove and return the tile
             Tile dequeuedTile = process.Dequeue();
 
-            int range;
-
-            if (attackable)
-            {
-                range = attRange;
-            }
-            else
-            {
-                range = move;
-            }
-
-
             selectableTiles.Add(dequeuedTile);
 
-            if (dequeuedTile.distance < range)
+            if (dequeuedTile.distance < attackRange)
             {
                 //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
-                //changes flags of tiles adjacent to the currentTile (the one the character is on), adds those tiles to the queue, then iterates through newly queued tiles adjacent tiles.
                 foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
                     if (!tile.visited && attackable)
@@ -225,20 +211,15 @@ public class MovementController : MonoBehaviour
             if (gameObject.tag != "Player")
             {
                 //TODO add enemy behavior for once it reaches the target
-                standingTile = Physics2D.OverlapBox(gameObject.transform.position, new Vector2(0.8f, 0.8f), 1f, 1);
                 TurnManager.EndNpcTurn();
             }
             else
             {
-                //prevents move tile mpa reappearing
-                //if(!actionCompleted)
-                //{ 
-                    var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
-                    turnManager.characterSelected = true;
-                    ToggleUnitMenu(true);
+                var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
+                turnManager.characterSelected = true;
+                ToggleUnitMenu(true);
 
-                    unitMenu.GetComponent<UnitMenu>().SetUnit(gameObject);
-                //}
+                unitMenu.GetComponent<UnitMenu>().SetUnit(gameObject);
             }
 
         }
@@ -396,22 +377,33 @@ public class MovementController : MonoBehaviour
         unitMenu.SetActive(toggle);
     }
 
-    public void EndPlayerCharacterTurn()
+
+    public void ResetCharacterTurn()
     {
-        ra = true;
-        TurnManager.attackStep = false;
-        gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.grey;
-        actionCompleted = true;
-        //gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        turnManager.playerCharacterTurnCounter++;
-        turnManager.ResetPlayerCharacter(gameObject);
-        unitMenuPresent = false;
+        PlayerMove.attackStep = false;
+        gameObject.transform.position = originalPosition;
+        ToggleUnitMenu(false);
+        turnManager.characterSelected = false;
         detectedEnemies.Clear();
     }
 
-    public void SetMove(int mv)
+    public void EndPlayerCharacterTurn()
     {
-        move = mv;
+        addDetectedEnemies = true;
+        PlayerMove.attackStep = false;
+        gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.grey;
+        actionCompleted = true;
+        turnManager.playerCharacterTurnCounter++;
+        turnManager.ChangePlayerCharacter(gameObject);
+        unitMenuPresent = false;
+        StartCoroutine(EmptyDetectedEnemies());
+    }
+
+    //prevents InvalidOperationException error
+    public IEnumerator EmptyDetectedEnemies()
+    {
+        yield return new WaitForEndOfFrame();
+        detectedEnemies.Clear();
     }
 
     public void BeginTurn()

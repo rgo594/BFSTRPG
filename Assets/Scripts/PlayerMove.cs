@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerMove : MovementController
 {
+    //steps - a character move that doesn't end a turn
+    //actions - a character move that does end a turn
+    //turn - 
+    //phases - tea
+    public static bool attackStep = false;
+
     int health = 100;
     int attack = 25;
-
-    public bool attackAction = false;
 
     void Start()
     {
@@ -17,10 +21,10 @@ public class PlayerMove : MovementController
 
     void Update()
     {  
+        //starts player phase
         if (turnManager.playerCharacterTurnCounter == turnManager.playerCharacterCount)
         {
             actionCompleted = false;
-            gameObject.GetComponent<BoxCollider2D>().enabled = true;
             gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
 
@@ -30,27 +34,28 @@ public class PlayerMove : MovementController
         }
         if (!moving && Input.GetMouseButtonUp(1))
         {
-            ra = true;
+            addDetectedEnemies = true;
             ResetCharacterTurn();
         }
-        if (!moving && !unitMenuPresent && !attackAction && !actionCompleted)
+
+        if (!moving && !unitMenuPresent && !PlayerMove.attackStep && !actionCompleted)
         {
             FindSelectableTiles();
-            SelectTile();
+            TargetTileToTravel();
         }
         else
         {
             Move();
         }
+        //
         if (unitMenuPresent)
         {
-            ra = false;
-            //detects enemies
+            addDetectedEnemies = false;
             FindAttackAbleTiles(true);
         }
-        if(detectedEnemies.Count > 0)
+        //if there are enemies in range show attack button
+        if (detectedEnemies.Count > 0)
         {
-            //if there are enemies in range show attack button
             enemiesInRange = true;
             ToggleAttackButton(true);
         }
@@ -58,11 +63,11 @@ public class PlayerMove : MovementController
         {
             ToggleAttackButton(false);
         }
-        if (attackAction)
+        //if attack button clicked allow clicking on enemy for damage step
+        if (PlayerMove.attackStep)
         {
-            //if attack button clicked allow clicking on enemy for damage step
             ToggleUnitMenu(false);
-            StartCoroutine(AttackEnemy());
+            StartCoroutine(AttackAction());
         }
     }
 
@@ -71,17 +76,7 @@ public class PlayerMove : MovementController
         unitMenuController.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(active);
     }
 
-    private void ResetCharacterTurn()
-    {
-        TurnManager.attackStep = false;
-        gameObject.transform.position = originalPosition;
-        ToggleUnitMenu(false);
-        turnManager.characterSelected = false;
-        attackAction = false;
-        detectedEnemies.Clear();
-    }
-
-    public void SelectTile()
+    public void TargetTileToTravel()
     {
         if (Input.GetMouseButtonUp(0) && !actionCompleted)
         {
@@ -103,9 +98,9 @@ public class PlayerMove : MovementController
         }
     }
 
-    IEnumerator AttackEnemy()
+    IEnumerator AttackAction()
     {
-        yield return new WaitUntil(() => attackAction == true);
+        yield return new WaitUntil(() => PlayerMove.attackStep == true);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
 
@@ -121,7 +116,7 @@ public class PlayerMove : MovementController
                 {
                     var targetedEnemy = enemy.GetComponent<EnemyMove>();
                     targetedEnemy.health -= attack;
-                    attackAction = false;
+                    PlayerMove.attackStep = false;
 
                     EndPlayerCharacterTurn();
                     ToggleUnitMenu(false);

@@ -17,8 +17,6 @@ public class Tile : MonoBehaviour
     public List<Tile> adjacencyList = new List<Tile>();
     public List<Tile> attackAdjacencyList = new List<Tile>();
 
-    UnitMenu unitMenu;
-
     //Needed BFS (Breadth First Search)
     public bool visited = false;
     public Tile parent = null;
@@ -32,15 +30,10 @@ public class Tile : MonoBehaviour
     //f = g+h (used for finding the best case path with the minimal amount of time
     public float f = 0;
 
-    private void Start()
-    {
-       
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if(PlayerMove.ra)
+        if(PlayerMove.addDetectedEnemies)
         {
             enemyAdded = false;
         }
@@ -60,8 +53,9 @@ public class Tile : MonoBehaviour
         else if(attackable)
         {
             DetectEnemy();
-            GetComponent<SpriteRenderer>().color = Color.white;
-            if (TurnManager.attackStep)
+            //GetComponent<SpriteRenderer>().color = Color.white;
+
+            if (PlayerMove.attackStep)
             {
                 GetComponent<SpriteRenderer>().color = Color.red;
             }
@@ -120,6 +114,7 @@ public class Tile : MonoBehaviour
 
             if(tile != null && attackable)
             {
+                //doesn't filter out objects
                 adjacencyList.Add(tile);
             }
             else if (tile != null && tile.walkable)
