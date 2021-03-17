@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class PlayerMove : MovementController
 {
-    //steps - a character move that doesn't end a turn
-    //actions - a character move that does end a turn
-    //turn - 
-    //phases - tea
     public static bool attackStep = false;
 
-    int health = 100;
-    int attack = 25;
+    public int health = 100;
+    public int attack = 25;
 
     void Start()
     {
@@ -26,6 +22,11 @@ public class PlayerMove : MovementController
         {
             actionCompleted = false;
             gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+            unitMenuController.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        else
+        {
+            unitMenuController.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         if (!turn || actionCompleted)
@@ -34,11 +35,11 @@ public class PlayerMove : MovementController
         }
         if (!moving && Input.GetMouseButtonUp(1))
         {
-            addDetectedEnemies = true;
+            allowEnemyDetection = true;
             ResetCharacterTurn();
         }
 
-        if (!moving && !unitMenuPresent && !PlayerMove.attackStep && !actionCompleted)
+        if (!moving && !unitMenuPresent && !attackStep && !actionCompleted)
         {
             FindSelectableTiles();
             TargetTileToTravel();
@@ -47,14 +48,13 @@ public class PlayerMove : MovementController
         {
             Move();
         }
-        //
         if (unitMenuPresent)
         {
-            addDetectedEnemies = false;
-            FindAttackAbleTiles(true);
+            allowEnemyDetection = false;
+            FindAttackAbleTiles();
         }
         //if there are enemies in range show attack button
-        if (detectedEnemies.Count > 0)
+        if (detectedEnemies.Count > 0 && gameObject.tag == "Player")
         {
             enemiesInRange = true;
             ToggleAttackButton(true);
@@ -64,7 +64,7 @@ public class PlayerMove : MovementController
             ToggleAttackButton(false);
         }
         //if attack button clicked allow clicking on enemy for damage step
-        if (PlayerMove.attackStep)
+        if (attackStep)
         {
             ToggleUnitMenu(false);
             StartCoroutine(AttackAction());

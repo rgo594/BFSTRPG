@@ -5,39 +5,33 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public bool turn = false;
-
-    List<Tile> selectableTiles = new List<Tile>();
-    GameObject[] tiles;
-
-    Stack<Tile> path = new Stack<Tile>();
-    public Tile currentTile;
-
     public bool moving = false;
-    //public bool unitMenuPresent = false;
+    public bool unitMenuPresent = false;
+    public bool enemiesInRange = false;
+    public bool actionCompleted = false;
+    public static bool allowEnemyDetection = false;
+
     public int move = 5;
     public float moveSpeed = 5;
+    public int attackRange = 2;
+
+    public Tile currentTile;
+    public List<GameObject> detectedEnemies = new List<GameObject>();
+    Stack<Tile> path = new Stack<Tile>();
 
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
 
-    public Tile actualTargetTile;
-
+    public Vector3 originalPosition;
     public TurnManager turnManager;
 
-    //player tags
-    public int attackRange = 2;
-
+    List<Tile> selectableTiles = new List<Tile>();
+    GameObject[] tiles;
     public GameObject unitMenuController;
 
-    public bool unitMenuPresent = false;
+    public Tile actualTargetTile;
 
-    public Vector3 originalPosition;
-    public List<GameObject> detectedEnemies = new List<GameObject>();
-    public bool enemiesInRange = false;
 
-    public static bool addDetectedEnemies = false;
-
-    public bool actionCompleted = false;
 
     protected void Init()
     {
@@ -88,9 +82,9 @@ public class MovementController : MonoBehaviour
     }
 
     //BFS
-    public void FindAttackAbleTiles(bool attackable)
+    public void FindAttackAbleTiles()
     {
-        ComputeAdjacencyLists(null, attackable);
+        ComputeAdjacencyLists(null, true);
         GetCurrentTile();
 
         Queue<Tile> process = new Queue<Tile>();
@@ -111,9 +105,9 @@ public class MovementController : MonoBehaviour
                 //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                 foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
-                    if (!tile.visited && attackable)
+                    if (!tile.visited)
                     {
-                        if (tile.detectedEnemy != null && !tile.enemyAdded)
+                        if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
                         {
                             tile.enemyAdded = true;
                             detectedEnemies.Add(tile.detectedEnemy.gameObject);
@@ -182,6 +176,11 @@ public class MovementController : MonoBehaviour
 
     public void Move()
     {
+        //TODO
+        if(gameObject.tag != "Player")
+        {
+            FindAttackAbleTiles();
+        }
         if (path.Count > 0)
         {
             //returns obj at the top of the stack without removing;
@@ -201,6 +200,7 @@ public class MovementController : MonoBehaviour
                 //temporary fix for keeping unit z axis unaffected by calculateHeading
                 transform.position = new Vector3(target.x, target.y, -1);
                 path.Pop();
+
             }
         }
         else
@@ -208,9 +208,11 @@ public class MovementController : MonoBehaviour
             RemoveSelectableTiles();
             moving = false;
 
-            if (gameObject.tag != "Player")
+            //TODO
+            if (detectedEnemies.Count > 0 && gameObject.tag != "Player")
             {
-                //TODO add enemy behavior for once it reaches the target
+                //FindAttackAbleTiles();
+                detectedEnemies[0].gameObject.GetComponent<PlayerMove>().health -= 25;
                 TurnManager.EndNpcTurn();
             }
             else
@@ -381,26 +383,30 @@ public class MovementController : MonoBehaviour
     public void ResetCharacterTurn()
     {
         PlayerMove.attackStep = false;
-        gameObject.transform.position = originalPosition;
         ToggleUnitMenu(false);
         turnManager.characterSelected = false;
+
+        gameObject.transform.position = originalPosition;
         detectedEnemies.Clear();
     }
 
     public void EndPlayerCharacterTurn()
     {
-        addDetectedEnemies = true;
+        allowEnemyDetection = true;
         PlayerMove.attackStep = false;
-        gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.grey;
-        actionCompleted = true;
-        turnManager.playerCharacterTurnCounter++;
-        turnManager.ChangePlayerCharacter(gameObject);
         unitMenuPresent = false;
-        StartCoroutine(EmptyDetectedEnemies());
+        actionCompleted = true;
+
+        gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.grey;
+
+        turnManager.playerCharacterTurnCounter++;
+        turnManager.ResetCharacter(gameObject);
+
+        StartCoroutine(ClearDetectedEnemies());
     }
 
     //prevents InvalidOperationException error
-    public IEnumerator EmptyDetectedEnemies()
+    public IEnumerator ClearDetectedEnemies()
     {
         yield return new WaitForEndOfFrame();
         detectedEnemies.Clear();
@@ -414,5 +420,7 @@ public class MovementController : MonoBehaviour
     public void EndTurn()
     {
         turn = false;
+        PlayerMove.allowEnemyDetection = true;
+        StartCoroutine(ClearDetectedEnemies());
     }
 }

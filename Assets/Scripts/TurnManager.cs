@@ -78,7 +78,7 @@ public class TurnManager : MonoBehaviour
                     //prevents being able to click multiple units at the same time
                     if (hit.collider.gameObject.name != currentCharacter.name)
                     {
-                        ChangePlayerCharacter(currentCharacter);
+                        ResetCharacter(currentCharacter);
                     }
                 }
 
@@ -107,7 +107,7 @@ public class TurnManager : MonoBehaviour
         character.originalPosition = character.gameObject.transform.position;
     }
    
-    public void ChangePlayerCharacter(GameObject character)
+    public void ResetCharacter(GameObject character)
     {
         character.GetComponent<PlayerMove>().turn = false;
         character.GetComponent<PlayerMove>().RemoveSelectableTiles();
@@ -167,6 +167,7 @@ public class TurnManager : MonoBehaviour
     {
         MovementController unit = unitTurnOrder.Dequeue();
         unit.EndTurn();
+        unit.detectedEnemies.Clear();
 
         if (unitTurnOrder.Count > 0)
         {

@@ -18,6 +18,11 @@ public class UnitMenu : MonoBehaviour
         PlayerMove.attackStep = true;
     }
 
+    public void InitEndPhase()
+    {
+        FindObjectOfType<TurnManager>().playerCharacterTurnCounter = 2;
+    }
+
     public void SetUnit(GameObject unit)
     {
         selectedUnit = unit;

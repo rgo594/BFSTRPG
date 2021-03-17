@@ -33,7 +33,7 @@ public class Tile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerMove.addDetectedEnemies)
+        if(PlayerMove.allowEnemyDetection)
         {
             enemyAdded = false;
         }
@@ -53,7 +53,7 @@ public class Tile : MonoBehaviour
         else if(attackable)
         {
             DetectEnemy();
-            //GetComponent<SpriteRenderer>().color = Color.white;
+            GetComponent<SpriteRenderer>().color = Color.white;
 
             if (PlayerMove.attackStep)
             {
@@ -98,7 +98,12 @@ public class Tile : MonoBehaviour
 
     public void DetectEnemy()
     {
-        detectedEnemy = Physics2D.OverlapBox(transform.position, new Vector2(0.8f,0.8f), 1f, 1024);
+        Collider2D DetectedObject = Physics2D.OverlapBox(transform.position, new Vector2(0.8f, 0.8f), 1f);
+
+        if (DetectedObject.gameObject.tag != "Tile")
+        {
+            detectedEnemy = DetectedObject;
+        }
     }
 
     public void CheckTile(Vector3 direction, Tile target, bool attackable)
