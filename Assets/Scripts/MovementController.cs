@@ -103,7 +103,7 @@ public class MovementController : MonoBehaviour
             if (dequeuedTile.distance < attackRange)
             {
                 //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
-                foreach (Tile tile in dequeuedTile.adjacencyList)
+                foreach (Tile tile in dequeuedTile.attackAdjacencyList)
                 {
                     if (!tile.visited)
                     {
@@ -148,6 +148,23 @@ public class MovementController : MonoBehaviour
                 //changes flags of tiles adjacent to the currentTile (the one the character is on), adds those tiles to the queue, then iterates through newly queued tiles adjacent tiles.
                 foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
+                    if (dequeuedTile.distance <= attackRange)
+                    {
+                        //Debug.Log("de null " + tile.detectedEnemy != null);
+                        //Debug.Log("tag " + tile.detectedEnemy.tag != gameObject.tag);
+                      
+
+                        if (tile.detectedEnemy != null && !tile.enemyAdded)
+                        {
+                            Debug.Log(tile.detectedEnemy.tag);
+                            //if (tile.detectedEnemy.tag != gameObject.tag)
+                            {
+                                Debug.Log("works");
+                                tile.enemyAdded = true;
+                                detectedEnemies.Add(tile.detectedEnemy.gameObject);
+                            }
+                        }
+                    }
                     if (!tile.visited)
                     {
                         tile.parent = dequeuedTile;
@@ -177,7 +194,7 @@ public class MovementController : MonoBehaviour
     public void Move()
     {
         //TODO
-        if(gameObject.tag != "Player")
+        if (gameObject.tag != "Player")
         {
             FindAttackAbleTiles();
         }
@@ -201,6 +218,19 @@ public class MovementController : MonoBehaviour
                 transform.position = new Vector3(target.x, target.y, -1);
                 path.Pop();
 
+                if (gameObject.tag != "Player")
+                {
+                    if (detectedEnemies.Count > 0)
+                    {
+                        detectedEnemies[0].gameObject.GetComponent<PlayerMove>().health -= 25;
+                        detectedEnemies.Clear();
+                        RemoveSelectableTiles();
+                        moving = false;
+                        TurnManager.EndNpcTurn();
+                    }
+
+                }
+
             }
         }
         else
@@ -209,10 +239,8 @@ public class MovementController : MonoBehaviour
             moving = false;
 
             //TODO
-            if (detectedEnemies.Count > 0 && gameObject.tag != "Player")
+            if (gameObject.tag != "Player")
             {
-                //FindAttackAbleTiles();
-                detectedEnemies[0].gameObject.GetComponent<PlayerMove>().health -= 25;
                 TurnManager.EndNpcTurn();
             }
             else

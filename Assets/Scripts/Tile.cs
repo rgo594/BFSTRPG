@@ -12,6 +12,8 @@ public class Tile : MonoBehaviour
     public bool attackable = false;
     public bool enemyAdded = false;
 
+    public bool attackVisited = false;
+
     public Collider2D detectedEnemy = null;
 
     public List<Tile> adjacencyList = new List<Tile>();
@@ -33,7 +35,8 @@ public class Tile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerMove.allowEnemyDetection)
+        DetectEnemy();
+        if (PlayerMove.allowEnemyDetection)
         {
             enemyAdded = false;
         }
@@ -52,7 +55,7 @@ public class Tile : MonoBehaviour
         }
         else if(attackable)
         {
-            DetectEnemy();
+            //DetectEnemy();
             GetComponent<SpriteRenderer>().color = Color.white;
 
             if (PlayerMove.attackStep)
@@ -72,6 +75,7 @@ public class Tile : MonoBehaviour
     public void Reset()
     {
         adjacencyList.Clear();
+        attackAdjacencyList.Clear();
 
         walkable = true;
         current = false;
@@ -104,6 +108,10 @@ public class Tile : MonoBehaviour
         {
             detectedEnemy = DetectedObject;
         }
+        else
+        {
+            detectedEnemy = null;
+        }
     }
 
     public void CheckTile(Vector3 direction, Tile target, bool attackable)
@@ -120,13 +128,13 @@ public class Tile : MonoBehaviour
             if(tile != null && attackable)
             {
                 //doesn't filter out objects
-                adjacencyList.Add(tile);
+                attackAdjacencyList.Add(tile);
             }
             else if (tile != null && tile.walkable)
             {
                 RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
 
-                //responsible for filtering out tiles blocked by obstacles and other characters
+                //detectedEnemy = 
                 if (hit.collider.tag == "Tile" || (tile == target))
                 {
                     adjacencyList.Add(tile);

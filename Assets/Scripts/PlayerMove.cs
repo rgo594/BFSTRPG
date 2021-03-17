@@ -41,11 +41,13 @@ public class PlayerMove : MovementController
 
         if (!moving && !unitMenuPresent && !attackStep && !actionCompleted)
         {
+            unitMenuController.transform.GetChild(1).gameObject.SetActive(true);
             FindSelectableTiles();
             TargetTileToTravel();
         }
         else
         {
+            unitMenuController.transform.GetChild(1).gameObject.SetActive(false);
             Move();
         }
         if (unitMenuPresent)
