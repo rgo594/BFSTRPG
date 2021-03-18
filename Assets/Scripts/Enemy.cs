@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : EnemyMove
+public class Enemy : AiMove
 {
     void Update()
     {

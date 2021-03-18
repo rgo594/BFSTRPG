@@ -8734,6 +8734,7 @@ MonoBehaviour:
   attack: 25
   unitMenuPresent: 0
   actionCompleted: 0
+  coo: 0
 --- !u!1 &1151926562
 GameObject:
   m_ObjectHideFlags: 0
@@ -11125,7 +11126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422593072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: -1}
+  m_LocalPosition: {x: 9, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1379181524}
@@ -11187,6 +11188,7 @@ MonoBehaviour:
   attack: 25
   unitMenuPresent: 0
   actionCompleted: 0
+  coo: 0
 --- !u!1 &1427258930
 GameObject:
   m_ObjectHideFlags: 0

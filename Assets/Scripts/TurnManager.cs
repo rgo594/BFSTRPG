@@ -5,13 +5,13 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     //contains a key for each team and a value thats a list, which contains  each unit of that team. (ex. { "Enemy" : [ NPC, NPC(1) ] } )
-    public static Dictionary<string, List<MovementController>> teamUnits = new Dictionary<string, List<MovementController>>();
+    public static Dictionary<string, List<AiMove>> teamUnits = new Dictionary<string, List<AiMove>>();
 
     //Queue of each team (ex. ["Enemy", "Ally"] )
     public static Queue<string> teamPhaseOrder = new Queue<string>();
 
     //Queue of each unit in current team (ex. [ NPC, NPC(1) ] )
-    static Queue<MovementController> unitTurnOrder = new Queue<MovementController>();
+    static Queue<AiMove> unitTurnOrder = new Queue<AiMove>();
 
     public int playerCharacterCount;
     public int playerCharacterTurnCounter = 0;
@@ -21,7 +21,7 @@ public class TurnManager : MonoBehaviour
     //When the aiTeamCount and aiTurnCounter match, the player turn starts
     public int aiTeamCount = 0;
 
-    GameObject currentCharacter = null;
+    public GameObject currentCharacter = null;
     public bool characterSelected = false;
 
     public static bool attackStep = false;
@@ -36,9 +36,18 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!currentCharacter)
+        {
+            GameObject.Find("UnitMenuController").transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            GameObject.Find("UnitMenuController").transform.GetChild(1).gameObject.SetActive(false);
+        }
         //prevents being able to select characters during enemy turn
         if(playerCharacterTurnCounter != playerCharacterCount)
         {
+
             if (!characterSelected)
             {
                 SelectPlayerCharacter();
@@ -66,36 +75,47 @@ public class TurnManager : MonoBehaviour
         {
             bool characterMoving = false;
 
-            //so you can't select a character while another one is already moving
+            
             if (currentCharacter != null)
             {
                 characterMoving = currentCharacter.GetComponent<PlayerMove>().moving;
             }
 
+            //can't select a character while one is moving or if its not a player character
             if (hit.collider.gameObject.tag == "Player" && !characterMoving)
             {
-                var player = hit.collider.gameObject.GetComponent<PlayerMove>();
+                var clickedCharacter = hit.collider.gameObject.GetComponent<PlayerMove>();
 
                 if (currentCharacter != null)
                 {
-                    //prevents being able to click multiple units at the same time
+                    //deselects currently selected character once you click on a different character
                     if (hit.collider.gameObject.name != currentCharacter.name)
                     {
                         InitDeselectCharacter(currentCharacter);
                     }
                 }
 
-                if (!player.turn && !player.actionCompleted)
+                //if character isn't selected and hasn't hasn't performed an action yet, then start that units turn and set it to current character
+                if (!clickedCharacter.turn && !clickedCharacter.actionCompleted)
                 {
-                    currentCharacter = player.gameObject;
-                    InitStartTurn(player.gameObject);
+                    currentCharacter = clickedCharacter.gameObject;
+                    InitStartTurn(clickedCharacter.gameObject);
                 }
                 else
                 {
-                    if(!player.actionCompleted)
+                    //show unit menu if you double click on a unit who hasn't performed an action yet
+                    if(!clickedCharacter.actionCompleted)
                     {
-                        player.ToggleUnitMenu(true);
+                        clickedCharacter.ToggleUnitMenu(true);
                     }
+                }
+            }
+            else if(hit.collider.gameObject.GetComponent<Tile>())
+            {
+                if (hit.collider.gameObject.GetComponent<Tile>().selectable == false)
+                {
+                    InitDeselectCharacter(currentCharacter);
+                    currentCharacter = null;
                 }
             }
         }
@@ -113,29 +133,29 @@ public class TurnManager : MonoBehaviour
         var character = c.GetComponent<PlayerMove>();
 
         character.DeselectCharacter();
-        characterSelected = false;
+        //characterSelected = false;
     }
 
     static void InitUnitTurnOrder()
     {
         //Grabs first teams unit list in teamUnits
-        List<MovementController> teamList = teamUnits[teamPhaseOrder.Peek()];
+        List<AiMove> teamList = teamUnits[teamPhaseOrder.Peek()];
 
-        foreach (MovementController unit in teamList)
+        foreach (AiMove unit in teamList)
         {
             unitTurnOrder.Enqueue(unit);
         }
 
     }
 
-    public static void AddNpcUnit(MovementController unit)
+    public static void AddNpcUnit(AiMove unit)
     {
-        List<MovementController> list;
+        List<AiMove> list;
 
        ;
         if (!teamUnits.ContainsKey(unit.tag))
         {
-            list = new List<MovementController>();
+            list = new List<AiMove>();
 
             //add list value to key (currently will be null instead of empty list). ex. {"Enemy" : [] }
             teamUnits[unit.tag] = list;
@@ -161,13 +181,13 @@ public class TurnManager : MonoBehaviour
     {
         if (unitTurnOrder.Count > 0)
         {
-            unitTurnOrder.Peek().BeginTurn();
+            unitTurnOrder.Peek().StartTurn();
         }
     }
 
     public static void EndNpcTurn()
     {
-        MovementController unit = unitTurnOrder.Dequeue();
+        AiMove unit = unitTurnOrder.Dequeue();
         unit.EndTurn();
         unit.detectedEnemies.Clear();
 

@@ -9,7 +9,7 @@ public class UnitMenu : MonoBehaviour
 
     public void InitEndTurn()
     {
-        selectedUnit.GetComponent<PlayerMove>().EndPlayerCharacterTurn();
+        selectedUnit.GetComponent<PlayerMove>().EndTurn();
         gameObject.SetActive(false);
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMove : MovementController
+public class AiMove : MovementController
 {
     GameObject target;
     public int health = 100;
@@ -215,5 +215,17 @@ public class EnemyMove : MovementController
     {
         Tile targetTile = GetTargetTile(target);
         FindPath(targetTile);
+    }
+
+    public void StartTurn()
+    {
+        turn = true;
+    }
+
+    public void EndTurn()
+    {
+        turn = false;
+        TurnManager.allowEnemyDetection = true;
+        StartCoroutine(ClearDetectedEnemies());
     }
 }

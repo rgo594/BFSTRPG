@@ -193,17 +193,4 @@ public class MovementController : MonoBehaviour
         yield return new WaitForEndOfFrame();
         detectedEnemies.Clear();
     }
-
-
-    public void BeginTurn()
-    {
-        turn = true;
-    }
-
-    public void EndTurn()
-    {
-        turn = false;
-        TurnManager.allowEnemyDetection = true;
-        StartCoroutine(ClearDetectedEnemies());
-    }
 }

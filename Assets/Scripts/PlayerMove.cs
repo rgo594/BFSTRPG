@@ -97,7 +97,7 @@ public class PlayerMove : MovementController
         originalPosition = gameObject.transform.position;
     }
 
-    public void EndPlayerCharacterTurn()
+    public void EndTurn()
     {
         TurnManager.allowEnemyDetection = true;
         TurnManager.attackStep = false;
@@ -115,6 +115,7 @@ public class PlayerMove : MovementController
     {
         turn = false;
         RemoveSelectableTiles();
+        turnManager.characterSelected = false;
     }
 
     public IEnumerator AttackAction()
@@ -126,18 +127,18 @@ public class PlayerMove : MovementController
 
         foreach (GameObject enemy in detectedEnemies)
         {
-            var enemyMove = enemy.GetComponent<EnemyMove>();
+            var enemyMove = enemy.GetComponent<AiMove>();
 
             if (Input.GetMouseButtonUp(0))
             {
                
                 if (hit.collider.gameObject == enemy)
                 {
-                    var targetedEnemy = enemy.GetComponent<EnemyMove>();
+                    var targetedEnemy = enemy.GetComponent<AiMove>();
                     targetedEnemy.health -= attack;
                     TurnManager.attackStep = false;
 
-                    EndPlayerCharacterTurn();
+                    EndTurn();
                     ToggleUnitMenu(false);
                 }
             }
