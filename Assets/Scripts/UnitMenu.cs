@@ -15,7 +15,7 @@ public class UnitMenu : MonoBehaviour
 
     public void InitAttack()
     {
-        PlayerMove.attackStep = true;
+        TurnManager.attackStep = true;
     }
 
     public void InitEndPhase()

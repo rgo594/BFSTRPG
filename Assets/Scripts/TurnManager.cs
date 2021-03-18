@@ -22,7 +22,10 @@ public class TurnManager : MonoBehaviour
     public int aiTeamCount = 0;
 
     GameObject currentCharacter = null;
-    public bool characterSelected = false; 
+    public bool characterSelected = false;
+
+    public static bool attackStep = false;
+    public static bool allowEnemyDetection = false;
 
     private void Start()
     {
@@ -78,14 +81,14 @@ public class TurnManager : MonoBehaviour
                     //prevents being able to click multiple units at the same time
                     if (hit.collider.gameObject.name != currentCharacter.name)
                     {
-                        ResetCharacter(currentCharacter);
+                        InitDeselectCharacter(currentCharacter);
                     }
                 }
 
                 if (!player.turn && !player.actionCompleted)
                 {
                     currentCharacter = player.gameObject;
-                    StartPlayerCharacterTurn(player.gameObject);
+                    InitStartTurn(player.gameObject);
                 }
                 else
                 {
@@ -98,19 +101,18 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void StartPlayerCharacterTurn(GameObject c)
+    public void InitStartTurn(GameObject c)
     {
         var character = c.GetComponent<PlayerMove>();
 
-        PlayerMove.attackStep = false;
-        character.turn = true;
-        character.originalPosition = character.gameObject.transform.position;
+        character.StartTurn();
     }
    
-    public void ResetCharacter(GameObject character)
+    public void InitDeselectCharacter(GameObject c)
     {
-        character.GetComponent<PlayerMove>().turn = false;
-        character.GetComponent<PlayerMove>().RemoveSelectableTiles();
+        var character = c.GetComponent<PlayerMove>();
+
+        character.DeselectCharacter();
         characterSelected = false;
     }
 

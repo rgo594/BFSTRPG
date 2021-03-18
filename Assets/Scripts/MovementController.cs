@@ -7,8 +7,6 @@ public class MovementController : MonoBehaviour
     public bool turn = false;
     public bool moving = false;
 
-    public static bool allowEnemyDetection = false;
-
     public int move = 5;
     public float moveSpeed = 10;
     public int attackRange = 2;
@@ -28,7 +26,8 @@ public class MovementController : MonoBehaviour
     public Tile actualTargetTile;
 
     protected void Init()
-    {   
+    {
+   
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -204,7 +203,7 @@ public class MovementController : MonoBehaviour
     public void EndTurn()
     {
         turn = false;
-        PlayerMove.allowEnemyDetection = true;
+        TurnManager.allowEnemyDetection = true;
         StartCoroutine(ClearDetectedEnemies());
     }
 }

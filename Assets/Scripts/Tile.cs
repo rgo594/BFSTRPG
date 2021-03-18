@@ -36,7 +36,7 @@ public class Tile : MonoBehaviour
     void Update()
     {
         DetectEnemy();
-        if (PlayerMove.allowEnemyDetection)
+        if (TurnManager.allowEnemyDetection)
         {
             enemyAdded = false;
         }
@@ -55,10 +55,9 @@ public class Tile : MonoBehaviour
         }
         else if(attackable)
         {
-            //DetectEnemy();
             GetComponent<SpriteRenderer>().color = Color.white;
 
-            if (PlayerMove.attackStep)
+            if (TurnManager.attackStep)
             {
                 GetComponent<SpriteRenderer>().color = Color.red;
             }

@@ -12,7 +12,8 @@ public class PlayerMove : MovementController
 
     public bool unitMenuPresent = false;
     public bool actionCompleted = false;
-    public static bool attackStep = false;
+
+    public bool coo;
 
     void Start()
     {
@@ -81,7 +82,7 @@ public class PlayerMove : MovementController
 
     public void ResetCharacterTurn()
     {
-        PlayerMove.attackStep = false;
+        TurnManager.attackStep = false;
         ToggleUnitMenu(false);
         turnManager.characterSelected = false;
 
@@ -89,23 +90,36 @@ public class PlayerMove : MovementController
         detectedEnemies.Clear();
     }
 
+    public void StartTurn()
+    {
+        TurnManager.attackStep = false;
+        turn = true;
+        originalPosition = gameObject.transform.position;
+    }
+
     public void EndPlayerCharacterTurn()
     {
-        allowEnemyDetection = true;
-        PlayerMove.attackStep = false;
+        TurnManager.allowEnemyDetection = true;
+        TurnManager.attackStep = false;
         unitMenuPresent = false;
         actionCompleted = true;
 
         SetCharacterColor(Color.grey);
         turnManager.playerCharacterTurnCounter++;
-        turnManager.ResetCharacter(gameObject);
+        turnManager.InitDeselectCharacter(gameObject);
 
         StartCoroutine(ClearDetectedEnemies());
     }
 
+    public void DeselectCharacter()
+    {
+        turn = false;
+        RemoveSelectableTiles();
+    }
+
     public IEnumerator AttackAction()
     {
-        yield return new WaitUntil(() => PlayerMove.attackStep == true);
+        yield return new WaitUntil(() => TurnManager.attackStep == true);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
 
@@ -121,7 +135,7 @@ public class PlayerMove : MovementController
                 {
                     var targetedEnemy = enemy.GetComponent<EnemyMove>();
                     targetedEnemy.health -= attack;
-                    PlayerMove.attackStep = false;
+                    TurnManager.attackStep = false;
 
                     EndPlayerCharacterTurn();
                     ToggleUnitMenu(false);

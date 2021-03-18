@@ -13,10 +13,6 @@ public class Player : PlayerMove
             SetCharacterColor(Color.white);
             ToggleEndPhaseButton(false);
         }
-        else
-        {
-            ToggleEndPhaseButton(true);
-        }
 
         if (!turn || actionCompleted)
         {
@@ -24,11 +20,11 @@ public class Player : PlayerMove
         }
         if (!moving && Input.GetMouseButtonUp(1))
         {
-            allowEnemyDetection = true;
+            TurnManager.allowEnemyDetection = true;
             ResetCharacterTurn();
         }
 
-        if (!moving && !unitMenuPresent && !attackStep && !actionCompleted)
+        if (!moving && !unitMenuPresent && !TurnManager.attackStep && !actionCompleted)
         {
             ToggleEndPhaseButton(true);
             FindSelectableTiles();
@@ -42,7 +38,7 @@ public class Player : PlayerMove
         }
         if (unitMenuPresent)
         {
-            allowEnemyDetection = false;
+            TurnManager.allowEnemyDetection = false;
             FindAttackAbleTiles();
         }
         //if there are enemies in range show attack button
@@ -55,7 +51,7 @@ public class Player : PlayerMove
             ToggleAttackButton(false);
         }
         //if attack button clicked allow clicking on enemy for damage step
-        if (attackStep)
+        if (TurnManager.attackStep)
         {
             ToggleUnitMenu(false);
             StartCoroutine(AttackAction());
