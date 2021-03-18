@@ -16,7 +16,7 @@ public class PlayerMove : MovementController
     }
 
     void Update()
-    {  
+    {
         //starts player phase
         if (turnManager.playerCharacterTurnCounter == turnManager.playerCharacterCount)
         {

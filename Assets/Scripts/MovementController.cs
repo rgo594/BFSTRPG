@@ -148,23 +148,6 @@ public class MovementController : MonoBehaviour
                 //changes flags of tiles adjacent to the currentTile (the one the character is on), adds those tiles to the queue, then iterates through newly queued tiles adjacent tiles.
                 foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
-                    if (dequeuedTile.distance <= attackRange)
-                    {
-                        //Debug.Log("de null " + tile.detectedEnemy != null);
-                        //Debug.Log("tag " + tile.detectedEnemy.tag != gameObject.tag);
-                      
-
-                        if (tile.detectedEnemy != null && !tile.enemyAdded)
-                        {
-                            Debug.Log(tile.detectedEnemy.tag);
-                            //if (tile.detectedEnemy.tag != gameObject.tag)
-                            {
-                                Debug.Log("works");
-                                tile.enemyAdded = true;
-                                detectedEnemies.Add(tile.detectedEnemy.gameObject);
-                            }
-                        }
-                    }
                     if (!tile.visited)
                     {
                         tile.parent = dequeuedTile;
@@ -193,10 +176,9 @@ public class MovementController : MonoBehaviour
 
     public void Move()
     {
-        //TODO
         if (gameObject.tag != "Player")
         {
-            FindAttackAbleTiles();
+            AiDetectPlayerCharacters();
         }
         if (path.Count > 0)
         {
@@ -218,15 +200,12 @@ public class MovementController : MonoBehaviour
                 transform.position = new Vector3(target.x, target.y, -1);
                 path.Pop();
 
+                //so ai attacks player when in range
                 if (gameObject.tag != "Player")
                 {
                     if (detectedEnemies.Count > 0)
                     {
-                        detectedEnemies[0].gameObject.GetComponent<PlayerMove>().health -= 25;
-                        detectedEnemies.Clear();
-                        RemoveSelectableTiles();
-                        moving = false;
-                        TurnManager.EndNpcTurn();
+                        AiAttackAction();
                     }
 
                 }
@@ -253,6 +232,27 @@ public class MovementController : MonoBehaviour
             }
 
         }
+    }
+
+    private void AiDetectPlayerCharacters()
+    {
+        float detectRange = (attackRange + 0.8f) + attackRange;
+        Vector3 rng = new Vector3(detectRange, detectRange, -1f);
+        Collider2D[] detectedPlayerCharacters = Physics2D.OverlapBoxAll(gameObject.transform.position, rng, 1f, 512);
+
+        if (detectedPlayerCharacters.Length > 0)
+        {
+            FindAttackAbleTiles();
+        }
+    }
+
+    private void AiAttackAction()
+    {
+        detectedEnemies[0].gameObject.GetComponent<PlayerMove>().health -= 25;
+        detectedEnemies.Clear();
+        RemoveSelectableTiles();
+        moving = false;
+        TurnManager.EndNpcTurn();
     }
 
     void SetHorizontalVelocity()
