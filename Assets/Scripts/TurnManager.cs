@@ -26,11 +26,13 @@ public class TurnManager : MonoBehaviour
 
     public static bool attackStep = false;
     public static bool allowEnemyDetection = false;
+    public GameObject unitMenu;
 
     private void Start()
     {
         playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
         aiTeamCount = teamPhaseOrder.Count;
+        unitMenu = GameObject.Find("UnitMenuController");
     }
 
     // Update is called once per frame
@@ -38,11 +40,11 @@ public class TurnManager : MonoBehaviour
     {
         if(!currentCharacter)
         {
-            GameObject.Find("UnitMenuController").transform.GetChild(1).gameObject.SetActive(true);
+            ToggleEndPhaseButton(true);
         }
         else
         {
-            GameObject.Find("UnitMenuController").transform.GetChild(1).gameObject.SetActive(false);
+            ToggleEndPhaseButton(false);
         }
         //prevents being able to select characters during enemy turn
         if(playerCharacterTurnCounter != playerCharacterCount)
@@ -62,8 +64,14 @@ public class TurnManager : MonoBehaviour
         //player phase ends when playerCharacterTurnCounter matches playerCharacterCount
         if (playerCharacterTurnCounter == playerCharacterCount)
         {
+            ToggleEndPhaseButton(false);
             StartNpcPhase();
         }
+    }
+
+    public void ToggleEndPhaseButton(bool active)
+    {
+        unitMenu.transform.GetChild(1).gameObject.SetActive(active);
     }
 
     public void SelectPlayerCharacter()

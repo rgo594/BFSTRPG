@@ -11,7 +11,6 @@ public class Player : PlayerMove
         {
             actionCompleted = false;
             SetCharacterColor(Color.white);
-            ToggleEndPhaseButton(false);
         }
 
         if (!turn || actionCompleted)
@@ -26,13 +25,11 @@ public class Player : PlayerMove
 
         if (!moving && !unitMenuPresent && !TurnManager.attackStep && !actionCompleted)
         {
-            ToggleEndPhaseButton(true);
             FindSelectableTiles();
             TargetTileToTravel();
         }
         else
         {
-            ToggleEndPhaseButton(false);
             moving = true;
             Move();
         }

@@ -157,10 +157,10 @@ public class PlayerMove : MovementController
         unitMenuController.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(active);
     }
 
-    public void ToggleEndPhaseButton(bool active)
+/*    public void ToggleEndPhaseButton(bool active)
     {
         unitMenuController.transform.GetChild(1).gameObject.SetActive(active);
-    }
+    }*/
 
     public void SetCharacterColor(Color color)
     {
