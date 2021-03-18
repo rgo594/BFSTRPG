@@ -4,78 +4,57 @@ using UnityEngine;
 
 public class PlayerMove : MovementController
 {
-    public static bool attackStep = false;
+    public Vector3 originalPosition;
+    public GameObject unitMenuController;
 
     public int health = 100;
     public int attack = 25;
 
+    public bool unitMenuPresent = false;
+    public bool actionCompleted = false;
+    public static bool attackStep = false;
+
     void Start()
     {
-        //Debug.Log(LayerMask.GetMask("Enemy"));
         Init();
+        unitMenuController = GameObject.Find("UnitMenuController");
     }
 
-    void Update()
+    public void Move()
     {
-        //starts player phase
-        if (turnManager.playerCharacterTurnCounter == turnManager.playerCharacterCount)
+        if (path.Count > 0)
         {
-            actionCompleted = false;
-            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
-            unitMenuController.transform.GetChild(1).gameObject.SetActive(false);
+            //returns obj at the top of the stack without removing;
+            Tile nextTileInPath = path.Peek();
+            Vector3 target = nextTileInPath.transform.position;
+
+            if (Vector3.Distance(transform.position, target) >= 0.05f)
+            {
+                CalculateHeading(target);
+                SetHorizontalVelocity();
+
+                //Locomotion
+                transform.position += velocity * Time.deltaTime;
+            }
+            else
+            {
+                //temporary fix for keeping unit z axis unaffected by calculateHeading
+                transform.position = new Vector3(target.x, target.y, -1);
+                path.Pop();
+            }
         }
         else
         {
-            unitMenuController.transform.GetChild(1).gameObject.SetActive(true);
-        }
+            RemoveSelectableTiles();
+            moving = false;
+            var unitMenu = unitMenuController.transform.GetChild(0).GetComponent<UnitMenu>();
 
-        if (!turn || actionCompleted)
-        {
-            return;
-        }
-        if (!moving && Input.GetMouseButtonUp(1))
-        {
-            allowEnemyDetection = true;
-            ResetCharacterTurn();
-        }
+            turnManager.characterSelected = true;
+            ToggleUnitMenu(true);
 
-        if (!moving && !unitMenuPresent && !attackStep && !actionCompleted)
-        {
-            unitMenuController.transform.GetChild(1).gameObject.SetActive(true);
-            FindSelectableTiles();
-            TargetTileToTravel();
-        }
-        else
-        {
-            unitMenuController.transform.GetChild(1).gameObject.SetActive(false);
-            Move();
-        }
-        if (unitMenuPresent)
-        {
-            allowEnemyDetection = false;
-            FindAttackAbleTiles();
-        }
-        //if there are enemies in range show attack button
-        if (detectedEnemies.Count > 0 && gameObject.tag == "Player")
-        {
-            enemiesInRange = true;
-            ToggleAttackButton(true);
-        }
-        else
-        {
-            ToggleAttackButton(false);
-        }
-        //if attack button clicked allow clicking on enemy for damage step
-        if (attackStep)
-        {
-            ToggleUnitMenu(false);
-            StartCoroutine(AttackAction());
-        }
-    }
+            unitMenu.SetUnit(gameObject);
 
-    private void ToggleAttackButton(bool active)
-    {
-        unitMenuController.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(active);
+        }
     }
 
     public void TargetTileToTravel()
@@ -100,7 +79,31 @@ public class PlayerMove : MovementController
         }
     }
 
-    IEnumerator AttackAction()
+    public void ResetCharacterTurn()
+    {
+        PlayerMove.attackStep = false;
+        ToggleUnitMenu(false);
+        turnManager.characterSelected = false;
+
+        gameObject.transform.position = originalPosition;
+        detectedEnemies.Clear();
+    }
+
+    public void EndPlayerCharacterTurn()
+    {
+        allowEnemyDetection = true;
+        PlayerMove.attackStep = false;
+        unitMenuPresent = false;
+        actionCompleted = true;
+
+        SetCharacterColor(Color.grey);
+        turnManager.playerCharacterTurnCounter++;
+        turnManager.ResetCharacter(gameObject);
+
+        StartCoroutine(ClearDetectedEnemies());
+    }
+
+    public IEnumerator AttackAction()
     {
         yield return new WaitUntil(() => PlayerMove.attackStep == true);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -125,5 +128,27 @@ public class PlayerMove : MovementController
                 }
             }
         }
+    }
+
+    public void ToggleUnitMenu(bool active)
+    {
+        var unitMenu = unitMenuController.transform.GetChild(0).gameObject;
+        unitMenuPresent = active;
+        unitMenu.SetActive(active);
+    }
+
+    public void ToggleAttackButton(bool active)
+    {
+        unitMenuController.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(active);
+    }
+
+    public void ToggleEndPhaseButton(bool active)
+    {
+        unitMenuController.transform.GetChild(1).gameObject.SetActive(active);
+    }
+
+    public void SetCharacterColor(Color color)
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().color = color;
     }
 }
