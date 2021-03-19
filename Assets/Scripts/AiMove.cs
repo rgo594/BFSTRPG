@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AiMove : MovementController
 {
@@ -204,6 +205,7 @@ public class AiMove : MovementController
 
     public void AiAttackAction()
     {
+        detectedEnemies[0].gameObject.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
         detectedEnemies[0].gameObject.GetComponent<PlayerMove>().health -= 25;
         detectedEnemies.Clear();
         RemoveSelectableTiles();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MovementController
 {
@@ -135,6 +136,8 @@ public class PlayerMove : MovementController
                 if (hit.collider.gameObject == enemy)
                 {
                     var targetedEnemy = enemy.GetComponent<AiMove>();
+
+                    enemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
                     targetedEnemy.health -= attack;
                     TurnManager.attackStep = false;
 
