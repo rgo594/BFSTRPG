@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour
     public static Queue<string> teamPhaseOrder = new Queue<string>();
 
     //Queue of each unit in current team (ex. [ NPC, NPC(1) ] )
-    static Queue<AiMove> unitTurnOrder = new Queue<AiMove>();
+    public static Queue<AiMove> unitTurnOrder = new Queue<AiMove>();
 
     public int playerCharacterCount;
     public int playerCharacterTurnCounter = 0;
@@ -30,15 +30,15 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
-        aiTeamCount = teamPhaseOrder.Count;
         unitMenu = GameObject.Find("UnitMenuController");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!currentCharacter)
+        playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
+        aiTeamCount = teamPhaseOrder.Count;
+        if (!currentCharacter)
         {
             ToggleEndPhaseButton(true);
         }
@@ -144,7 +144,7 @@ public class TurnManager : MonoBehaviour
         //characterSelected = false;
     }
 
-    static void InitUnitTurnOrder()
+    public static void InitUnitTurnOrder()
     {
         //Grabs first teams unit list in teamUnits
         List<AiMove> teamList = teamUnits[teamPhaseOrder.Peek()];

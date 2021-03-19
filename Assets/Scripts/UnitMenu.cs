@@ -20,8 +20,9 @@ public class UnitMenu : MonoBehaviour
 
     public void InitEndPhase()
     {
-        //TODO needs to be changed to player length
-        FindObjectOfType<TurnManager>().playerCharacterTurnCounter = 2;
+        TurnManager turnManager = FindObjectOfType<TurnManager>();
+
+        turnManager.playerCharacterTurnCounter = turnManager.playerCharacterCount;
     }
 
     public void SetUnit(GameObject unit)

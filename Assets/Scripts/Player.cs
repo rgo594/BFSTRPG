@@ -6,6 +6,10 @@ public class Player : PlayerMove
 {
     void Update()
     {
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
         //resets character for next phase
         if (turnManager.playerCharacterTurnCounter == turnManager.playerCharacterCount)
         {
