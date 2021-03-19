@@ -8,7 +8,9 @@ public class PlayerMove : MovementController
     public Vector3 originalPosition;
     public GameObject unitMenuController;
 
-    public int health = 100;
+    public int healthPoints = 100;
+    Slider healthBar;
+
     public int attack = 25;
 
     public bool unitMenuPresent = false;
@@ -16,10 +18,15 @@ public class PlayerMove : MovementController
 
     public bool coo;
 
+
     void Start()
     {
         Init();
         unitMenuController = GameObject.Find("UnitMenuController");
+        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+
+        healthBar.maxValue = healthPoints;
+        healthBar.value = healthPoints;
     }
 
     public void Move()
@@ -138,7 +145,7 @@ public class PlayerMove : MovementController
                     var targetedEnemy = enemy.GetComponent<AiMove>();
 
                     enemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
-                    targetedEnemy.health -= attack;
+                    targetedEnemy.healthPoints -= attack;
                     TurnManager.attackStep = false;
 
                     EndTurn();

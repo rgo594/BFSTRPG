@@ -6,12 +6,18 @@ using UnityEngine.UI;
 public class AiMove : MovementController
 {
     GameObject target;
-    public int health = 100;
+    public int healthPoints = 100;
     public int attack = 25;
+    Slider healthBar;
 
     void Start()
     {
         Init();
+
+        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+        healthBar.maxValue = healthPoints;
+        healthBar.value = healthPoints;
+
         TurnManager.AddNpcUnit(this);
     }
 
@@ -191,6 +197,14 @@ public class AiMove : MovementController
         return lowest;
     }
 
+    //TODO test if works with multiple teams. (probably will, UNTIL all of one teams units are killed);
+    public void UnitDeath()
+    {
+        TurnManager.teamUnits[gameObject.tag].Remove(this);
+        TurnManager.unitTurnOrder.Clear();
+        Destroy(gameObject);
+    }
+
     public void AiDetectPlayerCharacters()
     {
         float detectRange = (attackRange + 0.8f) + attackRange;
@@ -206,7 +220,7 @@ public class AiMove : MovementController
     public void AiAttackAction()
     {
         detectedEnemies[0].gameObject.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
-        detectedEnemies[0].gameObject.GetComponent<PlayerMove>().health -= 25;
+        detectedEnemies[0].gameObject.GetComponent<PlayerMove>().healthPoints -= 25;
         detectedEnemies.Clear();
         RemoveSelectableTiles();
         moving = false;

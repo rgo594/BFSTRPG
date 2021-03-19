@@ -6,11 +6,10 @@ public class Enemy : AiMove
 {
     void Update()
     {
-        if(health <= 0)
+        if(healthPoints <= 0)
         {
-            TurnManager.teamUnits[gameObject.tag].Remove(this);
-            TurnManager.unitTurnOrder.Clear();
-            Destroy(gameObject);
+            //not sure if it works with multiple ai teams
+            UnitDeath();
         }
         if (!turn)
         {

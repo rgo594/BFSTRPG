@@ -6,7 +6,7 @@ public class Player : PlayerMove
 {
     void Update()
     {
-        if(health <= 0)
+        if(healthPoints <= 0)
         {
             Destroy(gameObject);
         }
