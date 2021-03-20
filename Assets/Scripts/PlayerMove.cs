@@ -18,6 +18,8 @@ public class PlayerMove : MovementController
 
     public GameObject targetedEnemy;
 
+    public bool attacking = false;
+
     void Start()
     {
         Init();
@@ -58,7 +60,11 @@ public class PlayerMove : MovementController
             var unitMenu = unitMenuController.transform.GetChild(0).GetComponent<UnitMenu>();
 
             turnManager.characterSelected = true;
-            ToggleUnitMenu(true);
+            if(!attacking)
+            {
+                ToggleUnitMenu(true);
+            }
+
 
             unitMenu.SetUnit(gameObject);
 
@@ -106,6 +112,7 @@ public class PlayerMove : MovementController
 
     public void EndTurn()
     {
+        attacking = false;
         TurnManager.allowEnemyDetection = true;
         TurnManager.attackStep = false;
         unitMenuPresent = false;
@@ -148,6 +155,7 @@ public class PlayerMove : MovementController
 
                     Animator animator = gameObject.GetComponent<Animator>();
 
+                    attacking = true;
                     if (enemyPos.x > playerPos.x)
                     {
                         animator.SetTrigger("AttackRight");
@@ -164,14 +172,11 @@ public class PlayerMove : MovementController
                     {
                         animator.SetTrigger("AttackDown");
                     }
+                    ToggleUnitMenu(false);
+                    /*enemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
+                    targetedEnemy.healthPoints -= attack;
+                    TurnManager.attackStep = false;*/
 
-                        /*enemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
-                        targetedEnemy.healthPoints -= attack;
-                        TurnManager.attackStep = false;*/
-
-
-
-                        ToggleUnitMenu(false);
                 }
             }
         }
@@ -183,8 +188,8 @@ public class PlayerMove : MovementController
         //todo remove attack tile map while this step is going
         targetedEnemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
         targetedEnemy.GetComponent<AiMove>().healthPoints -= attack;
-        TurnManager.attackStep = false;
-        EndTurn();
+        //TurnManager.attackStep = false;
+        //EndTurn();
     }
 
     public void ToggleUnitMenu(bool active)

@@ -37,7 +37,7 @@ public class Player : PlayerMove
             moving = true;
             Move();
         }
-        if (unitMenuPresent)
+        if (unitMenuPresent && !attacking)
         {
             TurnManager.allowEnemyDetection = false;
             FindAttackAbleTiles();
@@ -52,7 +52,7 @@ public class Player : PlayerMove
             ToggleAttackButton(false);
         }
         //if attack button clicked allow clicking on enemy for damage step
-        if (TurnManager.attackStep)
+        if (TurnManager.attackStep && !attacking)
         {
             ToggleUnitMenu(false);
             StartCoroutine(AttackAction());
