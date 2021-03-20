@@ -16,8 +16,7 @@ public class PlayerMove : MovementController
     public bool unitMenuPresent = false;
     public bool actionCompleted = false;
 
-    public bool coo;
-
+    public GameObject targetedEnemy;
 
     void Start()
     {
@@ -142,17 +141,50 @@ public class PlayerMove : MovementController
                
                 if (hit.collider.gameObject == enemy)
                 {
-                    var targetedEnemy = enemy.GetComponent<AiMove>();
+                    targetedEnemy = enemy;
 
-                    enemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
-                    targetedEnemy.healthPoints -= attack;
-                    TurnManager.attackStep = false;
+                    Vector3 enemyPos = targetedEnemy.transform.position;
+                    Vector3 playerPos = gameObject.transform.position;
 
-                    EndTurn();
-                    ToggleUnitMenu(false);
+                    Animator animator = gameObject.GetComponent<Animator>();
+
+                    if (enemyPos.x > playerPos.x)
+                    {
+                        animator.SetTrigger("AttackRight");
+                    }
+                    else if(enemyPos.x < playerPos.x)
+                    {
+                        animator.SetTrigger("AttackLeft");
+                    }
+                    else if (enemyPos.y > playerPos.y)
+                    {
+                        animator.SetTrigger("AttackUp");
+                    }
+                    else if (enemyPos.y < playerPos.y)
+                    {
+                        animator.SetTrigger("AttackDown");
+                    }
+
+                        /*enemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
+                        targetedEnemy.healthPoints -= attack;
+                        TurnManager.attackStep = false;*/
+
+
+
+                        ToggleUnitMenu(false);
                 }
             }
         }
+    }
+
+    //called in attack animation
+    public void DamageStep()
+    {
+        //todo remove attack tile map while this step is going
+        targetedEnemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
+        targetedEnemy.GetComponent<AiMove>().healthPoints -= attack;
+        TurnManager.attackStep = false;
+        EndTurn();
     }
 
     public void ToggleUnitMenu(bool active)

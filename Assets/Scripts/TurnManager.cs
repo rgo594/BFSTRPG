@@ -118,7 +118,7 @@ public class TurnManager : MonoBehaviour
                     }
                 }
             }
-            else if(currentCharacter != null && hit.collider.gameObject.GetComponent<Tile>())
+            else if(currentCharacter != null && hit.collider.gameObject.GetComponent<Tile>() && !currentCharacter.GetComponent<Player>().moving)
             {
                 if (hit.collider.gameObject.GetComponent<Tile>().selectable == false)
                 {
