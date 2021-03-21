@@ -12,7 +12,9 @@ public class MovementController : MonoBehaviour
     public int attackRange = 2;
 
     public Tile currentTile;
-    public List<GameObject> detectedEnemies = new List<GameObject>();
+    //public List<GameObject> detectedEnemies = new List<GameObject>();
+    public List<Tile> detectedEnemies = new List<Tile>();
+
     public Stack<Tile> path = new Stack<Tile>();
 
     public Vector3 velocity = new Vector3();
@@ -84,7 +86,6 @@ public class MovementController : MonoBehaviour
             Tile dequeuedTile = process.Dequeue();
 
             selectableTiles.Add(dequeuedTile);
-
             if (dequeuedTile.distance < attackRange)
             {
                 //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
@@ -95,7 +96,7 @@ public class MovementController : MonoBehaviour
                         if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
                         {
                             tile.enemyAdded = true;
-                            detectedEnemies.Add(tile.detectedEnemy.gameObject);
+                            detectedEnemies.Add(tile);
                         }
                         tile.visited = true;
                         tile.parent = dequeuedTile;

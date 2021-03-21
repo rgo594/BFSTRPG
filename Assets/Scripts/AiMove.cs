@@ -171,10 +171,12 @@ public class AiMove : MovementController
 
     public void Move()
     {
-        AiDetectPlayerCharacters();
+
+        //AiDetectPlayerCharacters();
 
         if(attacking)
         { return; }
+        FindAttackAbleTiles();
         if (path.Count > 0)
         {
             //returns obj at the top of the stack without removing;
@@ -229,7 +231,7 @@ public class AiMove : MovementController
         RemoveSelectableTiles();
         moving = false;
         //trying to add it too many times.
-        targetedPlayer = detectedEnemies[0];
+        targetedPlayer = detectedEnemies[0].detectedEnemy.gameObject;
 
         Vector3 playerPos = targetedPlayer.transform.position;
         Vector3 enemyPos = gameObject.transform.position;
@@ -267,6 +269,10 @@ public class AiMove : MovementController
 
     public void EndTurnAfterAttack()
     {
+        foreach(Tile tile in detectedEnemies)
+        {
+            tile.enemyAdded = false;
+        }
         attacking = false;
         targetedPlayer = null;
         turn = false;
@@ -299,8 +305,12 @@ public class AiMove : MovementController
 
     public void EndTurn()
     {
-        turn = false;
+        foreach (Tile tile in detectedEnemies)
+        {
+            tile.enemyAdded = false;
+        }
         TurnManager.allowEnemyDetection = true;
+        turn = false;
         StartCoroutine(ClearDetectedEnemies());
     }
 }

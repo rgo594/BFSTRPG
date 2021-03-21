@@ -38,10 +38,10 @@ public class Tile : MonoBehaviour
     void Update()
     {
         DetectEnemy();
-        if (TurnManager.allowEnemyDetection)
+/*        if (TurnManager.allowEnemyDetection)
         {
             enemyAdded = false;
-        }
+        }*/
 
         if(TurnManager.playerTurn)
         {

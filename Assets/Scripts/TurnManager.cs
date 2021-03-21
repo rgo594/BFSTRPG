@@ -189,6 +189,7 @@ public class TurnManager : MonoBehaviour
 
     public static void StartNpcPhase()
     {
+        TurnManager.allowEnemyDetection = false;
         playerTurn = false;
         if (unitTurnOrder.Count > 0)
         {

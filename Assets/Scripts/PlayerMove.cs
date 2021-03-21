@@ -95,6 +95,7 @@ public class PlayerMove : MovementController
 
     public void ResetCharacterTurn()
     {
+        ResetEnemyAddedTiles();
         TurnManager.attackStep = false;
         ToggleUnitMenu(false);
         turnManager.characterSelected = false;
@@ -110,8 +111,19 @@ public class PlayerMove : MovementController
         originalPosition = gameObject.transform.position;
     }
 
+    public void ResetEnemyAddedTiles()
+    {
+        foreach (Tile tile in detectedEnemies)
+        {
+            tile.enemyAdded = false;
+        }
+    }
+
     public void EndTurn()
     {
+
+        ResetEnemyAddedTiles();
+
         attacking = false;
         TurnManager.allowEnemyDetection = true;
         TurnManager.attackStep = false;
@@ -139,16 +151,16 @@ public class PlayerMove : MovementController
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
 
 
-        foreach (GameObject enemy in detectedEnemies)
+        foreach (Tile enemyTile in detectedEnemies)
         {
-            var enemyMove = enemy.GetComponent<AiMove>();
+            AiMove enemyMove = enemyTile.detectedEnemy.gameObject.GetComponent<AiMove>();
 
             if (Input.GetMouseButtonUp(0))
             {
                
-                if (hit.collider.gameObject == enemy)
+                if (hit.collider.gameObject == enemyTile.detectedEnemy.gameObject)
                 {
-                    targetedEnemy = enemy;
+                    targetedEnemy = enemyTile.detectedEnemy.gameObject;
 
                     Vector3 enemyPos = targetedEnemy.transform.position;
                     Vector3 playerPos = gameObject.transform.position;
