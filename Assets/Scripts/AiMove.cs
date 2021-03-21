@@ -9,6 +9,8 @@ public class AiMove : MovementController
     public int healthPoints = 100;
     public int attack = 25;
     Slider healthBar;
+    public GameObject targetedPlayer;
+    public bool attacking = false;
 
     void Start()
     {
@@ -21,44 +23,6 @@ public class AiMove : MovementController
         TurnManager.AddNpcUnit(this);
     }
 
-    public void Move()
-    {
-        AiDetectPlayerCharacters();
-        if (path.Count > 0)
-        {
-            //returns obj at the top of the stack without removing;
-            Tile nextTileInPath = path.Peek();
-            Vector3 target = nextTileInPath.transform.position;
-
-            if (Vector3.Distance(transform.position, target) >= 0.05f)
-            {
-                CalculateHeading(target);
-                SetHorizontalVelocity();
-
-                //Locomotion
-                transform.position += velocity * Time.deltaTime;
-            }
-            else
-            {
-                //temporary fix for keeping unit z axis unaffected by calculateHeading
-                transform.position = new Vector3(target.x, target.y, -1);
-                path.Pop();
-
-                //so ai attacks player when in range
-                if (detectedEnemies.Count > 0)
-                {
-                    AiAttackAction();
-                }
-            }
-        }
-        else
-        {
-            RemoveSelectableTiles();
-            moving = false;
-
-            TurnManager.EndNpcTurn();
-        }
-    }
 
     public void FindPath(Tile target)
     {
@@ -205,9 +169,52 @@ public class AiMove : MovementController
         Destroy(gameObject);
     }
 
+    public void Move()
+    {
+        AiDetectPlayerCharacters();
+
+        if(attacking)
+        { return; }
+        if (path.Count > 0)
+        {
+            //returns obj at the top of the stack without removing;
+            Tile nextTileInPath = path.Peek();
+            Vector3 target = nextTileInPath.transform.position;
+
+            if (Vector3.Distance(transform.position, target) >= 0.05f)
+            {
+                CalculateHeading(target);
+                SetHorizontalVelocity();
+
+                //Locomotion
+                transform.position += velocity * Time.deltaTime;
+            }
+            else
+            {
+                //temporary fix for keeping unit z axis unaffected by calculateHeading
+                transform.position = new Vector3(target.x, target.y, -1);
+                path.Pop();
+
+                //so ai attacks player when in range
+                if (detectedEnemies.Count > 0)
+                {
+                    AiAttackAction();
+                }
+            }
+        }
+        else
+        {
+            RemoveSelectableTiles();
+            moving = false;
+
+            TurnManager.EndNpcTurn();
+        }
+    }
+
+    //need to make this all more asynchronous
     public void AiDetectPlayerCharacters()
     {
-        float detectRange = (attackRange + 0.8f) + attackRange;
+        float detectRange = (attackRange + 0.95f) + attackRange;
         Vector3 rng = new Vector3(detectRange, detectRange, -1f);
         Collider2D[] detectedPlayerCharacters = Physics2D.OverlapBoxAll(gameObject.transform.position, rng, 1f, 512);
 
@@ -219,13 +226,65 @@ public class AiMove : MovementController
 
     public void AiAttackAction()
     {
-        detectedEnemies[0].gameObject.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
-        detectedEnemies[0].gameObject.GetComponent<PlayerMove>().healthPoints -= 25;
+        RemoveSelectableTiles();
+        moving = false;
+        //trying to add it too many times.
+        targetedPlayer = detectedEnemies[0];
+
+        Vector3 playerPos = targetedPlayer.transform.position;
+        Vector3 enemyPos = gameObject.transform.position;
+
+        Animator animator = gameObject.GetComponent<Animator>();
+
+        //attacking = true;
+        if (enemyPos.x < playerPos.x)
+        {
+            attacking = true;
+            animator.SetTrigger("AttackRight");
+        }
+        else if (enemyPos.x > playerPos.x)
+        {
+            attacking = true;
+            animator.SetTrigger("AttackLeft");
+        }
+        else if (enemyPos.y < playerPos.y)
+        {
+            attacking = true;
+            animator.SetTrigger("AttackUp");
+        }
+        else if (enemyPos.y > playerPos.y)
+        {
+            attacking = true;
+            animator.SetTrigger("AttackDown");
+        }
+        /*        detectedEnemies[0].gameObject.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
+                detectedEnemies[0].gameObject.GetComponent<PlayerMove>().healthPoints -= 25;
+                detectedEnemies.Clear();
+                RemoveSelectableTiles();
+                moving = false;
+                TurnManager.EndNpcTurn();*/
+    }
+
+    public void EndTurnAfterAttack()
+    {
+        attacking = false;
+        targetedPlayer = null;
+        turn = false;
         detectedEnemies.Clear();
         RemoveSelectableTiles();
         moving = false;
         TurnManager.EndNpcTurn();
     }
+
+    public void DamageStep()
+    {
+        //todo remove attack tile map while this step is going
+        targetedPlayer.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
+        targetedPlayer.GetComponent<PlayerMove>().healthPoints -= attack;
+        //TurnManager.attackStep = false;
+        //EndTurn();
+    }
+
 
     public void CalculatePath()
     {

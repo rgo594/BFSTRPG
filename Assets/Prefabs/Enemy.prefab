@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 4923323704391760924}
   - component: {fileID: 4923323704391760922}
   - component: {fileID: 4923323704391760925}
+  - component: {fileID: 1589374347}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -490,8 +491,27 @@ MonoBehaviour:
   heading: {x: 0, y: 0, z: 0}
   turnManager: {fileID: 0}
   actualTargetTile: {fileID: 0}
-  health: 100
+  healthPoints: 200
   attack: 25
+--- !u!95 &1589374347
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4923323704391760927}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9cf7130bb547b944998e78ba42905b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4923323705191517765
 GameObject:
   m_ObjectHideFlags: 0
