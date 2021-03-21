@@ -23,7 +23,6 @@ public class Player : PlayerMove
         }
         if (!moving && Input.GetMouseButtonUp(1))
         {
-            TurnManager.allowEnemyDetection = true;
             ResetCharacterTurn();
         }
 
@@ -39,7 +38,6 @@ public class Player : PlayerMove
         }
         if (unitMenuPresent && !attacking)
         {
-            TurnManager.allowEnemyDetection = false;
             FindAttackAbleTiles();
         }
         //if there are enemies in range show attack button

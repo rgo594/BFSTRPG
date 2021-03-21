@@ -111,21 +111,14 @@ public class PlayerMove : MovementController
         originalPosition = gameObject.transform.position;
     }
 
-    public void ResetEnemyAddedTiles()
-    {
-        foreach (Tile tile in detectedEnemies)
-        {
-            tile.enemyAdded = false;
-        }
-    }
+
 
     public void EndTurn()
     {
 
         ResetEnemyAddedTiles();
-
+        targetedEnemy = null;
         attacking = false;
-        TurnManager.allowEnemyDetection = true;
         TurnManager.attackStep = false;
         unitMenuPresent = false;
         actionCompleted = true;
@@ -185,10 +178,6 @@ public class PlayerMove : MovementController
                         animator.SetTrigger("AttackDown");
                     }
                     ToggleUnitMenu(false);
-                    /*enemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
-                    targetedEnemy.healthPoints -= attack;
-                    TurnManager.attackStep = false;*/
-
                 }
             }
         }
@@ -197,11 +186,8 @@ public class PlayerMove : MovementController
     //called in attack animation
     public void DamageStep()
     {
-        //todo remove attack tile map while this step is going
         targetedEnemy.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
         targetedEnemy.GetComponent<AiMove>().healthPoints -= attack;
-        //TurnManager.attackStep = false;
-        //EndTurn();
     }
 
     public void ToggleUnitMenu(bool active)
@@ -215,11 +201,6 @@ public class PlayerMove : MovementController
     {
         unitMenuController.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(active);
     }
-
-/*    public void ToggleEndPhaseButton(bool active)
-    {
-        unitMenuController.transform.GetChild(1).gameObject.SetActive(active);
-    }*/
 
     public void SetCharacterColor(Color color)
     {

@@ -25,7 +25,6 @@ public class TurnManager : MonoBehaviour
     public bool characterSelected = false;
 
     public static bool attackStep = false;
-    public static bool allowEnemyDetection = false;
     public GameObject unitMenu;
 
     public static bool playerTurn = true;
@@ -67,7 +66,7 @@ public class TurnManager : MonoBehaviour
         if (playerCharacterTurnCounter == playerCharacterCount)
         {
             ToggleEndPhaseButton(false);
-            StartNpcPhase();
+            StartNpcTurn();
         }
     }
 
@@ -187,9 +186,8 @@ public class TurnManager : MonoBehaviour
 
     }
 
-    public static void StartNpcPhase()
+    public static void StartNpcTurn()
     {
-        TurnManager.allowEnemyDetection = false;
         playerTurn = false;
         if (unitTurnOrder.Count > 0)
         {
@@ -197,15 +195,13 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public static void EndNpcTurn()
+    public static void AiTurnRotation()
     {
-        AiMove unit = unitTurnOrder.Dequeue();
-        unit.EndTurn();
-        unit.detectedEnemies.Clear();
+        unitTurnOrder.Dequeue();
 
         if (unitTurnOrder.Count > 0)
         {
-            StartNpcPhase();
+            StartNpcTurn();
         }
         else
         {

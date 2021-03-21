@@ -194,4 +194,12 @@ public class MovementController : MonoBehaviour
         yield return new WaitForEndOfFrame();
         detectedEnemies.Clear();
     }
+
+    public void ResetEnemyAddedTiles()
+    {
+        foreach (Tile tile in detectedEnemies)
+        {
+            tile.enemyAdded = false;
+        }
+    }
 }

@@ -171,11 +171,9 @@ public class AiMove : MovementController
 
     public void Move()
     {
-
-        //AiDetectPlayerCharacters();
-
         if(attacking)
         { return; }
+        //TODO not sure if FindAttackableTiles will cause scalability issues
         FindAttackAbleTiles();
         if (path.Count > 0)
         {
@@ -209,11 +207,10 @@ public class AiMove : MovementController
             RemoveSelectableTiles();
             moving = false;
 
-            TurnManager.EndNpcTurn();
+            EndTurn();
         }
     }
 
-    //need to make this all more asynchronous
     public void AiDetectPlayerCharacters()
     {
         float detectRange = (attackRange + 0.95f) + attackRange;
@@ -259,38 +256,13 @@ public class AiMove : MovementController
             attacking = true;
             animator.SetTrigger("AttackDown");
         }
-        /*        detectedEnemies[0].gameObject.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
-                detectedEnemies[0].gameObject.GetComponent<PlayerMove>().healthPoints -= 25;
-                detectedEnemies.Clear();
-                RemoveSelectableTiles();
-                moving = false;
-                TurnManager.EndNpcTurn();*/
-    }
-
-    public void EndTurnAfterAttack()
-    {
-        foreach(Tile tile in detectedEnemies)
-        {
-            tile.enemyAdded = false;
-        }
-        attacking = false;
-        targetedPlayer = null;
-        turn = false;
-        detectedEnemies.Clear();
-        RemoveSelectableTiles();
-        moving = false;
-        TurnManager.EndNpcTurn();
     }
 
     public void DamageStep()
     {
-        //todo remove attack tile map while this step is going
         targetedPlayer.transform.GetChild(1).GetComponentInChildren<Slider>().value -= attack;
         targetedPlayer.GetComponent<PlayerMove>().healthPoints -= attack;
-        //TurnManager.attackStep = false;
-        //EndTurn();
     }
-
 
     public void CalculatePath()
     {
@@ -305,12 +277,14 @@ public class AiMove : MovementController
 
     public void EndTurn()
     {
-        foreach (Tile tile in detectedEnemies)
-        {
-            tile.enemyAdded = false;
-        }
-        TurnManager.allowEnemyDetection = true;
+        ResetEnemyAddedTiles();
+        attacking = false;
+        targetedPlayer = null;
         turn = false;
-        StartCoroutine(ClearDetectedEnemies());
+        detectedEnemies.Clear();
+        RemoveSelectableTiles();
+        moving = false;
+        TurnManager.AiTurnRotation();
     }
+
 }
