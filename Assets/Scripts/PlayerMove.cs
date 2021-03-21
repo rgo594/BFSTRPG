@@ -115,7 +115,7 @@ public class PlayerMove : MovementController
 
     public void EndTurn()
     {
-
+        currentTile = null;
         ResetEnemyAddedTiles();
         targetedEnemy = null;
         attacking = false;

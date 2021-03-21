@@ -127,14 +127,12 @@ public class Tile : MonoBehaviour
 
             if(tile != null && attackable)
             {
-                //doesn't filter out objects
                 attackAdjacencyList.Add(tile);
             }
             else if (tile != null && tile.walkable)
             {
                 RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
 
-                //detectedEnemy = 
                 if (hit.collider.tag == "Tile" || (tile == target))
                 {
                     adjacencyList.Add(tile);

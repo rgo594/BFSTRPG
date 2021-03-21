@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -29,9 +30,12 @@ public class TurnManager : MonoBehaviour
 
     public static bool playerTurn = true;
 
+    private bool displayEnemyPhaseText = true;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");
+        //GameObject phaseController = GameObject.Find("PhaseTextController");
     }
 
     // Update is called once per frame
@@ -50,7 +54,6 @@ public class TurnManager : MonoBehaviour
         //prevents being able to select characters during enemy turn
         if(playerCharacterTurnCounter != playerCharacterCount)
         {
-
             if (!characterSelected)
             {
                 SelectPlayerCharacter();
@@ -65,6 +68,11 @@ public class TurnManager : MonoBehaviour
         //player phase ends when playerCharacterTurnCounter matches playerCharacterCount
         if (playerCharacterTurnCounter == playerCharacterCount)
         {
+            if (displayEnemyPhaseText)
+            {
+                GameObject.Find("PhaseTextController").transform.GetChild(1).GetComponent<Animator>().SetTrigger("EnemyPhase");
+                displayEnemyPhaseText = false;
+            }
             ToggleEndPhaseButton(false);
             StartNpcTurn();
         }
@@ -197,6 +205,7 @@ public class TurnManager : MonoBehaviour
 
     public static void AiTurnRotation()
     {
+        GameObject phaseController = GameObject.Find("PhaseTextController");
         unitTurnOrder.Dequeue();
 
         if (unitTurnOrder.Count > 0)
@@ -212,10 +221,13 @@ public class TurnManager : MonoBehaviour
             //switches to player phase
             if(turnManager.aiPhaseCounter == turnManager.aiTeamCount)
             {
+                turnManager.displayEnemyPhaseText = true;
+                phaseController.transform.GetChild(0).GetComponent<Animator>().SetTrigger("PlayerPhase");
                 playerTurn = true;
                 turnManager.playerCharacterTurnCounter = 0;
                 turnManager.aiPhaseCounter = 0;
             }
+
 
             //responsible for resetting ai phase
             string team = teamPhaseOrder.Dequeue();

@@ -90,7 +90,9 @@ public class AiMove : MovementController
         }
 
         //18:20 part 6
-        //todo - what do you do if there is no path to the target tile
+        //triggers when there is no path to the target
+        //TODO need to modify so that player gets as close as possible even when there is no path
+        EndTurn();
         Debug.Log("Path not found");
     }
 
@@ -171,10 +173,11 @@ public class AiMove : MovementController
 
     public void Move()
     {
-        if(attacking)
-        { return; }
-        //TODO not sure if FindAttackableTiles will cause scalability issues
-        FindAttackAbleTiles();
+        if(attacking) { return; }
+
+        //FindAttackAbleTiles() works just as well as AIDetectPlayers, but I think AiDetectPlayers might be less costly
+        AiDetectPlayerCharacters();
+        //FindAttackAbleTiles();
         if (path.Count > 0)
         {
             //returns obj at the top of the stack without removing;
@@ -227,7 +230,7 @@ public class AiMove : MovementController
     {
         RemoveSelectableTiles();
         moving = false;
-        //trying to add it too many times.
+
         targetedPlayer = detectedEnemies[0].detectedEnemy.gameObject;
 
         Vector3 playerPos = targetedPlayer.transform.position;
@@ -235,25 +238,22 @@ public class AiMove : MovementController
 
         Animator animator = gameObject.GetComponent<Animator>();
 
-        //attacking = true;
+        attacking = true;
         if (enemyPos.x < playerPos.x)
         {
-            attacking = true;
+
             animator.SetTrigger("AttackRight");
         }
         else if (enemyPos.x > playerPos.x)
         {
-            attacking = true;
             animator.SetTrigger("AttackLeft");
         }
         else if (enemyPos.y < playerPos.y)
         {
-            attacking = true;
             animator.SetTrigger("AttackUp");
         }
         else if (enemyPos.y > playerPos.y)
         {
-            attacking = true;
             animator.SetTrigger("AttackDown");
         }
     }
