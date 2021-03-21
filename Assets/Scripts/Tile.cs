@@ -12,6 +12,8 @@ public class Tile : MonoBehaviour
     public bool attackable = false;
     public bool enemyAdded = false;
 
+    //public bool playerTurn = false;
+
     public bool attackVisited = false;
 
     public Collider2D detectedEnemy = null;
@@ -40,35 +42,39 @@ public class Tile : MonoBehaviour
         {
             enemyAdded = false;
         }
-        if (current)
-        {
-            selectable = false;
-            GetComponent<SpriteRenderer>().color = Color.yellow;
-        }
-        else if (target)
-        {
-            GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        else if (selectable)
-        {
-            GetComponent<SpriteRenderer>().color = new Color32(53, 64, 241, 120);
-        }
-        else if(attackable)
-        {
-            GetComponent<SpriteRenderer>().color = Color.white;
 
-            if (TurnManager.attackStep)
+        if(TurnManager.playerTurn)
+        {
+            if (current)
             {
-                GetComponent<SpriteRenderer>().color = Color.red;
+                selectable = false;
+                GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
+            else if (target)
+            {
+                GetComponent<SpriteRenderer>().color = Color.green;
+            }
+            else if (selectable)
+            {
+                GetComponent<SpriteRenderer>().color = new Color32(53, 64, 241, 120);
+            }
+            else if(attackable)
+            {
+                GetComponent<SpriteRenderer>().color = Color.white;
+
+                if (TurnManager.attackStep)
+                {
+                    GetComponent<SpriteRenderer>().color = Color.red;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().color = Color.white;
+                }
             }
             else
             {
                 GetComponent<SpriteRenderer>().color = Color.white;
             }
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
     public void Reset()

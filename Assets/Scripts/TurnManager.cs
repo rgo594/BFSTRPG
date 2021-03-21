@@ -28,6 +28,8 @@ public class TurnManager : MonoBehaviour
     public static bool allowEnemyDetection = false;
     public GameObject unitMenu;
 
+    public static bool playerTurn = true;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");
@@ -187,6 +189,7 @@ public class TurnManager : MonoBehaviour
 
     public static void StartNpcPhase()
     {
+        playerTurn = false;
         if (unitTurnOrder.Count > 0)
         {
             unitTurnOrder.Peek().StartTurn();
@@ -212,6 +215,7 @@ public class TurnManager : MonoBehaviour
             //switches to player phase
             if(turnManager.aiPhaseCounter == turnManager.aiTeamCount)
             {
+                playerTurn = true;
                 turnManager.playerCharacterTurnCounter = 0;
                 turnManager.aiPhaseCounter = 0;
             }
