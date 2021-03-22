@@ -186,16 +186,14 @@ public class AiMove : MovementController
 
             if (Vector3.Distance(transform.position, target) >= 0.05f)
             {
-                CalculateHeading(target);
-                SetHorizontalVelocity();
-
-                //Locomotion
-                transform.position += velocity * Time.deltaTime;
+                //TODO find a way to travel to point without affecting z axis
+                var targetPos = new Vector3(target.x, target.y, -1f);
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPos, moveSpeed * Time.deltaTime);
             }
             else
             {
-                //temporary fix for keeping unit z axis unaffected by calculateHeading
-                transform.position = new Vector3(target.x, target.y, -1);
+                //temporary fix for z axis
+                transform.position = new Vector3(target.x, target.y, -1f);
                 path.Pop();
 
                 //so ai attacks player when in range

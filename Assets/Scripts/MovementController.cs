@@ -160,18 +160,6 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void SetHorizontalVelocity()
-    {
-        velocity = heading * moveSpeed;
-    }
-
-    public void CalculateHeading(Vector3 target)
-    {
-        //TODO find a way to do, target - transform.position, without affecting z axis (can sometimes cause unit to be unclickable)
-        heading = target - transform.position;
-        heading.Normalize();
-    }
-
     public void RemoveSelectableTiles()
     {
         if (currentTile != null)

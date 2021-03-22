@@ -715,6 +715,11 @@ PrefabInstance:
       propertyPath: attackRange
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9106556177672833840, guid: 3a1f43b5a6101c848acae798573e00a8,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7781,7 +7786,7 @@ PrefabInstance:
     - target: {fileID: 4923323704391760925, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
       propertyPath: moveSpeed
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4923323704391760925, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
@@ -8508,6 +8513,7 @@ GameObject:
   - component: {fileID: 1076303887}
   - component: {fileID: 1076303889}
   - component: {fileID: 1076303888}
+  - component: {fileID: 1076303890}
   m_Layer: 0
   m_Name: EnemyPhase
   m_TagString: Untagged
@@ -8630,6 +8636,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076303886}
   m_CullTransparentMesh: 0
+--- !u!95 &1076303890
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076303886}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e3ef19b3000d3144989290025b0cb15, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1108358285
 GameObject:
   m_ObjectHideFlags: 0
@@ -17691,7 +17716,7 @@ PrefabInstance:
     - target: {fileID: 4923323704391760925, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
       propertyPath: moveSpeed
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4923323704391760925, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
@@ -17740,6 +17765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106556177672833840, guid: 3a1f43b5a6101c848acae798573e00a8,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
