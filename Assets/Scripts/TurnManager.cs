@@ -54,6 +54,7 @@ public class TurnManager : MonoBehaviour
         //prevents being able to select characters during enemy turn
         if(playerCharacterTurnCounter != playerCharacterCount)
         {
+            if (PhaseTextAnimation.PhaseTextPresent) { return; }
             if (!characterSelected)
             {
                 SelectPlayerCharacter();
@@ -65,17 +66,20 @@ public class TurnManager : MonoBehaviour
             InitUnitTurnOrder();
         }
 
-        //player phase ends when playerCharacterTurnCounter matches playerCharacterCount
-        if (playerCharacterTurnCounter == playerCharacterCount)
-        {
-            if (displayEnemyPhaseText)
+            //player phase ends when playerCharacterTurnCounter matches playerCharacterCount
+            if (playerCharacterTurnCounter == playerCharacterCount)
             {
-                GameObject.Find("PhaseTextController").transform.GetChild(1).GetComponent<Animator>().SetTrigger("EnemyPhase");
-                displayEnemyPhaseText = false;
+                if (displayEnemyPhaseText)
+                {
+                    PhaseTextAnimation.PhaseTextPresent = true;
+                    GameObject.Find("PhaseTextController").transform.GetChild(1).GetComponent<Animator>().SetTrigger("EnemyPhase");
+                    displayEnemyPhaseText = false;
+                }
+
+                if(PhaseTextAnimation.PhaseTextPresent) { return; }
+                ToggleEndPhaseButton(false);
+                StartNpcTurn();
             }
-            ToggleEndPhaseButton(false);
-            StartNpcTurn();
-        }
     }
 
     public void ToggleEndPhaseButton(bool active)
@@ -222,7 +226,10 @@ public class TurnManager : MonoBehaviour
             if(turnManager.aiPhaseCounter == turnManager.aiTeamCount)
             {
                 turnManager.displayEnemyPhaseText = true;
+
+                PhaseTextAnimation.PhaseTextPresent = true;
                 phaseController.transform.GetChild(0).GetComponent<Animator>().SetTrigger("PlayerPhase");
+
                 playerTurn = true;
                 turnManager.playerCharacterTurnCounter = 0;
                 turnManager.aiPhaseCounter = 0;
