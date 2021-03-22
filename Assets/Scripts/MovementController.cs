@@ -27,6 +27,8 @@ public class MovementController : MonoBehaviour
 
     public Tile actualTargetTile;
 
+    public bool enemyDetected;
+
     protected void Init()
     {
    
@@ -97,6 +99,46 @@ public class MovementController : MonoBehaviour
                         {
                             tile.enemyAdded = true;
                             detectedEnemies.Add(tile);
+                        }
+                        tile.visited = true;
+                        tile.parent = dequeuedTile;
+
+                        tile.distance = 1 + dequeuedTile.distance;
+                        tile.attackable = true;
+                        process.Enqueue(tile);
+                    }
+                }
+            }
+        }
+    }
+
+    public void FindEnemiesInRange()
+    {
+        ComputeAdjacencyLists(null, true);
+        GetCurrentTile();
+
+        Queue<Tile> process = new Queue<Tile>();
+
+        process.Enqueue(currentTile);
+
+        currentTile.visited = true;
+
+        while (process.Count > 0)
+        {
+            //remove and return the tile
+            Tile dequeuedTile = process.Dequeue();
+
+            selectableTiles.Add(dequeuedTile);
+            if (dequeuedTile.distance < attackRange + move)
+            {
+                //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
+                foreach (Tile tile in dequeuedTile.attackAdjacencyList)
+                {
+                    if (!tile.visited)
+                    {
+                        if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
+                        {
+                            enemyDetected = true;
                         }
                         tile.visited = true;
                         tile.parent = dequeuedTile;

@@ -15,7 +15,12 @@ public class Enemy : AiMove
         {
             return;
         }
-
+        FindEnemiesInRange();
+        if(!enemyDetected)
+        {
+            EndTurn();
+            return;
+        }
         if (!moving)
         {
             FindNearestTarget();
