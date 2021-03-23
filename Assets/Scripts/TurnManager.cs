@@ -29,6 +29,7 @@ public class TurnManager : MonoBehaviour
     public GameObject unitMenu;
 
     public static bool playerTurn = true;
+    public static bool enemyPhase;
 
     private bool displayEnemyPhaseText = true;
 
@@ -69,6 +70,7 @@ public class TurnManager : MonoBehaviour
             //player phase ends when playerCharacterTurnCounter matches playerCharacterCount
             if (playerCharacterTurnCounter == playerCharacterCount)
             {
+                enemyPhase = true;
                 if (displayEnemyPhaseText)
                 {
                     PhaseTextAnimation.PhaseTextPresent = true;
@@ -226,6 +228,7 @@ public class TurnManager : MonoBehaviour
             if(turnManager.aiPhaseCounter == turnManager.aiTeamCount)
             {
                 turnManager.displayEnemyPhaseText = true;
+                enemyPhase = false;
 
                 PhaseTextAnimation.PhaseTextPresent = true;
                 phaseController.transform.GetChild(0).GetComponent<Animator>().SetTrigger("PlayerPhase");

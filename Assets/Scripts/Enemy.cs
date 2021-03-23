@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Enemy : AiMove
 {
+    bool showMoveTileMap = false;
+
+    private void OnMouseDown()
+    {
+        if (TurnManager.enemyPhase) { return; }
+        showMoveTileMap = !showMoveTileMap;
+    }
+
     void Update()
     {
         if(healthPoints <= 0)
@@ -11,6 +19,20 @@ public class Enemy : AiMove
             //not sure if it works with multiple ai teams
             UnitDeath();
         }
+
+/*        if (Input.GetMouseButtonDown(0) && !TurnManager.enemyPhase)
+        {
+            RemoveSelectableTiles();
+        }*/
+        if (showMoveTileMap)
+        {
+            FindSelectableTiles();
+        }
+        else
+        {
+            RemoveSelectableTiles();
+        }
+
         if (!turn)
         {
             return;
