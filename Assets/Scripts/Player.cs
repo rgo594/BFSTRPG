@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Player : PlayerMove
 {
+
+    private void OnMouseOver()
+    {
+        if(turn) { return; }
+        GetComponentInChildren<SpriteRenderer>().color = Color.blue;
+    }
+
+    private void OnMouseExit()
+    {
+        if (turn) { return; }
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+    }
+
     void Update()
     {
         if(healthPoints <= 0)
@@ -20,6 +33,18 @@ public class Player : PlayerMove
         if (!turn || actionCompleted)
         {
             return;
+        }
+/*        if(moving)
+        {
+            preventClicking.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            preventClicking.transform.GetChild(0).gameObject.SetActive(false);
+        }*/
+        if(turn)
+        {
+            GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }
         if (!moving && Input.GetMouseButtonUp(1))
         {

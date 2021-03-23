@@ -142,12 +142,22 @@ public class TurnManager : MonoBehaviour
                     {
                         if (hit.collider.gameObject.GetComponent<Tile>().selectable) { return; }
                     }
-
                     InitDeselectCharacter(currentCharacter);
+                    if (hit.collider.gameObject.GetComponent<Enemy>())
+                    {
+                        StartCoroutine(SelectEnemy(hit.collider.gameObject));
+                    }
                     currentCharacter = null;
                 }
             }
         }
+    }
+
+    IEnumerator SelectEnemy(GameObject e)
+    {
+        yield return new WaitForEndOfFrame();
+        e.GetComponent<Enemy>().FindSelectableTiles();
+
     }
 
     public void InitStartTurn(GameObject c)

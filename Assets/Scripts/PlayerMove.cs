@@ -20,11 +20,14 @@ public class PlayerMove : MovementController
 
     public bool attacking = false;
 
+    //public GameObject preventClicking;
+
     void Start()
     {
         Init();
         unitMenuController = GameObject.Find("UnitMenuController");
         healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+        //preventClicking = GameObject.Find("PreventClicking");
 
         healthBar.maxValue = healthPoints;
         healthBar.value = healthPoints;

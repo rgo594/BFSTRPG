@@ -5,6 +5,24 @@ using System;
 
 public class Enemy : AiMove
 {
+    bool enemySelected = false;
+
+    private void OnMouseOver()
+    {
+        if(TurnManager.enemyPhase || enemySelected) { return; }
+        ChangeSpriteColor(Color.red);
+    }
+
+    private void OnMouseExit()
+    {
+        if (TurnManager.enemyPhase) { return; }
+        ChangeSpriteColor(Color.white);
+    }
+
+    void ChangeSpriteColor(Color color)
+    {
+        GetComponentInChildren<SpriteRenderer>().color = color;
+    }
 
     void Update()
     {
@@ -24,11 +42,14 @@ public class Enemy : AiMove
             {
                 if(hit.collider.gameObject != gameObject)
                 {
+                    enemySelected = false;
                     //might need to change to its own function
                     RemoveSelectableTiles();
                 }
                 else
                 {
+                    enemySelected = true;
+                    ChangeSpriteColor(Color.white);
                     StartCoroutine(DelayFindSelectableTiles());
                 }
             }
