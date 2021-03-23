@@ -15,8 +15,9 @@ public class Enemy : AiMove
         {
             return;
         }
+        //FindEnemiesInRange();
         FindEnemiesInRange();
-        if(!enemyDetected)
+        if (!enemyDetected)
         {
             EndTurn();
             return;
@@ -26,6 +27,7 @@ public class Enemy : AiMove
             FindNearestTarget();
             CalculatePath();
             FindSelectableTiles();
+            //BFSTileMap(move, false, true);
             actualTargetTile.target = true;
         }
         else

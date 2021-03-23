@@ -28,6 +28,7 @@ public class Player : PlayerMove
 
         if (!moving && !unitMenuPresent && !TurnManager.attackStep && !actionCompleted)
         {
+            //BFSTileMap(move, false, true);
             FindSelectableTiles();
             TargetTileToTravel();
         }
@@ -38,6 +39,7 @@ public class Player : PlayerMove
         }
         if (unitMenuPresent && !attacking)
         {
+            //BFSTileMap(attackRange, false, false, true);
             FindAttackAbleTiles();
         }
         //if there are enemies in range show attack button

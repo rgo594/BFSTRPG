@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour
     public Collider2D detectedEnemy = null;
 
     public List<Tile> adjacencyList = new List<Tile>();
-    public List<Tile> attackAdjacencyList = new List<Tile>();
+    public List<Tile> unblockableAdjacencyList = new List<Tile>();
 
     //Needed BFS (Breadth First Search)
     public bool visited = false;
@@ -75,7 +75,7 @@ public class Tile : MonoBehaviour
     public void Reset()
     {
         adjacencyList.Clear();
-        attackAdjacencyList.Clear();
+        unblockableAdjacencyList.Clear();
 
         walkable = true;
         current = false;
@@ -127,7 +127,7 @@ public class Tile : MonoBehaviour
 
             if(tile != null && attackable)
             {
-                attackAdjacencyList.Add(tile);
+                unblockableAdjacencyList.Add(tile);
             }
             else if (tile != null && tile.walkable)
             {

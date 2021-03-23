@@ -177,7 +177,6 @@ public class AiMove : MovementController
 
         //FindAttackAbleTiles() works just as well as AIDetectPlayers, but I think AiDetectPlayers might be less costly
         AiDetectPlayerCharacters();
-        //FindAttackAbleTiles();
         if (path.Count > 0)
         {
             //returns obj at the top of the stack without removing;
@@ -221,6 +220,7 @@ public class AiMove : MovementController
         if (detectedPlayerCharacters.Length > 0)
         {
             FindAttackAbleTiles();
+            //BFSTileMap(attackRange, false, false, true);
         }
     }
 
@@ -239,7 +239,6 @@ public class AiMove : MovementController
         attacking = true;
         if (enemyPos.x < playerPos.x)
         {
-
             animator.SetTrigger("AttackRight");
         }
         else if (enemyPos.x > playerPos.x)

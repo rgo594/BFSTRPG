@@ -31,7 +31,7 @@ public class MovementController : MonoBehaviour
 
     protected void Init()
     {
-   
+
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -70,11 +70,21 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    //BFS
-    public void FindAttackAbleTiles()
+    public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false)
     {
-        ComputeAdjacencyLists(null, true);
+        if (detectable && enemyDetected) { return; }
+
+        bool unblockable = false;
+
+        if (attackable || detectable)
+        {
+            unblockable = true;
+        }
+
+        ComputeAdjacencyLists(null, unblockable);
         GetCurrentTile();
+
+        List<Tile> adjacencyList = new List<Tile>();
 
         Queue<Tile> process = new Queue<Tile>();
 
@@ -87,24 +97,48 @@ public class MovementController : MonoBehaviour
             //remove and return the tile
             Tile dequeuedTile = process.Dequeue();
 
+            if (attackable || detectable)
+            {
+                adjacencyList = dequeuedTile.unblockableAdjacencyList;
+            }
+            else if (selectable)
+            {
+                adjacencyList = dequeuedTile.adjacencyList;
+            }
+
             selectableTiles.Add(dequeuedTile);
-            if (dequeuedTile.distance < attackRange)
+            if (dequeuedTile.distance < range)
             {
                 //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
-                foreach (Tile tile in dequeuedTile.attackAdjacencyList)
+                foreach (Tile tile in adjacencyList)
                 {
                     if (!tile.visited)
                     {
                         if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
                         {
-                            tile.enemyAdded = true;
-                            detectedEnemies.Add(tile);
+                            if (detectable)
+                            {
+                                enemyDetected = true;
+                            }
+                            if (attackable)
+                            {
+                                tile.enemyAdded = true;
+                                detectedEnemies.Add(tile);
+                            }
                         }
+
+                        if (attackable)
+                        {
+                            tile.attackable = true;
+                        }
+                        if (selectable)
+                        {
+                            tile.selectable = true;
+                        }
+
                         tile.visited = true;
                         tile.parent = dequeuedTile;
-
                         tile.distance = 1 + dequeuedTile.distance;
-                        tile.attackable = true;
                         process.Enqueue(tile);
                     }
                 }
@@ -112,80 +146,18 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void FindEnemiesInRange()
+    public void FindAttackAbleTiles()
     {
-        ComputeAdjacencyLists(null, true);
-        GetCurrentTile();
-
-        Queue<Tile> process = new Queue<Tile>();
-
-        process.Enqueue(currentTile);
-
-        currentTile.visited = true;
-
-        while (process.Count > 0)
-        {
-            //remove and return the tile
-            Tile dequeuedTile = process.Dequeue();
-
-            selectableTiles.Add(dequeuedTile);
-            if (dequeuedTile.distance < attackRange + move)
-            {
-                //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
-                foreach (Tile tile in dequeuedTile.attackAdjacencyList)
-                {
-                    if (!tile.visited)
-                    {
-                        if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
-                        {
-                            enemyDetected = true;
-                        }
-                        tile.visited = true;
-                        tile.parent = dequeuedTile;
-
-                        tile.distance = 1 + dequeuedTile.distance;
-                        tile.attackable = true;
-                        process.Enqueue(tile);
-                    }
-                }
-            }
-        }
+        BFSTileMap(attackRange, false, false, true);
     }
 
     public void FindSelectableTiles()
     {
-        ComputeAdjacencyLists(null, false);
-        GetCurrentTile();
-
-        Queue<Tile> process = new Queue<Tile>();
-
-        process.Enqueue(currentTile);
-
-        currentTile.visited = true;
-
-        while (process.Count > 0)
-        {
-            //remove and return the tile
-            Tile dequeuedTile = process.Dequeue();
-
-            selectableTiles.Add(dequeuedTile);
-            dequeuedTile.selectable = true;
-
-            if (dequeuedTile.distance < move)
-            {
-                //changes flags of tiles adjacent to the currentTile (the one the character is on), adds those tiles to the queue, then iterates through newly queued tiles adjacent tiles.
-                foreach (Tile tile in dequeuedTile.adjacencyList)
-                {
-                    if (!tile.visited)
-                    {
-                        tile.parent = dequeuedTile;
-                        tile.visited = true;
-                        tile.distance = 1 + dequeuedTile.distance;
-                        process.Enqueue(tile);
-                    }
-                }
-            }
-        }
+        BFSTileMap(move, false, true);
+    }
+    public void FindEnemiesInRange()
+    {
+        BFSTileMap(move + attackRange, true);
     }
 
     public void MoveToTile(Tile tile)
