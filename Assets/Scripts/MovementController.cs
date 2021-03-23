@@ -197,6 +197,12 @@ public class MovementController : MonoBehaviour
         detectedEnemies.Clear();
     }
 
+    public IEnumerator DelayFindSelectableTiles()
+    {
+        yield return new WaitForEndOfFrame();
+        FindSelectableTiles();
+    }
+
     public void ResetEnemyAddedTiles()
     {
         foreach (Tile tile in detectedEnemies)

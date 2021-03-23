@@ -1,16 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : AiMove
 {
-    bool showMoveTileMap = false;
-
-    private void OnMouseDown()
-    {
-        if (TurnManager.enemyPhase) { return; }
-        showMoveTileMap = !showMoveTileMap;
-    }
 
     void Update()
     {
@@ -20,18 +14,28 @@ public class Enemy : AiMove
             UnitDeath();
         }
 
-/*        if (Input.GetMouseButtonDown(0) && !TurnManager.enemyPhase)
+        //shows enemy move range
+        if (Input.GetMouseButtonDown(0) && !TurnManager.enemyPhase)
         {
-            RemoveSelectableTiles();
-        }*/
-        if (showMoveTileMap)
-        {
-            FindSelectableTiles();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
+
+            try
+            {
+                if(hit.collider.gameObject != gameObject)
+                {
+                    //might need to change to its own function
+                    RemoveSelectableTiles();
+                }
+                else
+                {
+                    StartCoroutine(DelayFindSelectableTiles());
+                }
+            }
+            //NullReference errors get triggered by ui buttons that are set to inactive
+            catch (NullReferenceException) { }
         }
-        else
-        {
-            RemoveSelectableTiles();
-        }
+
 
         if (!turn)
         {
