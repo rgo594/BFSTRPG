@@ -127,35 +127,15 @@ public class MovementController : MonoBehaviour
                                     detectedEnemies.Add(tile);
                                 }
                             }
-
-                            if (attackable)
-                            {
-                                tile.attackable = true;
-                            }
-                            if (selectable)
-                            {
-                                tile.selectable = true;
-                            }
-
-                            tile.visited = true;
-                            tile.parent = dequeuedTile;
-                            tile.distance = 1 + dequeuedTile.distance;
-                            process.Enqueue(tile);
-                            /*                            Tile coo = TileSetFlags(tile, dequeuedTile, attackable, selectable);
-                                                        process.Enqueue(tile);*/
-
-
+                            Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, attackable, selectable);
+                            process.Enqueue(ModifiedTile);
                         }
                         else
                         {
-                            if(selectable)
+                            if (selectable)
                             {
-                                tile.showAttackableTiles = true;
-                                tile.attackable = true;
-                                tile.visited = true;
-                                tile.parent = dequeuedTile;
-                                tile.distance = 1 + dequeuedTile.distance;
-                                process.Enqueue(tile);
+                                Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, true, false, true);
+                                process.Enqueue(ModifiedTile);
                             }
                         }
                     }
@@ -171,7 +151,7 @@ public class MovementController : MonoBehaviour
         tile.attackable = attackable;
         tile.showAttackableTiles = showAttackableTiles;
         tile.visited = true;
-        tile.parent = dequeuedTile.parent;
+        tile.parent = dequeuedTile;
         tile.distance = 1 + dequeuedTile.distance;
 
         return tile;
