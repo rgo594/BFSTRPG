@@ -26,7 +26,6 @@ public class MovementController : MonoBehaviour
     GameObject[] tiles;
 
     public Tile actualTargetTile;
-
     public bool enemyDetected;
 
     protected void Init()
@@ -107,44 +106,78 @@ public class MovementController : MonoBehaviour
             }
 
             selectableTiles.Add(dequeuedTile);
-            if (dequeuedTile.distance < range)
+            foreach (Tile tile in adjacencyList)
             {
-                //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
-                foreach (Tile tile in adjacencyList)
+                if (dequeuedTile.distance < move + attackRange)
                 {
+                    //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                     if (!tile.visited)
                     {
-                        if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
+                        if(dequeuedTile.distance < range)
                         {
-                            if (detectable)
+                            if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
                             {
-                                enemyDetected = true;
+                                if (detectable)
+                                {
+                                    enemyDetected = true;
+                                }
+                                if (attackable)
+                                {
+                                    tile.enemyAdded = true;
+                                    detectedEnemies.Add(tile);
+                                }
                             }
+
                             if (attackable)
                             {
-                                tile.enemyAdded = true;
-                                detectedEnemies.Add(tile);
+                                tile.attackable = true;
+                            }
+                            if (selectable)
+                            {
+                                tile.selectable = true;
+                            }
+
+                            tile.visited = true;
+                            tile.parent = dequeuedTile;
+                            tile.distance = 1 + dequeuedTile.distance;
+                            process.Enqueue(tile);
+                            /*                            Tile coo = TileSetFlags(tile, dequeuedTile, attackable, selectable);
+                                                        process.Enqueue(tile);*/
+
+
+                        }
+                        else
+                        {
+                            if(selectable)
+                            {
+                                tile.showAttackableTiles = true;
+                                tile.attackable = true;
+                                tile.visited = true;
+                                tile.parent = dequeuedTile;
+                                tile.distance = 1 + dequeuedTile.distance;
+                                process.Enqueue(tile);
                             }
                         }
-
-                        if (attackable)
-                        {
-                            tile.attackable = true;
-                        }
-                        if (selectable)
-                        {
-                            tile.selectable = true;
-                        }
-
-                        tile.visited = true;
-                        tile.parent = dequeuedTile;
-                        tile.distance = 1 + dequeuedTile.distance;
-                        process.Enqueue(tile);
                     }
                 }
             }
         }
     }
+
+    Tile TileSetFlags(Tile t, Tile dequeuedTile, bool attackable = false, bool selectable = false, bool showAttackableTiles = false)
+    {
+        Tile tile = t;
+        tile.selectable = selectable;
+        tile.attackable = attackable;
+        tile.showAttackableTiles = showAttackableTiles;
+        tile.visited = true;
+        tile.parent = dequeuedTile.parent;
+        tile.distance = 1 + dequeuedTile.distance;
+
+        return tile;
+    }
+
+
 
     public void FindAttackAbleTiles()
     {

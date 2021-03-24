@@ -11,10 +11,11 @@ public class Tile : MonoBehaviour
     public bool moving = false;
     public bool attackable = false;
     public bool enemyAdded = false;
+    public bool showAttackableTiles = false;
 
     //public bool playerTurn = false;
 
-    public bool attackVisited = false;
+    //public bool attackVisited = false;
 
     public Collider2D detectedEnemy = null;
 
@@ -57,7 +58,7 @@ public class Tile : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().color = Color.white;
 
-                if (TurnManager.attackStep)
+                if (TurnManager.attackStep || showAttackableTiles)
                 {
                     GetComponent<SpriteRenderer>().color = Color.red;
                 }
@@ -140,4 +141,12 @@ public class Tile : MonoBehaviour
             }
         }
     }
+
+
+/*    public static void Main(string[] args)
+    {
+        Tile e1 = new Tile();
+        e1.attackable = true;
+        Tile e2 = new Tile();
+    }*/
 }
