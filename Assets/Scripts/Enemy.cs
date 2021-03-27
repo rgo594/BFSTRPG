@@ -7,7 +7,7 @@ public class Enemy : AiMove
 {
     bool enemySelected = false;
 
-    private void OnMouseOver()
+/*    private void OnMouseOver()
     {
         if(TurnManager.enemyPhase || enemySelected) { return; }
         ChangeSpriteColor(Color.red);
@@ -17,7 +17,7 @@ public class Enemy : AiMove
     {
         if (TurnManager.enemyPhase) { return; }
         ChangeSpriteColor(Color.white);
-    }
+    }*/
 
     void ChangeSpriteColor(Color color)
     {

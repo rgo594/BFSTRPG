@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : PlayerMove
 {
 
-    private void OnMouseOver()
+/*    private void OnMouseOver()
     {
         if(turn) { return; }
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
@@ -15,7 +15,7 @@ public class Player : PlayerMove
     {
         if (turn) { return; }
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
-    }
+    }*/
 
     void Update()
     {
