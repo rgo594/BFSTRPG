@@ -39,7 +39,7 @@ public class Tile : MonoBehaviour
     void Update()
     {
         DetectEnemy();
-        if(TurnManager.playerTurn)
+        if (TurnManager.playerTurn)
         {
             if (current)
             {
@@ -54,7 +54,7 @@ public class Tile : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().color = new Color32(53, 64, 241, 120);
             }
-            else if(attackable)
+            else if (attackable)
             {
                 GetComponent<SpriteRenderer>().color = Color.white;
 
@@ -83,6 +83,7 @@ public class Tile : MonoBehaviour
         target = false;
         selectable = false;
         attackable = false;
+        showAttackableTiles = false;
 
         visited = false;
         parent = null;
@@ -95,10 +96,25 @@ public class Tile : MonoBehaviour
     {
         Reset();
 
-        CheckTile(new Vector2(0,1), target, attackable);
-        CheckTile(new Vector2(0,-1), target, attackable);
+        CheckTile(new Vector2(0, 1), target, attackable);
+        CheckTile(new Vector2(0, -1), target, attackable);
         CheckTile(Vector3.right, target, attackable);
         CheckTile(Vector3.left, target, attackable);
+    }
+
+    public void FindBoth(Tile target)
+    {
+        Reset();
+
+        CheckTile(new Vector2(0, 1), target, false);
+        CheckTile(new Vector2(0, -1), target, false);
+        CheckTile(Vector3.right, target, false);
+        CheckTile(Vector3.left, target, false);
+
+        CheckTile(new Vector2(0, 1), target, true);
+        CheckTile(new Vector2(0, -1), target, true);
+        CheckTile(Vector3.right, target, true);
+        CheckTile(Vector3.left, target, true);
     }
 
     public void DetectEnemy()

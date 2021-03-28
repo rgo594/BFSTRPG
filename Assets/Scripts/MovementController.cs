@@ -65,7 +65,14 @@ public class MovementController : MonoBehaviour
         foreach (GameObject tile in tiles)
         {
             Tile startTile = tile.GetComponent<Tile>();
-            startTile.FindNeighbors(target, attackable);
+            if(attackable)
+            {
+                startTile.FindNeighbors(target, attackable);
+            }
+            else
+            {
+                startTile.FindBoth(target);
+            }
         }
     }
 
@@ -80,7 +87,9 @@ public class MovementController : MonoBehaviour
             unblockable = true;
         }
 
-        ComputeAdjacencyLists(null, unblockable);
+        ComputeAdjacencyLists(null, attackable);
+
+
         GetCurrentTile();
 
         List<Tile> adjacencyList = new List<Tile>();
@@ -106,15 +115,16 @@ public class MovementController : MonoBehaviour
             }
 
             selectableTiles.Add(dequeuedTile);
-            foreach (Tile tile in adjacencyList)
+
+            if (dequeuedTile.distance < range)
             {
-                if (dequeuedTile.distance < move + attackRange)
+                foreach (Tile tile in adjacencyList)
                 {
                     //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                     if (!tile.visited)
                     {
-                        if(dequeuedTile.distance < range)
-                        {
+/*                        if (dequeuedTile.distance < range)
+                        {*/
                             if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
                             {
                                 if (detectable)
@@ -129,18 +139,24 @@ public class MovementController : MonoBehaviour
                             }
                             Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, attackable, selectable);
                             process.Enqueue(ModifiedTile);
-                        }
-                        else
-                        {
-                            if (selectable)
-                            {
-                                Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, true, false, true);
-                                process.Enqueue(ModifiedTile);
-                            }
-                        }
+
+                        //}
                     }
+
                 }
             }
+            else if (dequeuedTile.distance >= move && dequeuedTile.distance < move + attackRange && selectable)
+            {
+                foreach (Tile tile in dequeuedTile.unblockableAdjacencyList)
+                {
+                    if (!tile.visited)
+                    {
+                        Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, true, false, true);
+                        process.Enqueue(ModifiedTile);
+                    }
+                } 
+            }
+            //Debug.Log(dequeuedTile.distance > move && dequeuedTile.distance < move + attackRange);
         }
     }
 
