@@ -65,14 +65,14 @@ public class MovementController : MonoBehaviour
         foreach (GameObject tile in tiles)
         {
             Tile startTile = tile.GetComponent<Tile>();
-            if(attackable)
-            {
+/*            if(attackable)
+            {*/
                 startTile.FindNeighbors(target, attackable);
-            }
-            else
+            //}
+/*            else
             {
                 startTile.FindBoth(target);
-            }
+            }*/
         }
     }
 
@@ -80,21 +80,16 @@ public class MovementController : MonoBehaviour
     {
         if (detectable && enemyDetected) { return; }
 
-        bool unblockable = false;
-
-        if (attackable || detectable)
-        {
-            unblockable = true;
-        }
-
         ComputeAdjacencyLists(null, attackable);
 
-
+        bool coo = false;
         GetCurrentTile();
+        Tile test = currentTile;
 
         List<Tile> adjacencyList = new List<Tile>();
 
         Queue<Tile> process = new Queue<Tile>();
+
 
         process.Enqueue(currentTile);
 
@@ -105,62 +100,74 @@ public class MovementController : MonoBehaviour
             //remove and return the tile
             Tile dequeuedTile = process.Dequeue();
 
-            if (attackable || detectable)
-            {
-                adjacencyList = dequeuedTile.unblockableAdjacencyList;
-            }
-            else if (selectable)
-            {
-                adjacencyList = dequeuedTile.adjacencyList;
-            }
+            selectableTiles.Add(dequeuedTile);            
 
-            selectableTiles.Add(dequeuedTile);
 
-            if (dequeuedTile.distance < range)
+            if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
             {
-                foreach (Tile tile in adjacencyList)
+                //if unit is on border tile need to check both of its adjacency lists
+                foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
+                    if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded && !tile.visited)
+                    {
+                        if (detectable)
+                        {
+                            enemyDetected = true;
+                            tile.showAttackableTiles = true;
+                        }
+                        if (attackable)
+                        {
+                            tile.enemyAdded = true;
+                            detectedEnemies.Add(tile);
+                        }
+                    }
                     //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                     if (!tile.visited)
                     {
-/*                        if (dequeuedTile.distance < range)
-                        {*/
-                            if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
+                        if (!tile.occupied || attackable)
+                        {
+                            Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
+                            if(ModifiedTile.distance == move)
                             {
-                                if (detectable)
-                                {
-                                    enemyDetected = true;
-                                }
-                                if (attackable)
-                                {
-                                    tile.enemyAdded = true;
-                                    detectedEnemies.Add(tile);
-                                }
+                                ModifiedTile.borderTile = true;
                             }
-                            Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, attackable, selectable);
                             process.Enqueue(ModifiedTile);
-
-                        //}
+                        }
                     }
 
                 }
             }
-            else if (dequeuedTile.distance >= move && dequeuedTile.distance < move + attackRange && selectable)
+            //else if (dequeuedTile.distance == range)
+            else if(dequeuedTile.borderTile || dequeuedTile.attackable)
             {
-                foreach (Tile tile in dequeuedTile.unblockableAdjacencyList)
+                coo = true;
+                foreach (Tile tile in dequeuedTile.adjacencyList)
                 {
                     if (!tile.visited)
                     {
-                        Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, true, false, true);
+                        Tile ModifiedTile;
+
+                        if(dequeuedTile.borderTile)
+                        {
+                            ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
+                        }
+                        else if(dequeuedTile.distance < attackRange)
+                        {
+                            ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
+                        }
+                        else
+                        {
+                            ModifiedTile = new Tile();
+                        }
+
                         process.Enqueue(ModifiedTile);
                     }
-                } 
+                }
             }
-            //Debug.Log(dequeuedTile.distance > move && dequeuedTile.distance < move + attackRange);
         }
     }
 
-    Tile TileSetFlags(Tile t, Tile dequeuedTile, bool attackable = false, bool selectable = false, bool showAttackableTiles = false)
+    Tile TileSetFlags(Tile t, Tile dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false)
     {
         Tile tile = t;
         tile.selectable = selectable;
@@ -168,7 +175,7 @@ public class MovementController : MonoBehaviour
         tile.showAttackableTiles = showAttackableTiles;
         tile.visited = true;
         tile.parent = dequeuedTile;
-        tile.distance = 1 + dequeuedTile.distance;
+        tile.distance = distance;
 
         return tile;
     }

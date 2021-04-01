@@ -12,6 +12,8 @@ public class Tile : MonoBehaviour
     public bool attackable = false;
     public bool enemyAdded = false;
     public bool showAttackableTiles = false;
+    public bool occupied = false;
+    public bool borderTile = false;
 
     //public bool playerTurn = false;
 
@@ -85,6 +87,8 @@ public class Tile : MonoBehaviour
         attackable = false;
         showAttackableTiles = false;
 
+        borderTile = false;
+        occupied = false;
         visited = false;
         parent = null;
         distance = 0;
@@ -142,11 +146,11 @@ public class Tile : MonoBehaviour
         {
             Tile tile = item.GetComponent<Tile>();
 
-            if(tile != null && attackable)
+/*            if(tile != null && attackable)
             {
                 unblockableAdjacencyList.Add(tile);
-            }
-            else if (tile != null && tile.walkable)
+            }*/
+            if (tile != null && tile.walkable)
             {
                 RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
 
@@ -154,15 +158,13 @@ public class Tile : MonoBehaviour
                 {
                     adjacencyList.Add(tile);
                 }
+                else
+                {
+                    tile.occupied = true;
+                    adjacencyList.Add(tile);
+                }
             }
         }
     }
 
-
-/*    public static void Main(string[] args)
-    {
-        Tile e1 = new Tile();
-        e1.attackable = true;
-        Tile e2 = new Tile();
-    }*/
 }
