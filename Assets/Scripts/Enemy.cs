@@ -26,7 +26,7 @@ public class Enemy : AiMove
 
     void Update()
     {
-        if(healthPoints <= 0)
+        if (healthPoints <= 0)
         {
             //not sure if it works with multiple ai teams
             UnitDeath();

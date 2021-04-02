@@ -250,6 +250,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -486,6 +488,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -672,6 +676,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -1005,6 +1011,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -1368,6 +1376,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -1506,6 +1516,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -1644,6 +1656,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -1979,6 +1993,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -2117,6 +2133,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -2255,6 +2273,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -2393,6 +2413,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -2531,6 +2553,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -2669,6 +2693,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -2807,6 +2833,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -2945,6 +2973,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -3083,6 +3113,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -3221,6 +3253,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -3372,11 +3406,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9106556176849025571, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -3492,6 +3526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106556177672833852, guid: 3a1f43b5a6101c848acae798573e00a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
@@ -3624,6 +3663,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -3762,6 +3803,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -3900,6 +3943,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -4038,6 +4083,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -4176,6 +4223,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -4401,6 +4450,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -4539,6 +4590,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -4677,6 +4730,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -4815,6 +4870,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -4953,6 +5010,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -5091,6 +5150,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -5229,6 +5290,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -5409,6 +5472,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -5547,6 +5612,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -5685,6 +5752,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -5823,6 +5892,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -5961,6 +6032,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -6099,6 +6172,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -6237,6 +6312,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -6375,6 +6452,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -6513,6 +6592,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -6693,6 +6774,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -6831,6 +6914,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -7094,6 +7179,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -7232,6 +7319,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -7518,6 +7607,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -7656,6 +7747,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -7800,6 +7893,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -7938,6 +8033,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -8180,6 +8277,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -8318,6 +8417,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -8456,6 +8557,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -8594,6 +8697,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -8732,6 +8837,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -9102,6 +9209,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -9240,6 +9349,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -9384,6 +9495,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -9522,6 +9635,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -9691,6 +9806,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -9829,6 +9946,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -9967,6 +10086,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -10105,6 +10226,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -10243,6 +10366,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -10381,6 +10506,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -10649,6 +10776,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -10787,6 +10916,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -10925,6 +11056,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -11063,6 +11196,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -11201,6 +11336,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -11339,6 +11476,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -11477,6 +11616,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -11615,6 +11756,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -11925,6 +12068,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -12063,6 +12208,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -12201,6 +12348,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -12474,6 +12623,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -12612,6 +12763,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -12750,6 +12903,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -12888,6 +13043,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -13026,6 +13183,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -13164,6 +13323,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -13352,6 +13513,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -13490,6 +13653,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -13628,6 +13793,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -13908,6 +14075,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -14078,6 +14247,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -14216,6 +14387,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -14526,6 +14699,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -14664,6 +14839,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -14802,6 +14979,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -14940,6 +15119,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -15179,6 +15360,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -15359,6 +15542,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -15497,6 +15682,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -15635,6 +15822,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -15773,6 +15962,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -15911,6 +16102,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -16049,6 +16242,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -16187,6 +16382,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -16325,6 +16522,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -16463,6 +16662,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -16601,6 +16802,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -16739,6 +16942,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -16877,6 +17082,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -17015,6 +17222,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -17153,6 +17362,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -17421,6 +17632,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -17559,6 +17772,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -17697,6 +17912,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -17872,6 +18089,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -18067,6 +18286,8 @@ MonoBehaviour:
   attackable: 0
   enemyAdded: 0
   showAttackableTiles: 0
+  occupied: 0
+  borderTile: 0
   detectedEnemy: {fileID: 0}
   adjacencyList: []
   unblockableAdjacencyList: []
@@ -18225,11 +18446,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5898134608802759636, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -18305,6 +18526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106556177672833852, guid: 3a1f43b5a6101c848acae798573e00a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5898134608802759636, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
