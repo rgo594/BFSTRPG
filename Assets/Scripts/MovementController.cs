@@ -69,14 +69,7 @@ public class MovementController : MonoBehaviour
         foreach (GameObject tile in tiles)
         {
             Tile startTile = tile.GetComponent<Tile>();
-/*            if(attackable)
-            {*/
-                startTile.FindNeighbors(target, attackable);
-            //}
-/*            else
-            {
-                startTile.FindBoth(target);
-            }*/
+            startTile.FindNeighbors(target, attackable);
         }
     }
 
@@ -104,7 +97,7 @@ public class MovementController : MonoBehaviour
 
             foreach (Tile tile in dequeuedTile.adjacencyList)
             {
-                if (tile.occupied && dequeuedTile.distance == move - 1)
+                if (tile.occupied)
                 {
                     //Debug.Log(dequeuedTile);
                     tile.distance = -1;
@@ -139,7 +132,6 @@ public class MovementController : MonoBehaviour
                         {
                             if(tile.occupied)
                             {
-                                //TODO needs to make sure that the occupied tile is on the outside of the selectable tile map
                                 dequeuedTile.borderTile = true;
                             }
                         }
