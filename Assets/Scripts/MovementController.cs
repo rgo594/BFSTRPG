@@ -128,12 +128,9 @@ public class MovementController : MonoBehaviour
                     //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                     if (!tile.visited)
                     {
-                        if(dequeuedTile.distance == move - 1)
+                        if(tile.occupied)
                         {
-                            if(tile.occupied)
-                            {
-                                dequeuedTile.borderTile = true;
-                            }
+                            dequeuedTile.borderTile = true;
                         }
                         if (!tile.occupied || attackable)
                         {
