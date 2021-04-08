@@ -3406,11 +3406,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9106556176849025571, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -3475,7 +3475,7 @@ PrefabInstance:
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -3530,7 +3530,7 @@ PrefabInstance:
     - target: {fileID: 9106556177672833852, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
@@ -4291,6 +4291,8 @@ MonoBehaviour:
   turnManager: {fileID: 0}
   actualTargetTile: {fileID: 0}
   enemyDetected: 0
+  ree: 0
+  showRange: 0
   healthPoints: 100
   attack: 25
   targetedPlayer: {fileID: 0}
@@ -18446,11 +18448,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5898134608802759636, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -18470,12 +18472,12 @@ PrefabInstance:
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -18530,7 +18532,7 @@ PrefabInstance:
     - target: {fileID: 9106556177672833852, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5898134608802759636, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}

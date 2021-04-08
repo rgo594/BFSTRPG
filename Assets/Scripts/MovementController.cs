@@ -97,7 +97,7 @@ public class MovementController : MonoBehaviour
 
             foreach (Tile tile in dequeuedTile.adjacencyList)
             {
-                if (tile.occupied)
+                if (tile.occupied && dequeuedTile.distance == move - 1)
                 {
                     //Debug.Log(dequeuedTile);
                     tile.distance = -1;
@@ -135,7 +135,7 @@ public class MovementController : MonoBehaviour
                         if (!tile.occupied || attackable)
                         {
                             Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
-                            if(ModifiedTile.distance == move)
+                            if (ModifiedTile.distance == move)
                             {
                                 ModifiedTile.borderTile = true;
                             }
