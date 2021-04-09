@@ -46,7 +46,8 @@ public class Tile : MonoBehaviour
             if (current)
             {
                 selectable = false;
-                GetComponent<SpriteRenderer>().color = Color.yellow;
+                //GetComponent<SpriteRenderer>().color = Color.yellow;
+                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
             }
             else if (target)
             {
