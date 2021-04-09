@@ -33,6 +33,8 @@ public class TurnManager : MonoBehaviour
 
     private bool displayEnemyPhaseText = true;
 
+    public static bool attacking = false;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");

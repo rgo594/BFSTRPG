@@ -47,7 +47,7 @@ public class Tile : MonoBehaviour
             {
                 selectable = false;
                 //GetComponent<SpriteRenderer>().color = Color.yellow;
-                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
+                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(255, 235, 4, 100);
             }
             else if (target)
             {
@@ -72,12 +72,15 @@ public class Tile : MonoBehaviour
             }
             else
             {
+                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
                 GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
     }
+
     public void Reset()
     {
+        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
         adjacencyList.Clear();
         unblockableAdjacencyList.Clear();
 
