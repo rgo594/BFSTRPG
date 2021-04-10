@@ -65,7 +65,17 @@ PrefabInstance:
     - target: {fileID: 5703929522103589077, guid: deafec19d519575409c2628858e1b25b,
         type: 3}
       propertyPath: m_Name
-      value: MappedTile Variant
+      value: MappedTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703929522103589078, guid: deafec19d519575409c2628858e1b25b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703929522103589078, guid: deafec19d519575409c2628858e1b25b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703929522103589079, guid: deafec19d519575409c2628858e1b25b,
         type: 3}
@@ -73,5 +83,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 60b1ed382600d594c9e42020f07f7546,
         type: 3}
+    - target: {fileID: 5703929522103589079, guid: deafec19d519575409c2628858e1b25b,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703929522103589079, guid: deafec19d519575409c2628858e1b25b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703929522103589079, guid: deafec19d519575409c2628858e1b25b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703929522103589079, guid: deafec19d519575409c2628858e1b25b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deafec19d519575409c2628858e1b25b, type: 3}
