@@ -11,23 +11,23 @@ public class MovementController : MonoBehaviour
     public float moveSpeed = 10;
     public int attackRange = 2;
 
-    public Tile currentTile;
+    public TileFunctions currentTile;
     //public List<GameObject> detectedEnemies = new List<GameObject>();
-    public List<Tile> detectedEnemies = new List<Tile>();
+    public List<TileFunctions> detectedEnemies = new List<TileFunctions>();
 
-    public Stack<Tile> path = new Stack<Tile>();
+    public Stack<TileFunctions> path = new Stack<TileFunctions>();
 
     public Vector3 velocity = new Vector3();
     public Vector3 heading = new Vector3();
 
     public TurnManager turnManager;
 
-    List<Tile> selectableTiles = new List<Tile>();
-    List<Tile> selectableAttackTiles = new List<Tile>();
+    List<TileFunctions> selectableTiles = new List<TileFunctions>();
+    List<TileFunctions> selectableAttackTiles = new List<TileFunctions>();
 
     GameObject[] tiles;
 
-    public Tile actualTargetTile;
+    public TileFunctions actualTargetTile;
     public bool enemyDetected;
     public bool ree = false;
 
@@ -46,7 +46,7 @@ public class MovementController : MonoBehaviour
         currentTile.current = true;
     }
 
-    public Tile GetTargetTile(GameObject target)
+    public TileFunctions GetTargetTile(GameObject target)
     {
         Vector3 playerTilePos = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z + 1);
 
@@ -54,21 +54,21 @@ public class MovementController : MonoBehaviour
         //Only works because it ignores character layer, cant get raycast to not hit player character
         RaycastHit2D hit = Physics2D.Raycast(playerTilePos, new Vector3(0, 0, 1), 1f, 9);
 
-        Tile tile = null;
+        TileFunctions tile = null;
 
         if (hit.collider != null)
         {
-            tile = hit.collider.GetComponent<Tile>();
+            tile = hit.collider.GetComponent<TileFunctions>();
         }
 
         return tile;
     }
 
-    public void ComputeAdjacencyLists(Tile target, bool attackable)
+    public void ComputeAdjacencyLists(TileFunctions target, bool attackable)
     {
         foreach (GameObject tile in tiles)
         {
-            Tile startTile = tile.GetComponent<Tile>();
+            TileFunctions startTile = tile.GetComponent<TileFunctions>();
             startTile.FindNeighbors(target, attackable);
         }
     }
@@ -82,7 +82,7 @@ public class MovementController : MonoBehaviour
         bool coo = false;
         GetCurrentTile();
 
-        Queue<Tile> process = new Queue<Tile>();
+        Queue<TileFunctions> process = new Queue<TileFunctions>();
 
         process.Enqueue(currentTile);
 
@@ -91,11 +91,11 @@ public class MovementController : MonoBehaviour
         while (process.Count > 0)
         {
             //remove and return the tile
-            Tile dequeuedTile = process.Dequeue();
+            TileFunctions dequeuedTile = process.Dequeue();
 
             selectableTiles.Add(dequeuedTile);
 
-            foreach (Tile tile in dequeuedTile.adjacencyList)
+            foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {
                 if (tile.occupied && dequeuedTile.distance == move - 1)
                 {
@@ -109,7 +109,7 @@ public class MovementController : MonoBehaviour
             if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
                 {
                 //if unit is on border tile need to check both of its adjacency lists
-                foreach (Tile tile in dequeuedTile.adjacencyList)
+                foreach (TileFunctions tile in dequeuedTile.adjacencyList)
                 {
 
                     if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded && !tile.visited)
@@ -134,7 +134,7 @@ public class MovementController : MonoBehaviour
                         }
                         if (!tile.occupied || attackable)
                         {
-                            Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
+                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
                             if (ModifiedTile.distance == move)
                             {
                                 ModifiedTile.borderTile = true;
@@ -153,10 +153,10 @@ public class MovementController : MonoBehaviour
 
     public void ShowAttackRange()
     {
-        Tile[] tiles = FindObjectsOfType<Tile>();
-        Queue<Tile> borderTiles = new Queue<Tile>();
+        TileFunctions[] tiles = FindObjectsOfType<TileFunctions>();
+        Queue<TileFunctions> borderTiles = new Queue<TileFunctions>();
 
-        foreach (Tile tile in tiles)
+        foreach (TileFunctions tile in tiles)
         {
             if (tile.borderTile == true)
             {
@@ -166,10 +166,10 @@ public class MovementController : MonoBehaviour
 
         while (borderTiles.Count > 0)
         {
-            Tile dequeuedTile = borderTiles.Dequeue();
+            TileFunctions dequeuedTile = borderTiles.Dequeue();
             selectableTiles.Add(dequeuedTile);
 
-            foreach (Tile tile in dequeuedTile.adjacencyList)
+            foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {
                 if(!tile.visited)
                 {
@@ -177,12 +177,12 @@ public class MovementController : MonoBehaviour
                     {
                         if(dequeuedTile.borderTile == true)
                         {
-                            Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
+                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
                             borderTiles.Enqueue(ModifiedTile);
                         }
                         else
                         {
-                            Tile ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
+                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
                             borderTiles.Enqueue(ModifiedTile);
                         }
                     }
@@ -191,9 +191,9 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    Tile TileSetFlags(Tile t, Tile dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false)
+    TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false)
     {
-        Tile tile = t;
+        TileFunctions tile = t;
         tile.selectable = selectable;
         tile.attackable = attackable;
         tile.showAttackableTiles = showAttackableTiles;
@@ -220,13 +220,13 @@ public class MovementController : MonoBehaviour
         BFSTileMap(move + attackRange, true);
     }
 
-    public void MoveToTile(Tile tile)
+    public void MoveToTile(TileFunctions tile)
     {
         path.Clear();
         tile.target = true;
         moving = true;
 
-        Tile next = tile;
+        TileFunctions next = tile;
         while (next != null)
         {
             path.Push(next);
@@ -242,7 +242,7 @@ public class MovementController : MonoBehaviour
             currentTile = null;
         }
 
-        foreach (Tile tile in selectableTiles)
+        foreach (TileFunctions tile in selectableTiles)
         {
             tile.Reset();
         }
@@ -271,7 +271,7 @@ public class MovementController : MonoBehaviour
 
     public void ResetEnemyAddedTiles()
     {
-        foreach (Tile tile in detectedEnemies)
+        foreach (TileFunctions tile in detectedEnemies)
         {
             tile.enemyAdded = false;
         }

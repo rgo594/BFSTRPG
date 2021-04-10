@@ -35,6 +35,8 @@ public class TurnManager : MonoBehaviour
 
     public static bool attacking = false;
 
+    public GameObject mappedTile;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");
@@ -140,9 +142,9 @@ public class TurnManager : MonoBehaviour
                 //not sure if this initial if is necessary
                 //if (hit.collider.gameObject.GetComponent<Enemy>() || hit.collider.gameObject.GetComponent<Tile>())
                 {
-                    if (hit.collider.gameObject.GetComponent<Tile>())
+                    if (hit.collider.gameObject.GetComponent<TileFunctions>())
                     {
-                        if (hit.collider.gameObject.GetComponent<Tile>().selectable) { return; }
+                        if (hit.collider.gameObject.GetComponent<TileFunctions>().selectable) { return; }
                     }
                     InitDeselectCharacter(currentCharacter);
                     if (hit.collider.gameObject.GetComponent<Enemy>())

@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5703929521364813302
 Transform:
   m_ObjectHideFlags: 0
@@ -200,10 +200,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5703929522103589077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57d289083d1dc55498e7decd08282a97, type: 3}
+  m_Script: {fileID: 11500000, guid: 3756eb1ff3067da4db7b221b264a3268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkable: 0
+  walkable: 1
   current: 0
   target: 0
   selectable: 0

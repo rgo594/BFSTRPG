@@ -24,13 +24,13 @@ public class AiMove : MovementController
     }
 
 
-    public void FindPath(Tile target)
+    public void FindPath(TileFunctions target)
     {
         ComputeAdjacencyLists(target, false);
         GetCurrentTile();
 
-        List<Tile> openList = new List<Tile>();
-        List<Tile> closedList = new List<Tile>();
+        List<TileFunctions> openList = new List<TileFunctions>();
+        List<TileFunctions> closedList = new List<TileFunctions>();
 
         openList.Add(currentTile);
 
@@ -40,7 +40,7 @@ public class AiMove : MovementController
         //29:14 part 6: explains the three steps of A*
         while (openList.Count > 0)
         {
-            Tile lowest = FindLowestF(openList);
+            TileFunctions lowest = FindLowestF(openList);
 
             closedList.Add(lowest);
 
@@ -51,7 +51,7 @@ public class AiMove : MovementController
                 return;
             }
 
-            foreach (Tile tile in lowest.adjacencyList)
+            foreach (TileFunctions tile in lowest.adjacencyList)
             {
 
                 if (closedList.Contains(tile))
@@ -117,11 +117,11 @@ public class AiMove : MovementController
         target = nearest;
     }
 
-    protected Tile FindEndTile(Tile t)
+    protected TileFunctions FindEndTile(TileFunctions t)
     {
-        Stack<Tile> tempPath = new Stack<Tile>();
+        Stack<TileFunctions> tempPath = new Stack<TileFunctions>();
 
-        Tile next = t.parent;
+        TileFunctions next = t.parent;
         while (next != null)
         {
             tempPath.Push(next);
@@ -135,7 +135,7 @@ public class AiMove : MovementController
             return t.parent;
         }
 
-        Tile endTile = null;
+        TileFunctions endTile = null;
         for (int i = 0; i <= move; i++)
         {
             //if the tile is out of range use this tile
@@ -144,12 +144,12 @@ public class AiMove : MovementController
         return endTile;
     }
 
-    protected Tile FindLowestF(List<Tile> list)
+    protected TileFunctions FindLowestF(List<TileFunctions> list)
     {
 
-        Tile lowest = list[0];
+        TileFunctions lowest = list[0];
 
-        foreach (Tile t in list)
+        foreach (TileFunctions t in list)
         {
             if (t.f < lowest.f)
             {
@@ -180,7 +180,7 @@ public class AiMove : MovementController
         if (path.Count > 0)
         {
             //returns obj at the top of the stack without removing;
-            Tile nextTileInPath = path.Peek();
+            TileFunctions nextTileInPath = path.Peek();
             Vector3 target = nextTileInPath.transform.position;
 
             if (Vector3.Distance(transform.position, target) >= 0.05f)
@@ -263,7 +263,7 @@ public class AiMove : MovementController
 
     public void CalculatePath()
     {
-        Tile targetTile = GetTargetTile(target);
+        TileFunctions targetTile = GetTargetTile(target);
         FindPath(targetTile);
     }
 

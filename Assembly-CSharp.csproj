@@ -64,7 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\AddActionColor.cs" />
     <Compile Include="Assets\Scripts\AiMove.cs" />
     <Compile Include="Assets\Scripts\EndScreen.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
@@ -73,7 +72,9 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
-    <Compile Include="Assets\Scripts\Tile.cs" />
+    <Compile Include="Assets\Scripts\TestScript.cs" />
+    <Compile Include="Assets\Scripts\TileFunctions.cs" />
+    <Compile Include="Assets\Scripts\TilePlacer.cs" />
     <Compile Include="Assets\Scripts\TurnManager.cs" />
     <Compile Include="Assets\Scripts\UnitMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />

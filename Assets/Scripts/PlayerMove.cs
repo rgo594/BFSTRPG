@@ -38,7 +38,7 @@ public class PlayerMove : MovementController
         if (path.Count > 0)
         {
             //returns obj at the top of the stack without removing;
-            Tile nextTileInPath = path.Peek();
+            TileFunctions nextTileInPath = path.Peek();
             Vector3 target = nextTileInPath.transform.position;
 
             if (Vector3.Distance(transform.position, target) >= 0.05f)
@@ -83,7 +83,7 @@ public class PlayerMove : MovementController
             {
                 if (hit.collider.tag == "Tile")
                 {
-                    Tile clickedTile = hit.collider.GetComponent<Tile>();
+                    TileFunctions clickedTile = hit.collider.GetComponent<TileFunctions>();
 
                     if (clickedTile.selectable)
                     {
@@ -145,7 +145,7 @@ public class PlayerMove : MovementController
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
 
 
-        foreach (Tile enemyTile in detectedEnemies)
+        foreach (TileFunctions enemyTile in detectedEnemies)
         {
             AiMove enemyMove = enemyTile.detectedEnemy.gameObject.GetComponent<AiMove>();
 

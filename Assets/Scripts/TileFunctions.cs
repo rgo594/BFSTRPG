@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class TileFunctions : MonoBehaviour
 {
     public bool walkable = true;
     public bool current = false;
@@ -21,12 +21,12 @@ public class Tile : MonoBehaviour
 
     public Collider2D detectedEnemy = null;
 
-    public List<Tile> adjacencyList = new List<Tile>();
-    public List<Tile> unblockableAdjacencyList = new List<Tile>();
+    public List<TileFunctions> adjacencyList = new List<TileFunctions>();
+    public List<TileFunctions> unblockableAdjacencyList = new List<TileFunctions>();
 
     //Needed BFS (Breadth First Search)
     public bool visited = false;
-    public Tile parent = null;
+    public TileFunctions parent = null;
     public int distance = 0;
 
     //For A*
@@ -37,7 +37,13 @@ public class Tile : MonoBehaviour
     //f = g+h (used for finding the best case path with the minimal amount of time
     public float f = 0;
 
+    SpriteRenderer ActionColor;
+
     // Update is called once per frame
+    private void Start()
+    {
+        ActionColor = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
+    }
     void Update()
     {
         DetectEnemy();
@@ -46,41 +52,47 @@ public class Tile : MonoBehaviour
             if (current)
             {
                 selectable = false;
-                //GetComponent<SpriteRenderer>().color = Color.yellow;
-                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(255, 235, 4, 100);
+               //GetComponent<SpriteRenderer>().color = Color.yellow;
+                ActionColor.color = new Color32(255, 235, 4, 100);
             }
             else if (target)
             {
-                GetComponent<SpriteRenderer>().color = Color.green;
+                //GetComponent<SpriteRenderer>().color = Color.green;
+                ActionColor.color = Color.green;
             }
             else if (selectable)
             {
-                GetComponent<SpriteRenderer>().color = new Color32(53, 64, 241, 120);
+                //GetComponent<SpriteRenderer>().color = new Color32(53, 64, 241, 120);
+                ActionColor.color = new Color32(0, 0, 170, 180);
+                //Color.blue
             }
             else if (attackable)
             {
-                GetComponent<SpriteRenderer>().color = Color.white;
+                //GetComponent<SpriteRenderer>().color = Color.white;
+                ActionColor.color = new Color32(0, 0, 0, 0);
 
                 if (TurnManager.attackStep || showAttackableTiles)
                 {
-                    GetComponent<SpriteRenderer>().color = Color.red;
+                    //GetComponent<SpriteRenderer>().color = Color.red;
+                    ActionColor.color = new Color32(200, 0, 0, 180);
                 }
                 else
                 {
-                    GetComponent<SpriteRenderer>().color = Color.white;
+                    //GetComponent<SpriteRenderer>().color = Color.white;
+                    ActionColor.color = new Color32(0, 0, 0, 0);
                 }
             }
             else
             {
                 gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
-                GetComponent<SpriteRenderer>().color = Color.white;
+                //GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
     }
 
     public void Reset()
     {
-        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
+        //gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
         adjacencyList.Clear();
         unblockableAdjacencyList.Clear();
 
@@ -100,7 +112,7 @@ public class Tile : MonoBehaviour
         f = g = h = 0;
     }
 
-    public void FindNeighbors(Tile target, bool attackable)
+    public void FindNeighbors(TileFunctions target, bool attackable)
     {
         Reset();
 
@@ -110,7 +122,7 @@ public class Tile : MonoBehaviour
         CheckTile(Vector3.left, target, attackable);
     }
 
-    public void FindBoth(Tile target)
+    public void FindBoth(TileFunctions target)
     {
         Reset();
 
@@ -139,7 +151,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void CheckTile(Vector3 direction, Tile target, bool attackable)
+    public void CheckTile(Vector3 direction, TileFunctions target, bool attackable)
     {
         Vector3 halfExtents = new Vector3(0.25f, 0.25f);
 
@@ -148,7 +160,7 @@ public class Tile : MonoBehaviour
         
         foreach (Collider2D item in colliders)
         {
-            Tile tile = item.GetComponent<Tile>();
+            TileFunctions tile = item.GetComponent<TileFunctions>();
 
 /*            if(tile != null && attackable)
             {
