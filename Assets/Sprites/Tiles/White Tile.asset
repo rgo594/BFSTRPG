@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a7a6795a13aef47be776368f02ee87, type: 3}
   m_Name: Cream Chess Tile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: d59a6f2d6ab549e489ff1246b437d34b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1dc048b2a24ed5242995b596dc266119, type: 3}
   m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
   m_Transform:
     e00: 1

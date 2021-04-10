@@ -94,6 +94,7 @@ public class MovementController : MonoBehaviour
 
     public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false)
     {
+        //Debug.Log(detectable);
         if (detectable && enemyDetected) { return; }
 
         ComputeAdjacencyLists(null, attackable);
@@ -164,13 +165,13 @@ public class MovementController : MonoBehaviour
                 }
             }
         }
-        if(process.Count == 0 && selectable)
+        if(process.Count == 0)
         {
-            ShowAttackRange();
+            ShowAttackRange(detectable);
         }
     }
 
-    public void ShowAttackRange()
+    public void ShowAttackRange(bool detectable)
     {
         TileFunctions[] tiles = FindObjectsOfType<TileFunctions>();
         Queue<TileFunctions> borderTiles = new Queue<TileFunctions>();
@@ -194,13 +195,25 @@ public class MovementController : MonoBehaviour
                 {
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
-                        if(dequeuedTile.borderTile == true)
+                        if (dequeuedTile.borderTile == true)
                         {
+                            //Debug.Log(tile.detectedEnemy);
+                            if (tile.detectedEnemy && detectable)
+                            {
+                                enemyDetected = true;
+                                tile.showAttackableTiles = true;
+                            }
                             TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
                             borderTiles.Enqueue(ModifiedTile);
                         }
                         else
                         {
+                            //Debug.Log(tile.detectedEnemy);
+                            if (tile.detectedEnemy && detectable)
+                            {
+                                enemyDetected = true;
+                                tile.showAttackableTiles = true;
+                            }
                             TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
                             borderTiles.Enqueue(ModifiedTile);
                         }
@@ -223,8 +236,6 @@ public class MovementController : MonoBehaviour
         return tile;
     }
 
-
-
     public void FindAttackAbleTiles()
     {
         BFSTileMap(attackRange, false, false, true);
@@ -234,9 +245,11 @@ public class MovementController : MonoBehaviour
     {
         BFSTileMap(move, false, true);
     }
+
     public void FindEnemiesInRange()
     {
-        BFSTileMap(move + attackRange, true);
+        //BFSTileMap(move + attackRange, true);
+        BFSTileMap(move, true);
     }
 
     public void MoveToTile(TileFunctions tile)

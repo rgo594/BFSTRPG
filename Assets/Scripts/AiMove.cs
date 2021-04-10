@@ -173,9 +173,9 @@ public class AiMove : MovementController
 
     public void Move()
     {
-        if(attacking) { return; }
+        if (attacking) { return; }
 
-        //FindAttackAbleTiles() works just as well as AIDetectPlayers, but I think AiDetectPlayers might be less costly
+        //FindAttackAbleTiles(); //works just as well as AIDetectPlayers, but I think AiDetectPlayers might be less costly
         AiDetectPlayerCharacters();
         if (path.Count > 0)
         {
