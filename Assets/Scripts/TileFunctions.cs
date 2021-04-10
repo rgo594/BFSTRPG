@@ -44,6 +44,7 @@ public class TileFunctions : MonoBehaviour
     {
         ActionColor = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
+
     void Update()
     {
         DetectEnemy();
@@ -122,21 +123,6 @@ public class TileFunctions : MonoBehaviour
         CheckTile(Vector3.left, target, attackable);
     }
 
-    public void FindBoth(TileFunctions target)
-    {
-        Reset();
-
-        CheckTile(new Vector2(0, 1), target, false);
-        CheckTile(new Vector2(0, -1), target, false);
-        CheckTile(Vector3.right, target, false);
-        CheckTile(Vector3.left, target, false);
-
-        CheckTile(new Vector2(0, 1), target, true);
-        CheckTile(new Vector2(0, -1), target, true);
-        CheckTile(Vector3.right, target, true);
-        CheckTile(Vector3.left, target, true);
-    }
-
     public void DetectEnemy()
     {
         Collider2D DetectedObject = Physics2D.OverlapBox(transform.position, new Vector2(0.8f, 0.8f), 1f);
@@ -154,7 +140,6 @@ public class TileFunctions : MonoBehaviour
     public void CheckTile(Vector3 direction, TileFunctions target, bool attackable)
     {
         Vector3 halfExtents = new Vector3(0.25f, 0.25f);
-
         //creates a box to detect any objects with colliders, not sure what angle parameter does
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + direction, halfExtents, 1f);
         

@@ -100,6 +100,7 @@ public class TurnManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && hit.collider != null)
         {
+            //Debug.Log(hit.collider.gameObject.transform.position);
             bool characterMoving = false;
 
             

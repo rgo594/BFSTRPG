@@ -26,6 +26,7 @@ public class MovementController : MonoBehaviour
     List<TileFunctions> selectableAttackTiles = new List<TileFunctions>();
 
     GameObject[] tiles;
+    Collider2D[] testTiles;
 
     public TileFunctions actualTargetTile;
     public bool enemyDetected;
@@ -34,7 +35,6 @@ public class MovementController : MonoBehaviour
     public bool showRange = false;
     protected void Init()
     {
-
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -66,11 +66,30 @@ public class MovementController : MonoBehaviour
 
     public void ComputeAdjacencyLists(TileFunctions target, bool attackable)
     {
-        foreach (GameObject tile in tiles)
+        //Debug.Log(testTiles);
+        Collider2D[] coo = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(100f, 100f), 1f);
+        foreach(Collider2D tile in coo)
         {
+            if (tile.gameObject.GetComponent<TileFunctions>())
+            {
+                TileFunctions startTile = tile.gameObject.GetComponent<TileFunctions>();
+                //Debug.Log(startTile);
+                startTile.FindNeighbors(target, attackable);
+            }
+        }
+/*        foreach (GameObject tile in tiles)
+        {
+
             TileFunctions startTile = tile.GetComponent<TileFunctions>();
             startTile.FindNeighbors(target, attackable);
-        }
+        }*/
+        /*        foreach (Collider2D tile in testTiles)
+                {
+
+                    TileFunctions startTile = tile.gameObject.GetComponent<TileFunctions>();
+                    Debug.Log(startTile);
+                    startTile.FindNeighbors(target, attackable);
+                }*/
     }
 
     public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false)
