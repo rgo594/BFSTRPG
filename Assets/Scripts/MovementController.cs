@@ -64,10 +64,18 @@ public class MovementController : MonoBehaviour
         return tile;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        float rng = ((float)move + (float)attackRange) * 2.5f;
+        Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(rng, rng));
+    }
+
     public void ComputeAdjacencyLists(TileFunctions target, bool attackable)
     {
-        //Debug.Log(testTiles);
-        Collider2D[] coo = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(100f, 100f), 1f);
+        float rng = ((float)move + (float)attackRange) * 2.4f;
+        Collider2D[] coo = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);
+
         foreach(Collider2D tile in coo)
         {
             if (tile.gameObject.GetComponent<TileFunctions>())
@@ -77,19 +85,11 @@ public class MovementController : MonoBehaviour
                 startTile.FindNeighbors(target, attackable);
             }
         }
-/*        foreach (GameObject tile in tiles)
+      /*foreach (GameObject tile in tiles)
         {
-
             TileFunctions startTile = tile.GetComponent<TileFunctions>();
             startTile.FindNeighbors(target, attackable);
         }*/
-        /*        foreach (Collider2D tile in testTiles)
-                {
-
-                    TileFunctions startTile = tile.gameObject.GetComponent<TileFunctions>();
-                    Debug.Log(startTile);
-                    startTile.FindNeighbors(target, attackable);
-                }*/
     }
 
     public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false)
@@ -191,29 +191,22 @@ public class MovementController : MonoBehaviour
 
             foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {
-                if(!tile.visited)
+                if (tile.detectedEnemy && detectable)
+                {
+                    enemyDetected = true;
+                    tile.showAttackableTiles = true;
+                }
+                if (!tile.visited)
                 {
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
                         if (dequeuedTile.borderTile == true)
                         {
-                            //Debug.Log(tile.detectedEnemy);
-                            if (tile.detectedEnemy && detectable)
-                            {
-                                enemyDetected = true;
-                                tile.showAttackableTiles = true;
-                            }
                             TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
                             borderTiles.Enqueue(ModifiedTile);
                         }
                         else
                         {
-                            //Debug.Log(tile.detectedEnemy);
-                            if (tile.detectedEnemy && detectable)
-                            {
-                                enemyDetected = true;
-                                tile.showAttackableTiles = true;
-                            }
                             TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
                             borderTiles.Enqueue(ModifiedTile);
                         }

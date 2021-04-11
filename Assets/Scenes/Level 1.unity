@@ -130,11 +130,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 173466670, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 173466670, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1136766999, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_SortingOrder
@@ -218,7 +218,7 @@ PrefabInstance:
     - target: {fileID: 4923323704391760927, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1589374347, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
@@ -783,11 +783,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1591380571, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_SortingOrder
@@ -851,7 +851,7 @@ PrefabInstance:
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -907,6 +907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106556177672833852, guid: 3a1f43b5a6101c848acae798573e00a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
@@ -2726,11 +2731,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677579524, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1591380571, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
       propertyPath: m_SortingOrder
@@ -2794,12 +2799,12 @@ PrefabInstance:
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -2854,7 +2859,7 @@ PrefabInstance:
     - target: {fileID: 9106556177672833852, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a1f43b5a6101c848acae798573e00a8, type: 3}
@@ -6580,11 +6585,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 173466670, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 173466670, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1136766999, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_SortingOrder
@@ -6668,7 +6673,7 @@ PrefabInstance:
     - target: {fileID: 4923323704391760927, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1589374347, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
@@ -8493,6 +8498,15 @@ Tilemap:
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 3
       m_AllTileFlags: 0
+  - first: {x: 15, y: -9, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 6
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 3
+      m_AllTileFlags: 0
   - first: {x: -5, y: -8, z: 0}
     second:
       serializedVersion: 2
@@ -8673,6 +8687,15 @@ Tilemap:
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 3
       m_AllTileFlags: 0
+  - first: {x: 15, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 6
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 3
+      m_AllTileFlags: 0
   - first: {x: -5, y: -7, z: 0}
     second:
       serializedVersion: 2
@@ -8845,6 +8868,15 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 3
       m_AllTileFlags: 0
   - first: {x: 14, y: -7, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 6
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 3
+      m_AllTileFlags: 0
+  - first: {x: 15, y: -7, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 2
@@ -9993,14 +10025,14 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 186
+  - m_RefCount: 189
     m_Data: {fileID: 11400000, guid: b99b5986192443e4bb381099d6adddf5, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 186
+  - m_RefCount: 189
     m_Data: {fileID: 21300000, guid: 1dc048b2a24ed5242995b596dc266119, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 0
@@ -10111,7 +10143,7 @@ Tilemap:
       e31: 0
       e32: 5.66e-43
       e33: 4.5905e-41
-  - m_RefCount: 186
+  - m_RefCount: 189
     m_Data:
       e00: 1
       e01: 0
@@ -10132,7 +10164,7 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: 5.143158, g: 5.143158, b: 5.143158, a: 5.143158}
-  - m_RefCount: 186
+  - m_RefCount: 189
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray:
   - m_RefCount: 0
@@ -10141,7 +10173,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 186
+  - m_RefCount: 189
     m_Data: {fileID: 7650443969837329876, guid: a2272238d290152459cc9c1d77667984,
       type: 3}
   m_AnimationFrameRate: 1
@@ -13947,11 +13979,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 173466670, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 173466670, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1136766999, guid: 44aa7d2eeda7942468618c930d5bf242, type: 3}
       propertyPath: m_SortingOrder
@@ -14030,7 +14062,7 @@ PrefabInstance:
     - target: {fileID: 4923323704391760927, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4923323705191517762, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
@@ -14077,7 +14109,7 @@ PrefabInstance:
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}

@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 5703929522103589077, guid: deafec19d519575409c2628858e1b25b,
         type: 3}
       propertyPath: m_Name
-      value: MappedTile
+      value: ' (0.0, 0.0, 0.0)'
       objectReference: {fileID: 0}
     - target: {fileID: 5703929522103589078, guid: deafec19d519575409c2628858e1b25b,
         type: 3}
