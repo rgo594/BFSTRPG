@@ -64,13 +64,6 @@ public class MovementController : MonoBehaviour
         return tile;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        float rng = ((float)move + (float)attackRange) * 2.5f;
-        Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(rng, rng));
-    }
-
     public void ComputeAdjacencyLists(TileFunctions target, bool attackable)
     {
         float rng = ((float)move + (float)attackRange) * 2.4f;
