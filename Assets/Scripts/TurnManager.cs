@@ -37,6 +37,9 @@ public class TurnManager : MonoBehaviour
 
     public GameObject mappedTile;
 
+    //TODO deselected is a flag for clicking on an enemy unit so FindSelectableTiles is not triggered simultaneously between multiple units, might need further testing
+    public static bool deselected = true;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");
@@ -160,13 +163,15 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator SelectEnemy(GameObject e)
     {
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
+        yield return new WaitUntil(() => deselected);
         e.GetComponent<Enemy>().FindSelectableTiles();
 
     }
 
     public void InitStartTurn(GameObject c)
     {
+        deselected = false;
         var character = c.GetComponent<PlayerMove>();
 
         character.StartTurn();
@@ -174,6 +179,7 @@ public class TurnManager : MonoBehaviour
    
     public void InitDeselectCharacter(GameObject c)
     {
+        deselected = true;
         var character = c.GetComponent<PlayerMove>();
 
         character.DeselectCharacter();

@@ -31,7 +31,7 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 7650443969837329876, guid: a2272238d290152459cc9c1d77667984,
-    type: 3}
+  m_InstancedGameObject: {fileID: 0}
   m_Flags: 0
   m_ColliderType: 1
+  actionColorSprite: {fileID: 21300000, guid: 1dc048b2a24ed5242995b596dc266119, type: 3}

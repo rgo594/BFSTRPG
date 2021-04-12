@@ -67,9 +67,9 @@ public class MovementController : MonoBehaviour
     public void ComputeAdjacencyLists(TileFunctions target, bool attackable)
     {
         float rng = ((float)move + (float)attackRange) * 2.4f;
-        Collider2D[] coo = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);
+        Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);
 
-        foreach(Collider2D tile in coo)
+        foreach(Collider2D tile in tilesInRange)
         {
             if (tile.gameObject.GetComponent<TileFunctions>())
             {
@@ -166,6 +166,9 @@ public class MovementController : MonoBehaviour
 
     public void ShowAttackRange(bool detectable)
     {
+/*        float rng = ((float)move + (float)attackRange) * 2.4f;
+        Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);*/
+
         TileFunctions[] tiles = FindObjectsOfType<TileFunctions>();
         Queue<TileFunctions> borderTiles = new Queue<TileFunctions>();
 
@@ -271,7 +274,6 @@ public class MovementController : MonoBehaviour
         }*/
 
         selectableTiles.Clear();
-        //selectableAttackTiles.Clear();
     }
 
     //prevents InvalidOperationException error
@@ -283,7 +285,8 @@ public class MovementController : MonoBehaviour
 
     public IEnumerator DelayFindSelectableTiles()
     {
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
+        yield return new WaitUntil(() => TurnManager.deselected);
         FindSelectableTiles();
     }
 

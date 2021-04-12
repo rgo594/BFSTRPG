@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+
 [CreateAssetMenu(menuName = "My Assets/Create Action Tile")]
 public class TilePlacer : Tile
 {
@@ -26,7 +27,7 @@ public class TilePlacer : Tile
             {
                 GameObject mappedtiles = GameObject.Find("MappedTiles");
 
-                if(mappedtiles == null)
+                if (mappedtiles == null)
                 {
                     mappedtiles = new GameObject();
                     mappedtiles.name = "MappedTiles";
@@ -45,19 +46,23 @@ public class TilePlacer : Tile
                 tileObject.transform.position = correctPosition;
                 tileObject.tag = "Tile";
                 tileObject.name = correctPosition.x + " " + correctPosition.y;
-
-
+                //tileObject.AddComponent<SpriteRenderer>().sprite = sprite;
                 actionColor.AddComponent<SpriteRenderer>().sprite = actionColorSprite;
                 actionColor.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
                 actionColor.name = "Action Color";
- 
+
             }
         }
-
-        //will create the tile object on runtime, worried for its scalability
-        //tileData.gameObject = gameObject;
-
     }
+
+
+/*    public override void RefreshTile(Vector3Int position, ITilemap tilemap)
+    {
+        Debug.Log(position);
+    }*/
+    //will create the tile object on runtime, worried for its scalability
+    //tileData.gameObject = gameObject;
 
 }
 
