@@ -14,6 +14,7 @@ public class TileFunctions : MonoBehaviour
     public bool showAttackableTiles = false;
     public bool occupied = false;
     public bool borderTile = false;
+    public bool enemyRange = false;
 
     //public bool playerTurn = false;
 
@@ -37,12 +38,14 @@ public class TileFunctions : MonoBehaviour
     //f = g+h (used for finding the best case path with the minimal amount of time
     public float f = 0;
 
-    SpriteRenderer ActionColor;
+    SpriteRenderer actionColor;
+    SpriteRenderer enemyRangeTile;
 
     // Update is called once per frame
     private void Start()
     {
-        ActionColor = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        actionColor = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        enemyRangeTile = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -53,47 +56,41 @@ public class TileFunctions : MonoBehaviour
             if (current)
             {
                 selectable = false;
-               //GetComponent<SpriteRenderer>().color = Color.yellow;
-                ActionColor.color = new Color32(255, 235, 4, 100);
+                actionColor.color = new Color32(255, 235, 4, 100);
             }
             else if (target)
             {
-                //GetComponent<SpriteRenderer>().color = Color.green;
-                ActionColor.color = Color.green;
+                actionColor.color = Color.green;
             }
             else if (selectable)
             {
-                //GetComponent<SpriteRenderer>().color = new Color32(53, 64, 241, 120);
-                ActionColor.color = new Color32(0, 0, 170, 180);
-                //Color.blue
+                actionColor.color = new Color32(0, 0, 170, 180);
             }
             else if (attackable)
             {
-                //GetComponent<SpriteRenderer>().color = Color.white;
-                ActionColor.color = new Color32(0, 0, 0, 0);
-
                 if (TurnManager.attackStep || showAttackableTiles)
                 {
-                    //GetComponent<SpriteRenderer>().color = Color.red;
-                    ActionColor.color = new Color32(200, 0, 0, 180);
+                    actionColor.color = new Color32(200, 0, 0, 180);
                 }
                 else
                 {
-                    //GetComponent<SpriteRenderer>().color = Color.white;
-                    ActionColor.color = new Color32(0, 0, 0, 0);
+                    actionColor.color = new Color32(0, 0, 0, 0);
                 }
+            }
+            else if (enemyRange)
+            {
+                enemyRangeTile.color = new Color32(200, 0, 0, 180);
             }
             else
             {
-                gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
-                //GetComponent<SpriteRenderer>().color = Color.white;
+                enemyRangeTile.color = new Color32(0, 0, 0, 0);
+                actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
             }
         }
     }
 
     public void Reset()
     {
-        //gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
         adjacencyList.Clear();
         unblockableAdjacencyList.Clear();
 
@@ -109,9 +106,47 @@ public class TileFunctions : MonoBehaviour
         visited = false;
         parent = null;
         distance = 0;
+        //enemyRange = false;
 
         f = g = h = 0;
     }
+
+    public void HideEnemyRange()
+    {
+        adjacencyList.Clear();
+        unblockableAdjacencyList.Clear();
+
+        walkable = true;
+        current = false;
+        target = false;
+        selectable = false;
+        attackable = false;
+        showAttackableTiles = false;
+
+        borderTile = false;
+        occupied = false;
+        visited = false;
+        parent = null;
+        distance = 0;
+        enemyRange = false;
+
+        f = g = h = 0;
+    }
+
+    /*    public void OtherReset()
+        {
+            adjacencyList.Clear();
+            unblockableAdjacencyList.Clear();
+
+            borderTile = false;
+            occupied = false;
+            visited = false;
+            parent = null;
+            distance = 0;
+            enemyRange = false;
+
+            f = g = h = 0;
+        }*/
 
     public void FindNeighbors(TileFunctions target, bool attackable)
     {

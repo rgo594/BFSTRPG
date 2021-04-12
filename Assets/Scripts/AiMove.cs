@@ -14,16 +14,14 @@ public class AiMove : MovementController
 
     private void Awake()
     {
-/*        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
         healthBar.maxValue = healthPoints;
-        healthBar.value = healthPoints;*/
+        healthBar.value = healthPoints;
     }
 
     void Start()
     {
         Init();
-
-
         TurnManager.AddNpcUnit(this);
     }
 
@@ -280,7 +278,8 @@ public class AiMove : MovementController
     {
         //yield return new WaitForEndOfFrame();
         yield return new WaitUntil(() => TurnManager.deselected);
-        FindSelectableTiles();
+        //FindSelectableTiles();
+        FindEnemyRangeTiles();
     }
 
     public void EndTurn()

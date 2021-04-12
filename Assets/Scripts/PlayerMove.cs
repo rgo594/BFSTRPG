@@ -24,11 +24,11 @@ public class PlayerMove : MovementController
 
     private void Awake()
     {
-/*        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
         //preventClicking = GameObject.Find("PreventClicking");
 
         healthBar.maxValue = healthPoints;
-        healthBar.value = healthPoints;*/
+        healthBar.value = healthPoints;
     }
 
     void Start()

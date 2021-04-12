@@ -37,21 +37,33 @@ public class Enemy : AiMove
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
-
             try
             {
-                if (hit.collider.gameObject != gameObject)
-                {
-                    enemySelected = false;
-                    //might need to change to its own function
-                    RemoveSelectableTiles();
-                }
-                else
+                Debug.Log((hit.collider.gameObject.transform.position == gameObject.transform.position && !enemySelected));
+
+                //if (hit.collider.gameObject.transform.position != gameObject.transform.position) { return; }
+
+                if (hit.collider.gameObject.transform.position == gameObject.transform.position && !enemySelected)
                 {
                     enemySelected = true;
                     ChangeSpriteColor(Color.white);
                     StartCoroutine(DelayFindSelectableTiles());
                 }
+                else if (hit.collider.gameObject.tag == "Enemy" && enemySelected)
+                {
+                    enemySelected = false;
+                    //might need to change to its own function
+                    WoogaBooga();
+                }
+                else
+                {
+                    RemoveSelectableTiles();
+                }
+/*                else
+                {
+                    enemySelected = false;
+                    RemoveSelectableTiles();
+                }*/
             }
             //NullReference errors get triggered by ui buttons that are set to inactive
             catch (NullReferenceException) { }
@@ -73,7 +85,6 @@ public class Enemy : AiMove
             FindNearestTarget();
             CalculatePath();
             FindSelectableTiles();
-            //BFSTileMap(move, false, true);
             actualTargetTile.target = true;
         }
         else

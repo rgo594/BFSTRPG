@@ -38,7 +38,11 @@ public class TilePlacer : Tile
 
                 GameObject actionColor = new GameObject();
                 actionColor.transform.SetParent(tileObject.transform);
-                tileObject.transform.GetChild(0).transform.position = new Vector3(0, 0, 0);
+                tileObject.transform.GetChild(0).transform.position = new Vector3(0, 0, 0);                
+                
+                GameObject EnemyRangeTile = new GameObject();
+                EnemyRangeTile.transform.SetParent(tileObject.transform);
+                tileObject.transform.GetChild(1).transform.position = new Vector3(0, 0, 0);
 
                 tileObject.AddComponent<TileFunctions>().walkable = true;
                 tileObject.transform.SetParent(mappedtiles.transform);
@@ -46,24 +50,19 @@ public class TilePlacer : Tile
                 tileObject.transform.position = correctPosition;
                 tileObject.tag = "Tile";
                 tileObject.name = correctPosition.x + " " + correctPosition.y;
-                //tileObject.AddComponent<SpriteRenderer>().sprite = sprite;
                 actionColor.AddComponent<SpriteRenderer>().sprite = actionColorSprite;
-                actionColor.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                actionColor.GetComponent<SpriteRenderer>().sortingOrder = 2;
                 actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
                 actionColor.name = "Action Color";
+
+                EnemyRangeTile.AddComponent<SpriteRenderer>().sprite = actionColorSprite;
+                EnemyRangeTile.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                EnemyRangeTile.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
+                EnemyRangeTile.name = "EnemyRangeTile";
 
             }
         }
     }
-
-
-/*    public override void RefreshTile(Vector3Int position, ITilemap tilemap)
-    {
-        Debug.Log(position);
-    }*/
-    //will create the tile object on runtime, worried for its scalability
-    //tileData.gameObject = gameObject;
-
 }
 
 

@@ -292,7 +292,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &1591380570
 MonoBehaviour:
@@ -591,6 +591,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   heading: {x: 0, y: 0, z: 0}
   turnManager: {fileID: 0}
+  selectableTiles: []
   actualTargetTile: {fileID: 0}
   enemyDetected: 0
   ree: 0

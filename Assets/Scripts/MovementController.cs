@@ -22,7 +22,7 @@ public class MovementController : MonoBehaviour
 
     public TurnManager turnManager;
 
-    List<TileFunctions> selectableTiles = new List<TileFunctions>();
+    public List<TileFunctions> selectableTiles = new List<TileFunctions>();
     List<TileFunctions> selectableAttackTiles = new List<TileFunctions>();
 
     GameObject[] tiles;
@@ -85,7 +85,7 @@ public class MovementController : MonoBehaviour
         }*/
     }
 
-    public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false)
+    public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false, bool enemyRangeTile = false)
     {
         //Debug.Log(detectable);
         if (detectable && enemyDetected) { return; }
@@ -108,7 +108,7 @@ public class MovementController : MonoBehaviour
 
             selectableTiles.Add(dequeuedTile);
 
-            foreach (TileFunctions tile in dequeuedTile.adjacencyList)
+/*            foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {
                 if (tile.occupied && dequeuedTile.distance == move - 1)
                 {
@@ -117,7 +117,7 @@ public class MovementController : MonoBehaviour
                     tile.attackable = true;
                     tile.showAttackableTiles = true;
                 }
-            }
+            }*/
 
             if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
                 {
@@ -147,7 +147,11 @@ public class MovementController : MonoBehaviour
                         }
                         if (!tile.occupied || attackable)
                         {
-                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
+                            TileFunctions ModifiedTile;
+
+
+                            ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable, false, enemyRangeTile);
+                            //TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
                             if (ModifiedTile.distance == move)
                             {
                                 ModifiedTile.borderTile = true;
@@ -160,11 +164,11 @@ public class MovementController : MonoBehaviour
         }
         if(process.Count == 0)
         {
-            ShowAttackRange(detectable);
+            ShowAttackRange(detectable, enemyRangeTile);
         }
     }
 
-    public void ShowAttackRange(bool detectable)
+    public void ShowAttackRange(bool detectable, bool enemyRangeTile)
     {
 /*        float rng = ((float)move + (float)attackRange) * 2.4f;
         Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);*/
@@ -196,15 +200,33 @@ public class MovementController : MonoBehaviour
                 {
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
-                        if (dequeuedTile.borderTile == true)
+                        //TODO needs to be refactored
+                        if(enemyRangeTile)
                         {
-                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
-                            borderTiles.Enqueue(ModifiedTile);
+                            if (dequeuedTile.borderTile == true)
+                            {
+                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, false, false, false, true);
+                                borderTiles.Enqueue(ModifiedTile);
+                            }
+                            else
+                            {
+                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true);
+                                borderTiles.Enqueue(ModifiedTile);
+                            }
                         }
+                        //
                         else
                         {
-                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
-                            borderTiles.Enqueue(ModifiedTile);
+                            if (dequeuedTile.borderTile == true)
+                            {
+                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
+                                borderTiles.Enqueue(ModifiedTile);
+                            }
+                            else
+                            {
+                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
+                                borderTiles.Enqueue(ModifiedTile);
+                            }
                         }
                     }
                 }
@@ -212,7 +234,7 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false)
+    TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false, bool enemyRange = false)
     {
         TileFunctions tile = t;
         tile.selectable = selectable;
@@ -221,6 +243,7 @@ public class MovementController : MonoBehaviour
         tile.visited = true;
         tile.parent = dequeuedTile;
         tile.distance = distance;
+        tile.enemyRange = enemyRange;
 
         return tile;
     }
@@ -234,6 +257,12 @@ public class MovementController : MonoBehaviour
     {
         BFSTileMap(move, false, true);
     }
+
+    public void FindEnemyRangeTiles()
+    {
+        BFSTileMap(move, false, false, false, true);
+    }
+
 
     public void FindEnemiesInRange()
     {
@@ -273,6 +302,27 @@ public class MovementController : MonoBehaviour
             tile.Reset();
         }*/
 
+        selectableTiles.Clear();
+    }
+
+    public void WoogaBooga()
+    {
+        if (currentTile != null)
+        {
+            currentTile.current = false;
+            currentTile = null;
+        }
+
+        foreach (TileFunctions tile in selectableTiles)
+        {
+            //Debug.Log(tile);
+            tile.HideEnemyRange();
+        }
+
+        /*        foreach (Tile tile in selectableAttackTiles)
+                {
+                    tile.Reset();
+                }*/
         selectableTiles.Clear();
     }
 

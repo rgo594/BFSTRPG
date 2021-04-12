@@ -165,7 +165,7 @@ public class TurnManager : MonoBehaviour
     {
         //yield return new WaitForEndOfFrame();
         yield return new WaitUntil(() => deselected);
-        e.GetComponent<Enemy>().FindSelectableTiles();
+        e.GetComponent<Enemy>().FindEnemyRangeTiles();
 
     }
 
