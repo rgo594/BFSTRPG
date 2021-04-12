@@ -151,7 +151,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 677579524}
   m_HandleRect: {fileID: 0}
@@ -592,6 +592,9 @@ MonoBehaviour:
   heading: {x: 0, y: 0, z: 0}
   turnManager: {fileID: 0}
   actualTargetTile: {fileID: 0}
+  enemyDetected: 0
+  ree: 0
+  showRange: 0
   originalPosition: {x: 0, y: 0, z: 0}
   unitMenuController: {fileID: 0}
   healthPoints: 100
@@ -599,6 +602,7 @@ MonoBehaviour:
   unitMenuPresent: 0
   actionCompleted: 0
   targetedEnemy: {fileID: 0}
+  attacking: 0
 --- !u!95 &1065181665
 Animator:
   serializedVersion: 3

@@ -62,7 +62,6 @@ public class Enemy : AiMove
         {
             return;
         }
-        //FindEnemiesInRange();
         FindEnemiesInRange();
         if (!enemyDetected)
         {

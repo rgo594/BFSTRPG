@@ -22,15 +22,24 @@ public class PlayerMove : MovementController
 
     //public GameObject preventClicking;
 
+    private void Awake()
+    {
+/*        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+        //preventClicking = GameObject.Find("PreventClicking");
+
+        healthBar.maxValue = healthPoints;
+        healthBar.value = healthPoints;*/
+    }
+
     void Start()
     {
         Init();
         unitMenuController = GameObject.Find("UnitMenuController");
-        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+/*        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
         //preventClicking = GameObject.Find("PreventClicking");
 
         healthBar.maxValue = healthPoints;
-        healthBar.value = healthPoints;
+        healthBar.value = healthPoints;*/
     }
 
     public void Move()

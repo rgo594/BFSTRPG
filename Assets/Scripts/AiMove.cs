@@ -12,13 +12,17 @@ public class AiMove : MovementController
     public GameObject targetedPlayer;
     public bool attacking = false;
 
+    private void Awake()
+    {
+/*        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+        healthBar.maxValue = healthPoints;
+        healthBar.value = healthPoints;*/
+    }
+
     void Start()
     {
         Init();
 
-        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
-        healthBar.maxValue = healthPoints;
-        healthBar.value = healthPoints;
 
         TurnManager.AddNpcUnit(this);
     }
@@ -270,6 +274,13 @@ public class AiMove : MovementController
     public void StartTurn()
     {
         turn = true;
+    }
+
+    public IEnumerator DelayFindSelectableTiles()
+    {
+        //yield return new WaitForEndOfFrame();
+        yield return new WaitUntil(() => TurnManager.deselected);
+        FindSelectableTiles();
     }
 
     public void EndTurn()
