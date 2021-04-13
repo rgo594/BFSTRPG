@@ -83,7 +83,7 @@ public class TileFunctions : MonoBehaviour
             }
             else
             {
-                enemyRangeTile.color = new Color32(0, 0, 0, 0);
+                //enemyRangeTile.color = new Color32(0, 0, 0, 0);
                 actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
             }
         }

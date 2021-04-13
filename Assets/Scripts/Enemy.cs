@@ -39,8 +39,6 @@ public class Enemy : AiMove
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
             try
             {
-                Debug.Log((hit.collider.gameObject.transform.position == gameObject.transform.position && !enemySelected));
-
                 //if (hit.collider.gameObject.transform.position != gameObject.transform.position) { return; }
 
                 if (hit.collider.gameObject.transform.position == gameObject.transform.position && !enemySelected)
