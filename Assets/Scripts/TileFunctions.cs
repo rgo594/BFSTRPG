@@ -101,6 +101,7 @@ public class TileFunctions : MonoBehaviour
 
     public void Reset()
     {
+        actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
         adjacencyList.Clear();
         unblockableAdjacencyList.Clear();
 
