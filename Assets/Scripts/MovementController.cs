@@ -244,7 +244,7 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false, bool enemyRange = false, bool visited = true)
+    public TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false, bool enemyRange = false, bool visited = true)
     {
         TileFunctions tile = t;
         tile.selectable = selectable;

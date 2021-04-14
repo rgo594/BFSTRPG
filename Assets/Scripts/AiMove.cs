@@ -326,7 +326,7 @@ public class AiMove : MovementController
                     {
                         if (tile.occupied)
                         {
-                            dequeuedTile.borderTile = true;
+                            dequeuedTile.erBorderTile = true;
                         }
                         if (!tile.occupied)
                         {
@@ -354,6 +354,85 @@ public class AiMove : MovementController
         if (process.Count == 0)
         {
             //ShowAttackRange(detectable, enemyRangeTile, counterPresent);
+            //ShowEnemyAttackRange();
+        }
+    }
+
+    public void ShowEnemyAttackRange()
+    {
+        float rng = ((float)move + (float)attackRange) * 2.4f;
+        Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);
+
+        //TileFunctions[] tiles = FindObjectsOfType<TileFunctions>();
+        Queue<TileFunctions> borderTiles = new Queue<TileFunctions>();
+
+        foreach (Collider2D tile in tilesInRange)
+        {
+            if (tile.gameObject.GetComponent<TileFunctions>())
+            {
+                if (tile.gameObject.GetComponent<TileFunctions>().erBorderTile == true)
+                {
+                    borderTiles.Enqueue(tile.gameObject.GetComponent<TileFunctions>());
+                }
+            }
+        }
+
+        while (borderTiles.Count > 0)
+        {
+            TileFunctions dequeuedTile = borderTiles.Dequeue();
+            selectableTiles.Add(dequeuedTile);
+
+            foreach (TileFunctions tile in dequeuedTile.adjacencyList)
+            {
+/*                if (tile.detectedEnemy && detectable)
+                {
+                    enemyDetected = true;
+                    tile.showAttackableTiles = true;
+                }*/
+                if (!tile.erVisited)
+                {
+                    if (dequeuedTile.erBorderTile || dequeuedTile.distance < attackRange)
+                    {
+                        //TODO needs to be refactored
+                            if (dequeuedTile.erBorderTile == true)
+                            {
+                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, false, false, false, true);
+                 
+
+                                tile.enemyRange = true;
+                                tile.erVisited = true;
+                                tile.distance = 1;
+                                tile.enemiesUsingTile.Add(gameObject);
+                                borderTiles.Enqueue(tile);
+                            }
+                            else
+                            {
+                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true);
+
+                                tile.enemyRange = true;
+                                tile.erVisited = true;
+                                tile.distance = 1 + dequeuedTile.distance;
+                                tile.enemiesUsingTile.Add(gameObject);
+                                borderTiles.Enqueue(tile);
+                                borderTiles.Enqueue(tile);
+                            }
+                        //
+   /*                     else
+                        {
+                            if (dequeuedTile.erBorderTile == true)
+                            {
+                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
+                                borderTiles.Enqueue(ModifiedTile);
+                            }
+                            else
+                            {
+                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
+                                borderTiles.Enqueue(ModifiedTile);
+                            }
+                        }*/
+                    }
+                }
+            }
         }
     }
 

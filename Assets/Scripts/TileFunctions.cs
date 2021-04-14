@@ -53,6 +53,7 @@ public class TileFunctions : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
+        //Debug.Log("name: " + gameObject.name + " position: " + gameObject.transform.position);
         actionColor = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         enemyRangeTile = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
@@ -126,7 +127,7 @@ public class TileFunctions : MonoBehaviour
         showAttackableTiles = false;
 
         borderTile = false;
-        occupied = false;
+        //occupied = false;
         visited = false;
         parent = null;
         distance = 0;
@@ -172,10 +173,12 @@ public class TileFunctions : MonoBehaviour
 
         if (DetectedObject.gameObject.tag != "Tile")
         {
+            occupied = true;
             detectedEnemy = DetectedObject;
         }
         else
         {
+            occupied = false;
             detectedEnemy = null;
         }
     }
@@ -196,16 +199,22 @@ public class TileFunctions : MonoBehaviour
             }*/
             if (tile != null && tile.walkable)
             {
+                //RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
                 RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
+                //Collider2D[] yeet = Physics2D.OverlapBoxAll(transform.position, new Vector3(0.5f, 0.5f), 1f);
 
-                if (hit.collider.tag == "Tile" || (tile == target))
+                //Debug.Log(gameObject.name + " : " + yeet.Length);
+                //Debug.Log(hit.collider.gameObject.name);
+
+                if (hit.collider.tag == "Tile" || tile == target)
                 {
                     adjacencyList.Add(tile);
                 }
                 else
                 {
-                    tile.occupied = true;
-                    adjacencyList.Add(tile);
+                        //Debug.Log(hit.collider.gameObject.name);
+                        tile.occupied = true;
+                        adjacencyList.Add(tile);
                 }
             }
         }
