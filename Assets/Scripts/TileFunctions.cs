@@ -14,9 +14,13 @@ public class TileFunctions : MonoBehaviour
     public bool showAttackableTiles = false;
     public bool occupied = false;
     public bool borderTile = false;
+
+    public bool visited = false;
+
+
     public bool enemyRange = false;
     public bool erVisited = false;
-    public bool visited = false;
+    public bool erBorderTile = false;
 
     public int counter = 0;
 
@@ -92,10 +96,19 @@ public class TileFunctions : MonoBehaviour
                 actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
             }
 
-/*            if (counter == 0)
+
+            if (enemyRange)
             {
-                enemyRangeTile.color = new Color32(0, 0, 0, 0);
-            }*/
+                enemyRangeTile.color = new Color32(200, 0, 0, 180);
+            }
+            else
+            {
+                enemyRangeTile.color = new Color32(0,0,0,0);
+            }
+            /*            if (counter == 0)
+                        {
+                            enemyRangeTile.color = new Color32(0, 0, 0, 0);
+                        }*/
         }
     }
 

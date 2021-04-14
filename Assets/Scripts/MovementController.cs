@@ -173,17 +173,20 @@ public class MovementController : MonoBehaviour
 
     public void ShowAttackRange(bool detectable, bool enemyRangeTile, bool counterPresent)
     {
-/*        float rng = ((float)move + (float)attackRange) * 2.4f;
-        Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);*/
+        float rng = ((float)move + (float)attackRange) * 2.4f;
+        Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);
 
-        TileFunctions[] tiles = FindObjectsOfType<TileFunctions>();
+        //TileFunctions[] tiles = FindObjectsOfType<TileFunctions>();
         Queue<TileFunctions> borderTiles = new Queue<TileFunctions>();
 
-        foreach (TileFunctions tile in tiles)
+        foreach (Collider2D tile in tilesInRange)
         {
-            if (tile.borderTile == true)
+            if (tile.gameObject.GetComponent<TileFunctions>())
             {
-                borderTiles.Enqueue(tile);
+                if (tile.gameObject.GetComponent<TileFunctions>().borderTile == true)
+                {
+                    borderTiles.Enqueue(tile.gameObject.GetComponent<TileFunctions>());
+                }
             }
         }
 
@@ -241,68 +244,6 @@ public class MovementController : MonoBehaviour
         }
     }
 
-
-    public void EnemyRangeMap(int range)
-    {
-        ComputeAdjacencyLists(null, false);
-
-        bool coo = false;
-        GetCurrentTile();
-
-        Queue<TileFunctions> process = new Queue<TileFunctions>();
-
-        process.Enqueue(currentTile);
-
-        currentTile.erVisited = true;
-
-        while (process.Count > 0)
-        {
-            //remove and return the tile
-            TileFunctions dequeuedTile = process.Dequeue();
-
-            selectableTiles.Add(dequeuedTile);
-
-            if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
-            {
-                //if unit is on border tile need to check both of its adjacency lists
-                foreach (TileFunctions tile in dequeuedTile.adjacencyList)
-                {
-                    //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
-                    if (!tile.erVisited)
-                    {
-                        if (tile.occupied)
-                        {
-                            dequeuedTile.borderTile = true;
-                        }
-                        if (!tile.occupied)
-                        {
-                            //TileFunctions ModifiedTile;
-
-
-                            //ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true, false);
-                            tile.enemyRange = true;
-                            tile.erVisited = true;
-                            tile.distance = 1 + dequeuedTile.distance;
-                            tile.enemiesUsingTile.Add(gameObject);
-
-
-                            //TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
-/*                            if (tile.distance == move)
-                            {
-                                tile.borderTile = true;
-                            }*/
-                            process.Enqueue(tile);
-                        }
-                    }
-                }
-            }
-        }
-        if (process.Count == 0)
-        {
-            //ShowAttackRange(detectable, enemyRangeTile, counterPresent);
-        }
-    }
-
     TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false, bool enemyRange = false, bool visited = true)
     {
         TileFunctions tile = t;
@@ -324,12 +265,6 @@ public class MovementController : MonoBehaviour
     public void FindSelectableTiles()
     {
         BFSTileMap(move, false, true);
-    }
-
-    public void FindEnemyRangeTiles()
-    {
-        EnemyRangeMap(move);
-        //BFSTileMap(move, false, false, false, true, true);
     }
 
 
@@ -374,48 +309,7 @@ public class MovementController : MonoBehaviour
         selectableTiles.Clear();
     }
 
-    public void TestRemoveSelect()
-    {
-        if (currentTile != null)
-        {
-            currentTile.current = false;
-            currentTile = null;
-        }
 
-        foreach (TileFunctions tile in selectableTiles)
-        {
-            tile.Reset();
-        }
-
-        /*        foreach (Tile tile in selectableAttackTiles)
-                {
-                    tile.Reset();
-                }*/
-
-        //selectableTiles.Clear();
-    }
-
-    public void WoogaBooga()
-    {
-        if (currentTile != null)
-        {
-            currentTile.current = false;
-            currentTile = null;
-        }
-
-        foreach (TileFunctions tile in selectableTiles)
-        {
-            //Debug.Log(tile);
-            tile.HideEnemyRange();
-            tile.enemiesUsingTile.Remove(gameObject);
-        }
-
-        /*        foreach (Tile tile in selectableAttackTiles)
-                {
-                    tile.Reset();
-                }*/
-        selectableTiles.Clear();
-    }
 
     //prevents InvalidOperationException error
     public IEnumerator ClearDetectedEnemies()

@@ -274,6 +274,95 @@ public class AiMove : MovementController
         turn = true;
     }
 
+    public void WoogaBooga()
+    {
+        if (currentTile != null)
+        {
+            currentTile.current = false;
+            currentTile = null;
+        }
+
+        foreach (TileFunctions tile in selectableTiles)
+        {
+            //Debug.Log(tile);
+            tile.HideEnemyRange();
+            tile.enemiesUsingTile.Remove(gameObject);
+        }
+
+        /*        foreach (Tile tile in selectableAttackTiles)
+                {
+                    tile.Reset();
+                }*/
+        selectableTiles.Clear();
+    }
+
+    public void EnemyRangeMap(int range)
+    {
+        ComputeAdjacencyLists(null, false);
+
+        bool coo = false;
+        GetCurrentTile();
+
+        Queue<TileFunctions> process = new Queue<TileFunctions>();
+
+        process.Enqueue(currentTile);
+
+        currentTile.erVisited = true;
+
+        while (process.Count > 0)
+        {
+            //remove and return the tile
+            TileFunctions dequeuedTile = process.Dequeue();
+
+            selectableTiles.Add(dequeuedTile);
+
+            if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
+            {
+                //if unit is on border tile need to check both of its adjacency lists
+                foreach (TileFunctions tile in dequeuedTile.adjacencyList)
+                {
+                    //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
+                    if (!tile.erVisited)
+                    {
+                        if (tile.occupied)
+                        {
+                            dequeuedTile.borderTile = true;
+                        }
+                        if (!tile.occupied)
+                        {
+                            //TileFunctions ModifiedTile;
+
+
+                            //ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true, false);
+                            tile.enemyRange = true;
+                            tile.erVisited = true;
+                            tile.distance = 1 + dequeuedTile.distance;
+                            tile.enemiesUsingTile.Add(gameObject);
+
+
+                            //TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
+                            if (tile.distance == move)
+                            {
+                                tile.erBorderTile = true;
+                            }
+                            process.Enqueue(tile);
+                        }
+                    }
+                }
+            }
+        }
+        if (process.Count == 0)
+        {
+            //ShowAttackRange(detectable, enemyRangeTile, counterPresent);
+        }
+    }
+
+    public void FindEnemyRangeTiles()
+    {
+        EnemyRangeMap(move);
+        //BFSTileMap(move, false, false, false, true, true);
+    }
+
     public IEnumerator DelayFindSelectableTiles()
     {
         //yield return new WaitForEndOfFrame();
