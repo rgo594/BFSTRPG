@@ -85,7 +85,7 @@ public class MovementController : MonoBehaviour
         }*/
     }
 
-    public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false, bool enemyRangeTile = false)
+    public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false, bool enemyRangeTile = false, bool counterPresent = false)
     {
         //Debug.Log(detectable);
         if (detectable && enemyDetected) { return; }
@@ -141,7 +141,11 @@ public class MovementController : MonoBehaviour
                     //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                     if (!tile.visited)
                     {
-                        if(tile.occupied)
+                        if (counterPresent)
+                        {
+                            tile.counter++;
+                        }
+                        if (tile.occupied)
                         {
                             dequeuedTile.borderTile = true;
                         }
@@ -164,11 +168,11 @@ public class MovementController : MonoBehaviour
         }
         if(process.Count == 0)
         {
-            ShowAttackRange(detectable, enemyRangeTile);
+            ShowAttackRange(detectable, enemyRangeTile, counterPresent);
         }
     }
 
-    public void ShowAttackRange(bool detectable, bool enemyRangeTile)
+    public void ShowAttackRange(bool detectable, bool enemyRangeTile, bool counterPresent)
     {
 /*        float rng = ((float)move + (float)attackRange) * 2.4f;
         Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);*/
@@ -198,6 +202,10 @@ public class MovementController : MonoBehaviour
                 }
                 if (!tile.visited)
                 {
+                    if (counterPresent)
+                    {
+                        tile.counter++;
+                    }
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
                         //TODO needs to be refactored
@@ -260,7 +268,7 @@ public class MovementController : MonoBehaviour
 
     public void FindEnemyRangeTiles()
     {
-        BFSTileMap(move, false, false, false, true);
+        BFSTileMap(move, false, false, false, true, true);
     }
 
 

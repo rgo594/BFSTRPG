@@ -37,6 +37,10 @@ public class TurnManager : MonoBehaviour
 
     public GameObject mappedTile;
 
+    public bool noneClicked = false;
+
+    public static bool EnemyRangePresent = false;
+
     //TODO deselected is a flag for clicking on an enemy unit so FindSelectableTiles is not triggered simultaneously between multiple units, might need further testing
     public static bool deselected = true;
 
@@ -53,10 +57,12 @@ public class TurnManager : MonoBehaviour
         aiTeamCount = teamPhaseOrder.Count;
         if (!currentCharacter)
         {
+            noneClicked = true;
             ToggleEndPhaseButton(true);
         }
         else
         {
+            noneClicked = false;
             ToggleEndPhaseButton(false);
         }
         //prevents being able to select characters during enemy turn
@@ -151,7 +157,7 @@ public class TurnManager : MonoBehaviour
                         if (hit.collider.gameObject.GetComponent<TileFunctions>().selectable) { return; }
                     }
                     InitDeselectCharacter(currentCharacter);
-                    if (hit.collider.gameObject.GetComponent<Enemy>())
+                    if (hit.collider.gameObject.GetComponent<Enemy>() && noneClicked)
                     {
                         StartCoroutine(SelectEnemy(hit.collider.gameObject));
                     }

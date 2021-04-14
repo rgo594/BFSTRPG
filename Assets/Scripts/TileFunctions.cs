@@ -16,6 +16,8 @@ public class TileFunctions : MonoBehaviour
     public bool borderTile = false;
     public bool enemyRange = false;
 
+    public int counter = 0;
+
     //public bool playerTurn = false;
 
     //public bool attackVisited = false;
@@ -86,6 +88,11 @@ public class TileFunctions : MonoBehaviour
                 //enemyRangeTile.color = new Color32(0, 0, 0, 0);
                 actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
             }
+
+/*            if (counter == 0)
+            {
+                enemyRangeTile.color = new Color32(0, 0, 0, 0);
+            }*/
         }
     }
 
@@ -113,40 +120,28 @@ public class TileFunctions : MonoBehaviour
 
     public void HideEnemyRange()
     {
-        adjacencyList.Clear();
-        unblockableAdjacencyList.Clear();
+        enemyRangeTile.color = new Color32(0, 0, 0, 0);
+        /*        adjacencyList.Clear();
+                unblockableAdjacencyList.Clear();
 
-        walkable = true;
-        current = false;
-        target = false;
-        selectable = false;
-        attackable = false;
-        showAttackableTiles = false;
+                walkable = true;
+                current = false;
+                target = false;
+                selectable = false;
+                attackable = false;
+                showAttackableTiles = false;
 
-        borderTile = false;
-        occupied = false;
-        visited = false;
-        parent = null;
-        distance = 0;
+                borderTile = false;
+                occupied = false;
+                visited = false;
+                parent = null;
+                distance = 0;
+                enemyRange = false;*/
+        counter--;
+        TurnManager.EnemyRangePresent = false;
         enemyRange = false;
-
-        f = g = h = 0;
+         Reset();
     }
-
-    /*    public void OtherReset()
-        {
-            adjacencyList.Clear();
-            unblockableAdjacencyList.Clear();
-
-            borderTile = false;
-            occupied = false;
-            visited = false;
-            parent = null;
-            distance = 0;
-            enemyRange = false;
-
-            f = g = h = 0;
-        }*/
 
     public void FindNeighbors(TileFunctions target, bool attackable)
     {
