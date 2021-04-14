@@ -15,6 +15,8 @@ public class TileFunctions : MonoBehaviour
     public bool occupied = false;
     public bool borderTile = false;
     public bool enemyRange = false;
+    public bool erVisited = false;
+    public bool visited = false;
 
     public int counter = 0;
 
@@ -28,7 +30,7 @@ public class TileFunctions : MonoBehaviour
     public List<TileFunctions> unblockableAdjacencyList = new List<TileFunctions>();
 
     //Needed BFS (Breadth First Search)
-    public bool visited = false;
+
     public TileFunctions parent = null;
     public int distance = 0;
 

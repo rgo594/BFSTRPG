@@ -242,16 +242,76 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false, bool enemyRange = false)
+
+    public void EnemyRangeMap(int range)
+    {
+        ComputeAdjacencyLists(null, false);
+
+        bool coo = false;
+        GetCurrentTile();
+
+        Queue<TileFunctions> process = new Queue<TileFunctions>();
+
+        process.Enqueue(currentTile);
+
+        currentTile.erVisited = true;
+
+        while (process.Count > 0)
+        {
+            //remove and return the tile
+            TileFunctions dequeuedTile = process.Dequeue();
+
+            selectableTiles.Add(dequeuedTile);
+
+            if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
+            {
+                //if unit is on border tile need to check both of its adjacency lists
+                foreach (TileFunctions tile in dequeuedTile.adjacencyList)
+                {
+                    //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
+                    if (!tile.erVisited)
+                    {
+                        if (tile.occupied)
+                        {
+                            dequeuedTile.borderTile = true;
+                        }
+                        if (!tile.occupied)
+                        {
+                            //TileFunctions ModifiedTile;
+
+
+                            //ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true, false);
+                            tile.enemyRange = true;
+                            tile.erVisited = true;
+                            tile.distance = 1 + dequeuedTile.distance;
+
+
+                            //TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
+                            if (tile.distance == move)
+                            {
+                                tile.borderTile = true;
+                            }
+                            process.Enqueue(tile);
+                        }
+                    }
+                }
+            }
+        }
+        if (process.Count == 0)
+        {
+            //ShowAttackRange(detectable, enemyRangeTile, counterPresent);
+        }
+    }
+
+    TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false, bool enemyRange = false, bool visited = true)
     {
         TileFunctions tile = t;
         tile.selectable = selectable;
         tile.attackable = attackable;
         tile.showAttackableTiles = showAttackableTiles;
-        tile.visited = true;
+        tile.visited = visited;
         tile.parent = dequeuedTile;
         tile.distance = distance;
-        tile.enemyRange = enemyRange;
 
         return tile;
     }
@@ -268,7 +328,8 @@ public class MovementController : MonoBehaviour
 
     public void FindEnemyRangeTiles()
     {
-        BFSTileMap(move, false, false, false, true, true);
+        EnemyRangeMap(move);
+        //BFSTileMap(move, false, false, false, true, true);
     }
 
 
