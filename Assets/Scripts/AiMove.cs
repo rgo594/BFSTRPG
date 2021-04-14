@@ -354,7 +354,7 @@ public class AiMove : MovementController
         if (process.Count == 0)
         {
             //ShowAttackRange(detectable, enemyRangeTile, counterPresent);
-            //ShowEnemyAttackRange();
+           ShowEnemyAttackRange();
         }
     }
 
@@ -413,7 +413,6 @@ public class AiMove : MovementController
                                 tile.erVisited = true;
                                 tile.distance = 1 + dequeuedTile.distance;
                                 tile.enemiesUsingTile.Add(gameObject);
-                                borderTiles.Enqueue(tile);
                                 borderTiles.Enqueue(tile);
                             }
                         //

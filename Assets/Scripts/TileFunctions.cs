@@ -151,6 +151,7 @@ public class TileFunctions : MonoBehaviour
         TurnManager.EnemyRangePresent = false;
         enemyRange = false;
         borderTile = false;
+        erBorderTile = false;
         parent = null;
         distance = 0;
         //Reset();
