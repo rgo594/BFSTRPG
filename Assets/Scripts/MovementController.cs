@@ -26,7 +26,6 @@ public class MovementController : MonoBehaviour
     List<TileFunctions> selectableAttackTiles = new List<TileFunctions>();
 
     GameObject[] tiles;
-    Collider2D[] testTiles;
 
     public TileFunctions actualTargetTile;
     public bool enemyDetected;
@@ -284,13 +283,14 @@ public class MovementController : MonoBehaviour
                             tile.enemyRange = true;
                             tile.erVisited = true;
                             tile.distance = 1 + dequeuedTile.distance;
+                            tile.enemiesUsingTile.Add(gameObject);
 
 
                             //TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
-                            if (tile.distance == move)
+/*                            if (tile.distance == move)
                             {
                                 tile.borderTile = true;
-                            }
+                            }*/
                             process.Enqueue(tile);
                         }
                     }
@@ -374,6 +374,27 @@ public class MovementController : MonoBehaviour
         selectableTiles.Clear();
     }
 
+    public void TestRemoveSelect()
+    {
+        if (currentTile != null)
+        {
+            currentTile.current = false;
+            currentTile = null;
+        }
+
+        foreach (TileFunctions tile in selectableTiles)
+        {
+            tile.Reset();
+        }
+
+        /*        foreach (Tile tile in selectableAttackTiles)
+                {
+                    tile.Reset();
+                }*/
+
+        //selectableTiles.Clear();
+    }
+
     public void WoogaBooga()
     {
         if (currentTile != null)
@@ -386,6 +407,7 @@ public class MovementController : MonoBehaviour
         {
             //Debug.Log(tile);
             tile.HideEnemyRange();
+            tile.enemiesUsingTile.Remove(gameObject);
         }
 
         /*        foreach (Tile tile in selectableAttackTiles)

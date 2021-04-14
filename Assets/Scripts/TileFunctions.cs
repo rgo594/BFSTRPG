@@ -20,6 +20,7 @@ public class TileFunctions : MonoBehaviour
 
     public int counter = 0;
 
+    public List<GameObject> enemiesUsingTile = new List<GameObject>();
     //public bool playerTurn = false;
 
     //public bool attackVisited = false;
@@ -118,31 +119,27 @@ public class TileFunctions : MonoBehaviour
         //enemyRange = false;
 
         f = g = h = 0;
+
+/*        erVisited = false;
+        enemyRange = false;*/
     }
 
     public void HideEnemyRange()
     {
+        //Debug.Log("called");
+        adjacencyList.Clear();
+        unblockableAdjacencyList.Clear();
+
         enemyRangeTile.color = new Color32(0, 0, 0, 0);
-        /*        adjacencyList.Clear();
-                unblockableAdjacencyList.Clear();
-
-                walkable = true;
-                current = false;
-                target = false;
-                selectable = false;
-                attackable = false;
-                showAttackableTiles = false;
-
-                borderTile = false;
-                occupied = false;
-                visited = false;
-                parent = null;
-                distance = 0;
-                enemyRange = false;*/
         counter--;
+        erVisited = false;
         TurnManager.EnemyRangePresent = false;
         enemyRange = false;
-         Reset();
+        borderTile = false;
+        parent = null;
+        distance = 0;
+        //Reset();
+        f = g = h = 0;
     }
 
     public void FindNeighbors(TileFunctions target, bool attackable)

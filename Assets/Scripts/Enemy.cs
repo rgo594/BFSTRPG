@@ -5,7 +5,7 @@ using System;
 
 public class Enemy : AiMove
 {
-    bool enemySelected = false;
+    public bool enemySelected = false;
 
 /*    private void OnMouseOver()
     {
@@ -40,7 +40,6 @@ public class Enemy : AiMove
             try
             {
                 //if (hit.collider.gameObject.transform.position != gameObject.transform.position) { return; }
-
                 if (hit.collider.gameObject.transform.position == gameObject.transform.position && !enemySelected)
                 {
                     enemySelected = true;
@@ -49,13 +48,18 @@ public class Enemy : AiMove
                 }
                 else if (hit.collider.gameObject.tag == "Enemy" && enemySelected)
                 {
-                    enemySelected = false;
+
                     //might need to change to its own function
                     WoogaBooga();
+                    enemySelected = false;
                 }
                 else
                 {
-                    RemoveSelectableTiles();
+                    //Debug.Log("happens");
+                    //enemySelected = false;
+                    //RemoveSelectableTiles();
+                    //TestRemoveSelect();
+                    //WoogaBooga();
                 }
             }
             //NullReference errors get triggered by ui buttons that are set to inactive
