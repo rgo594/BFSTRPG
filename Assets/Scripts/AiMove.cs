@@ -40,9 +40,12 @@ public class AiMove : MovementController
         currentTile.f = currentTile.h;
 
         //29:14 part 6: explains the three steps of A*
+
         while (openList.Count > 0)
         {
             TileFunctions lowest = FindLowestF(openList);
+/*            Debug.Log("lowest: " + lowest);
+            Debug.Log("parent: " + lowest.parent);*/
 
             closedList.Add(lowest);
 
@@ -55,41 +58,47 @@ public class AiMove : MovementController
 
             foreach (TileFunctions tile in lowest.adjacencyList)
             {
-
-                if (closedList.Contains(tile))
+                //Debug.Log(target);
+                if (tile == target || !tile.occupied)
                 {
-                    //do nothing, already processed
-                }
-                else if (openList.Contains(tile))
-                {
-                    //this case is triggered when multiple paths exist in the open list, and compares them to find the shortest path among them
-                    //determines which path is better if multiple exists
-                    float tempG = lowest.g + Vector3.Distance(tile.transform.position, lowest.transform.position);
-                    if (tempG < tile.g)
+                    if (closedList.Contains(tile))
                     {
+                        //do nothing, already processed
+                    }
+                    else if (openList.Contains(tile))
+                    {
+                        //this case is triggered when multiple paths exist in the open list, and compares them to find the shortest path among them
+                        //determines which path is better if multiple exists
+                        float tempG = lowest.g + Vector3.Distance(tile.transform.position, lowest.transform.position);
+
+                        if (tempG < tile.g)
+                        {
+                            tile.parent = lowest;
+
+                            tile.g = tempG;
+                            tile.f = tile.g + tile.h;
+                        }
+                    }
+                    else //if(!tile.occupied || target)
+                    {
+                        //completely unprocessed tile =
                         tile.parent = lowest;
 
-                        tile.g = tempG;
+
+                        //Debug.Log(tile.parent);
+                        //distance to the beginning
+                        //the g of the parent plus the distance to the parent
+                        tile.g = lowest.g + Vector3.Distance(tile.transform.position, lowest.transform.position);
+                        //estimated distance to the end
+                        tile.h = Vector3.Distance(tile.transform.position, target.transform.position);
                         tile.f = tile.g + tile.h;
+
+                        openList.Add(tile);
                     }
-                }
-                else
-                {
-                    //completely unprocessed tile =
-
-                    tile.parent = lowest;
-
-                    //distance to the beginning
-                    //the g of the parent plus the distance to the parent
-                    tile.g = lowest.g + Vector3.Distance(tile.transform.position, lowest.transform.position);
-                    //estimated distance to the end
-                    tile.h = Vector3.Distance(tile.transform.position, target.transform.position);
-                    tile.f = tile.g + tile.h;
-
-                    openList.Add(tile);
                 }
             }
         }
+
 
         //18:20 part 6
         //triggers when there is no path to the target
@@ -124,11 +133,11 @@ public class AiMove : MovementController
         Stack<TileFunctions> tempPath = new Stack<TileFunctions>();
 
         TileFunctions next = t.parent;
+
         while (next != null)
         {
             tempPath.Push(next);
             next = next.parent;
-
         }
 
         if (tempPath.Count <= move)
@@ -148,18 +157,25 @@ public class AiMove : MovementController
 
     protected TileFunctions FindLowestF(List<TileFunctions> list)
     {
-
         TileFunctions lowest = list[0];
 
+
+        //foreach (TileFunctions t in list)
         foreach (TileFunctions t in list)
         {
-            if (t.f < lowest.f)
+            //if (t.occupied) { continue;  }
+            //Debug.Log("nonl: " + t);
+            //if (!t.occupied && !lowest.occupied)
             {
-                lowest = t;
+                if (t.f < lowest.f)
+                {
+                    lowest = t;
+                }
             }
-        }
 
+        }
         list.Remove(lowest);
+       // Debug.Log(list.Count);
 
         //returns tile with shortest distance
         return lowest;
@@ -265,6 +281,7 @@ public class AiMove : MovementController
 
     public void CalculatePath()
     {
+        //Debug.Log(target.gameObject.name);
         TileFunctions targetTile = GetTargetTile(target);
         FindPath(targetTile);
     }
@@ -284,7 +301,6 @@ public class AiMove : MovementController
 
         foreach (TileFunctions tile in selectableTiles)
         {
-            //Debug.Log(tile);
             tile.HideEnemyRange();
             tile.enemiesUsingTile.Remove(gameObject);
         }
