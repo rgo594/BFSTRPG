@@ -25,8 +25,6 @@ public class PlayerMove : MovementController
     private void Awake()
     {
         healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
-        //preventClicking = GameObject.Find("PreventClicking");
-
         healthBar.maxValue = healthPoints;
         healthBar.value = healthPoints;
     }
@@ -35,11 +33,6 @@ public class PlayerMove : MovementController
     {
         Init();
         unitMenuController = GameObject.Find("UnitMenuController");
-/*        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
-        //preventClicking = GameObject.Find("PreventClicking");
-
-        healthBar.maxValue = healthPoints;
-        healthBar.value = healthPoints;*/
     }
 
     public void Move()

@@ -11,7 +11,7 @@ public class AiMove : MovementController
     Slider healthBar;
     public GameObject targetedPlayer;
     public bool attacking = false;
-    public List<TileFunctions> selectableAttackTiles = new List<TileFunctions>();
+    public List<TileFunctions> EnemyRangeTiles = new List<TileFunctions>();
     public Vector3 originalPosition;
 
     private void Awake()
@@ -160,14 +160,8 @@ public class AiMove : MovementController
     protected TileFunctions FindLowestF(List<TileFunctions> list)
     {
         TileFunctions lowest = list[0];
-
-
-        //foreach (TileFunctions t in list)
         foreach (TileFunctions t in list)
         {
-            //if (t.occupied) { continue;  }
-            //Debug.Log("nonl: " + t);
-            //if (!t.occupied && !lowest.occupied)
             {
                 if (t.f < lowest.f)
                 {
@@ -177,7 +171,6 @@ public class AiMove : MovementController
 
         }
         list.Remove(lowest);
-       // Debug.Log(list.Count);
 
         //returns tile with shortest distance
         return lowest;
@@ -283,17 +276,17 @@ public class AiMove : MovementController
 
     public void CalculatePath()
     {
-        //Debug.Log(target.gameObject.name);
         TileFunctions targetTile = GetTargetTile(target);
         FindPath(targetTile);
     }
 
     public void StartTurn()
     {
+        //TODO TurnManager.actionCompleted = false;
         turn = true;
     }
 
-    public void WoogaBooga()
+    public void RemoveEnemyRangeTiles()
     {
         if (currentTile != null)
         {
@@ -301,21 +294,16 @@ public class AiMove : MovementController
             currentTile = null;
         }
 
-        //foreach (TileFunctions tile in selectableTiles)
-        foreach (TileFunctions tile in selectableAttackTiles)
+        foreach (TileFunctions tile in EnemyRangeTiles)
         {
-            tile.HideEnemyRange();
-            tile.enemiesUsingTile.Remove(gameObject);
+            tile.HideEnemyRangeTiles();
+            //tile.enemiesUsingTile.Remove(gameObject);
         }
 
-        /*        foreach (Tile tile in selectableAttackTiles)
-                {
-                    tile.Reset();
-                }*/
-        selectableAttackTiles.Clear();
+        EnemyRangeTiles.Clear();
     }
 
-    public void EnemyRangeMap(int range)
+    public void ShowEnemyRangeTiles(int range)
     {
         ComputeAdjacencyLists(null, false);
 
@@ -333,7 +321,7 @@ public class AiMove : MovementController
             //remove and return the tile
             TileFunctions dequeuedTile = process.Dequeue();
 
-            selectableAttackTiles.Add(dequeuedTile);
+            EnemyRangeTiles.Add(dequeuedTile);
 
             if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
             {
@@ -353,10 +341,10 @@ public class AiMove : MovementController
 
 
                             //ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true, false);
-                            tile.enemyRange = true;
+                            tile.colorEnemyRange = true;
                             tile.erVisited = true;
                             tile.distance = 1 + dequeuedTile.distance;
-                            tile.enemiesUsingTile.Add(gameObject);
+                            //tile.enemiesUsingTile.Add(gameObject);
 
 
                             //TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
@@ -373,16 +361,15 @@ public class AiMove : MovementController
         if (process.Count == 0)
         {
             //ShowAttackRange(detectable, enemyRangeTile, counterPresent);
-           ShowEnemyAttackRange();
+           ShowEnemyAttackRangeTiles();
         }
     }
 
-    public void ShowEnemyAttackRange()
+    public void ShowEnemyAttackRangeTiles()
     {
         float rng = ((float)move + (float)attackRange) * 2.4f;
         Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);
 
-        //TileFunctions[] tiles = FindObjectsOfType<TileFunctions>();
         Queue<TileFunctions> borderTiles = new Queue<TileFunctions>();
 
         foreach (Collider2D tile in tilesInRange)
@@ -399,55 +386,30 @@ public class AiMove : MovementController
         while (borderTiles.Count > 0)
         {
             TileFunctions dequeuedTile = borderTiles.Dequeue();
-            selectableAttackTiles.Add(dequeuedTile);
+            EnemyRangeTiles.Add(dequeuedTile);
 
             foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {
-/*                if (tile.detectedEnemy && detectable)
-                {
-                    enemyDetected = true;
-                    tile.showAttackableTiles = true;
-                }*/
                 if (!tile.erVisited)
                 {
                     if (dequeuedTile.erBorderTile || dequeuedTile.distance < attackRange)
                     {
-                        //TODO needs to be refactored
                             if (dequeuedTile.erBorderTile == true)
                             {
-                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, false, false, false, true);
-                 
-
-                                tile.enemyRange = true;
+                                tile.colorEnemyRange = true;
                                 tile.erVisited = true;
                                 tile.distance = 1;
-                                tile.enemiesUsingTile.Add(gameObject);
+                                //tile.enemiesUsingTile.Add(gameObject);
                                 borderTiles.Enqueue(tile);
                             }
                             else
                             {
-                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true);
-
-                                tile.enemyRange = true;
+                                tile.colorEnemyRange = true;
                                 tile.erVisited = true;
                                 tile.distance = 1 + dequeuedTile.distance;
-                                tile.enemiesUsingTile.Add(gameObject);
+                                //tile.enemiesUsingTile.Add(gameObject);
                                 borderTiles.Enqueue(tile);
                             }
-                        //
-   /*                     else
-                        {
-                            if (dequeuedTile.erBorderTile == true)
-                            {
-                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
-                                borderTiles.Enqueue(ModifiedTile);
-                            }
-                            else
-                            {
-                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
-                                borderTiles.Enqueue(ModifiedTile);
-                            }
-                        }*/
                     }
                 }
             }
@@ -456,21 +418,19 @@ public class AiMove : MovementController
 
     public void FindEnemyRangeTiles()
     {
-        EnemyRangeMap(move);
+        ShowEnemyRangeTiles(move);
         //BFSTileMap(move, false, false, false, true, true);
     }
 
-    public IEnumerator DelayFindSelectableTiles()
+    public IEnumerator DelayShowEnemyRangeTiles()
     {
-        //yield return new WaitForEndOfFrame();
         yield return new WaitUntil(() => TurnManager.deselected);
-        //FindSelectableTiles();
         FindEnemyRangeTiles();
     }
 
     public void EndTurn()
     {
-        //originalPosition = gameObject.transform.position;
+        //TODO TurnManager.actionCompleted = true;
         ResetEnemyAddedTiles();
         attacking = false;
         targetedPlayer = null;

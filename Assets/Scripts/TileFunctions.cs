@@ -4,35 +4,29 @@ using UnityEngine;
 
 public class TileFunctions : MonoBehaviour
 {
-    public bool walkable = true;
-    public bool current = false;
     public bool target = false;
-    public bool selectable = false;
-    public bool moving = false;
-    public bool attackable = false;
-    public bool enemyAdded = false;
-    public bool showAttackableTiles = false;
+    public bool current = false;
     public bool occupied = false;
     public bool borderTile = false;
+    public bool enemyAdded = false;
+    public bool walkable = true;
+    public bool selectable = false;
+    public bool attackable = false;
+    public bool colorAttackable = false;
+
 
     public bool visited = false;
 
-
-    public bool enemyRange = false;
+    [Header("Enemy Range Tile Flags")]
+    public bool colorEnemyRange = false;
     public bool erVisited = false;
     public bool erBorderTile = false;
 
-    public int counter = 0;
-
-    public List<GameObject> enemiesUsingTile = new List<GameObject>();
-    //public bool playerTurn = false;
-
-    //public bool attackVisited = false;
+    //public List<GameObject> enemiesUsingTile = new List<GameObject>();
 
     public Collider2D detectedEnemy = null;
 
     public List<TileFunctions> adjacencyList = new List<TileFunctions>();
-    public List<TileFunctions> unblockableAdjacencyList = new List<TileFunctions>();
 
     //Needed BFS (Breadth First Search)
 
@@ -53,7 +47,6 @@ public class TileFunctions : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        //Debug.Log("name: " + gameObject.name + " position: " + gameObject.transform.position);
         actionColor = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         enemyRangeTile = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
@@ -78,7 +71,7 @@ public class TileFunctions : MonoBehaviour
             }
             else if (attackable)
             {
-                if (TurnManager.attackStep || showAttackableTiles)
+                if (TurnManager.attackStep || colorAttackable)
                 {
                     actionColor.color = new Color32(200, 0, 0, 180);
                 }
@@ -87,18 +80,17 @@ public class TileFunctions : MonoBehaviour
                     actionColor.color = new Color32(0, 0, 0, 0);
                 }
             }
-            else if (enemyRange)
+            else if (colorEnemyRange)
             {
                 enemyRangeTile.color = new Color32(200, 0, 0, 180);
             }
             else
             {
-                //enemyRangeTile.color = new Color32(0, 0, 0, 0);
                 actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
             }
 
 
-            if (enemyRange)
+            if (colorEnemyRange)
             {
                 enemyRangeTile.color = new Color32(200, 0, 0, 180);
             }
@@ -106,10 +98,6 @@ public class TileFunctions : MonoBehaviour
             {
                 enemyRangeTile.color = new Color32(0,0,0,0);
             }
-            /*            if (counter == 0)
-                        {
-                            enemyRangeTile.color = new Color32(0, 0, 0, 0);
-                        }*/
         }
     }
 
@@ -117,44 +105,34 @@ public class TileFunctions : MonoBehaviour
     {
         actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
         adjacencyList.Clear();
-        unblockableAdjacencyList.Clear();
-
         walkable = true;
         current = false;
         target = false;
         selectable = false;
         attackable = false;
-        showAttackableTiles = false;
+        colorAttackable = false;
 
         borderTile = false;
-        //occupied = false;
         visited = false;
         parent = null;
         distance = 0;
-        //enemyRange = false;
 
         f = g = h = 0;
-
-/*        erVisited = false;
-        enemyRange = false;*/
     }
 
-    public void HideEnemyRange()
+    public void HideEnemyRangeTiles()
     {
-        //Debug.Log("called");
         adjacencyList.Clear();
-        unblockableAdjacencyList.Clear();
 
         enemyRangeTile.color = new Color32(0, 0, 0, 0);
-        counter--;
         erVisited = false;
         TurnManager.EnemyRangePresent = false;
-        enemyRange = false;
+        colorEnemyRange = false;
         borderTile = false;
         erBorderTile = false;
         parent = null;
         distance = 0;
-        //Reset();
+
         f = g = h = 0;
     }
 
@@ -194,18 +172,9 @@ public class TileFunctions : MonoBehaviour
         {
             TileFunctions tile = item.GetComponent<TileFunctions>();
 
-/*            if(tile != null && attackable)
-            {
-                unblockableAdjacencyList.Add(tile);
-            }*/
             if (tile != null && tile.walkable)
             {
-                //RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
                 RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, new Vector3(0, 0, -1), 1);
-                //Collider2D[] yeet = Physics2D.OverlapBoxAll(transform.position, new Vector3(0.5f, 0.5f), 1f);
-
-                //Debug.Log(gameObject.name + " : " + yeet.Length);
-                //Debug.Log(hit.collider.gameObject.name);
 
                 if (hit.collider.tag == "Tile" || tile == target)
                 {
@@ -213,7 +182,6 @@ public class TileFunctions : MonoBehaviour
                 }
                 else
                 {
-                        //Debug.Log(hit.collider.gameObject.name);
                         tile.occupied = true;
                         adjacencyList.Add(tile);
                 }

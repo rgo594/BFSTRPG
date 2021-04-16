@@ -12,7 +12,6 @@ public class MovementController : MonoBehaviour
     public int attackRange = 2;
 
     public TileFunctions currentTile;
-    //public List<GameObject> detectedEnemies = new List<GameObject>();
     public List<TileFunctions> detectedEnemies = new List<TileFunctions>();
 
     public Stack<TileFunctions> path = new Stack<TileFunctions>();
@@ -29,7 +28,6 @@ public class MovementController : MonoBehaviour
     public TileFunctions actualTargetTile;
     public bool enemyDetected;
     public bool ree = false;
-    public Player[] playerCharacters;
 
     public bool showRange = false;
     protected void Init()
@@ -37,8 +35,6 @@ public class MovementController : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
-
-        playerCharacters = FindObjectsOfType<Player>();
     }
 
     public void GetCurrentTile()
@@ -75,15 +71,9 @@ public class MovementController : MonoBehaviour
             if (tile.gameObject.GetComponent<TileFunctions>())
             {
                 TileFunctions startTile = tile.gameObject.GetComponent<TileFunctions>();
-                //Debug.Log(startTile);
                 startTile.FindNeighbors(target, attackable);
             }
         }
-      /*foreach (GameObject tile in tiles)
-        {
-            TileFunctions startTile = tile.GetComponent<TileFunctions>();
-            startTile.FindNeighbors(target, attackable);
-        }*/
     }
 
     public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false, bool enemyRangeTile = false, bool counterPresent = false)
@@ -92,8 +82,6 @@ public class MovementController : MonoBehaviour
         if (detectable && enemyDetected) { return; }
 
         ComputeAdjacencyLists(null, attackable);
-
-        bool coo = false;
         GetCurrentTile();
 
         Queue<TileFunctions> process = new Queue<TileFunctions>();
@@ -109,18 +97,7 @@ public class MovementController : MonoBehaviour
 
             selectableTiles.Add(dequeuedTile);
 
-/*            foreach (TileFunctions tile in dequeuedTile.adjacencyList)
-            {
-                if (tile.occupied && dequeuedTile.distance == move - 1)
-                {
-                    //Debug.Log(dequeuedTile);
-                    tile.distance = -1;
-                    tile.attackable = true;
-                    tile.showAttackableTiles = true;
-                }
-            }*/
-
-            if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
+            if (dequeuedTile.distance < range && !dequeuedTile.borderTile)
                 {
                 //if unit is on border tile need to check both of its adjacency lists
                 foreach (TileFunctions tile in dequeuedTile.adjacencyList)
@@ -131,7 +108,7 @@ public class MovementController : MonoBehaviour
                         if (detectable)
                         {
                             enemyDetected = true;
-                            tile.showAttackableTiles = true;
+                            tile.colorAttackable = true;
                         }
                         if (attackable)
                         {
@@ -142,10 +119,6 @@ public class MovementController : MonoBehaviour
                     //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                     if (!tile.visited)
                     {
-                        if (counterPresent)
-                        {
-                            tile.counter++;
-                        }
                         if (tile.occupied)
                         {
                             dequeuedTile.borderTile = true;
@@ -178,7 +151,6 @@ public class MovementController : MonoBehaviour
         float rng = ((float)move + (float)attackRange) * 2.4f;
         Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);
 
-        //TileFunctions[] tiles = FindObjectsOfType<TileFunctions>();
         Queue<TileFunctions> borderTiles = new Queue<TileFunctions>();
 
         foreach (Collider2D tile in tilesInRange)
@@ -202,14 +174,10 @@ public class MovementController : MonoBehaviour
                 if (tile.detectedEnemy && detectable)
                 {
                     enemyDetected = true;
-                    tile.showAttackableTiles = true;
+                    tile.colorAttackable = true;
                 }
                 if (!tile.visited)
                 {
-                    if (counterPresent)
-                    {
-                        tile.counter++;
-                    }
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
                         //TODO needs to be refactored
@@ -226,7 +194,6 @@ public class MovementController : MonoBehaviour
                                 borderTiles.Enqueue(ModifiedTile);
                             }
                         }
-                        //
                         else
                         {
                             if (dequeuedTile.borderTile == true)
@@ -251,7 +218,7 @@ public class MovementController : MonoBehaviour
         TileFunctions tile = t;
         tile.selectable = selectable;
         tile.attackable = attackable;
-        tile.showAttackableTiles = showAttackableTiles;
+        tile.colorAttackable = showAttackableTiles;
         tile.visited = visited;
         tile.parent = dequeuedTile;
         tile.distance = distance;
@@ -272,7 +239,6 @@ public class MovementController : MonoBehaviour
 
     public void FindEnemiesInRange()
     {
-        //BFSTileMap(move + attackRange, true);
         BFSTileMap(move, true);
     }
 
@@ -303,15 +269,8 @@ public class MovementController : MonoBehaviour
             tile.Reset();
         }
 
-/*        foreach (Tile tile in selectableAttackTiles)
-        {
-            tile.Reset();
-        }*/
-
         selectableTiles.Clear();
     }
-
-
 
     //prevents InvalidOperationException error
     public IEnumerator ClearDetectedEnemies()
@@ -328,5 +287,3 @@ public class MovementController : MonoBehaviour
         }
     }
 }
-
-//test commit

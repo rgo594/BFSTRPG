@@ -34,14 +34,6 @@ public class Player : PlayerMove
         {
             return;
         }
-/*        if(moving)
-        {
-            preventClicking.transform.GetChild(0).gameObject.SetActive(true);
-        }
-        else
-        {
-            preventClicking.transform.GetChild(0).gameObject.SetActive(false);
-        }*/
         if(turn)
         {
             GetComponentInChildren<SpriteRenderer>().color = Color.white;
@@ -64,7 +56,6 @@ public class Player : PlayerMove
         }
         if (unitMenuPresent && !attacking)
         {
-            //BFSTileMap(attackRange, false, false, true);
             FindAttackAbleTiles();
         }
         //if there are enemies in range show attack button

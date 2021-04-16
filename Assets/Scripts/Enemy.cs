@@ -7,21 +7,6 @@ using System.Linq;
 public class Enemy : AiMove
 {
     public bool enemySelected = false;
-    bool playerActionComplreted = false;
-
-    //List<Player> playerCharacters = new List<Player>;
-   // Player[] playerCharacters;
-/*    private void OnMouseOver()
-    {
-        if(TurnManager.enemyPhase || enemySelected) { return; }
-        ChangeSpriteColor(Color.red);
-    }
-
-    private void OnMouseExit()
-    {
-        if (TurnManager.enemyPhase) { return; }
-        ChangeSpriteColor(Color.white);
-    }*/
 
     void ChangeSpriteColor(Color color)
     {
@@ -30,13 +15,13 @@ public class Enemy : AiMove
 
     void Woot()
     {
-        WoogaBooga();
+        RemoveEnemyRangeTiles();
         FindEnemyRangeTiles();
     }
 
     void Update()
     {
-        if (playerCharacters.Any(character => character.actionCompleted) && enemySelected && TurnManager.actionCompleted)
+        if (enemySelected && TurnManager.actionCompleted)
         {
             Woot();
         }
@@ -58,35 +43,24 @@ public class Enemy : AiMove
                 {
                     enemySelected = true;
                     ChangeSpriteColor(Color.white);
-                    StartCoroutine(DelayFindSelectableTiles());
+                    StartCoroutine(DelayShowEnemyRangeTiles());
                 }
                 else if (hit.collider.gameObject.tag == "Enemy" && enemySelected)
                 {
 
                     //might need to change to its own function
-                    WoogaBooga();
+                    RemoveEnemyRangeTiles();
                     enemySelected = false;
-                }
-                else
-                {
-                    //Debug.Log("happens");
-                    //enemySelected = false;
-                    //RemoveSelectableTiles();
-                    //TestRemoveSelect();
-                    //WoogaBooga();
                 }
             }
             //NullReference errors get triggered by ui buttons that are set to inactive
             catch (NullReferenceException) { }
         }
 
-        //if(gameObject.transform.position)
-
         if (!turn)
         {
             return;
         }
-        //Debug.Log(originalPosition);
         FindEnemiesInRange();
         if (!enemyDetected)
         {
@@ -97,8 +71,8 @@ public class Enemy : AiMove
         {
             if (enemySelected)
             {
-                WoogaBooga();
-                StartCoroutine(DelayFindSelectableTiles());
+                RemoveEnemyRangeTiles();
+                StartCoroutine(DelayShowEnemyRangeTiles());
             }
             FindNearestTarget();
             CalculatePath();
