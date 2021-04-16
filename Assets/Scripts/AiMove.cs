@@ -12,6 +12,7 @@ public class AiMove : MovementController
     public GameObject targetedPlayer;
     public bool attacking = false;
     public List<TileFunctions> selectableAttackTiles = new List<TileFunctions>();
+    public Vector3 originalPosition;
 
     private void Awake()
     {
@@ -469,6 +470,7 @@ public class AiMove : MovementController
 
     public void EndTurn()
     {
+        //originalPosition = gameObject.transform.position;
         ResetEnemyAddedTiles();
         attacking = false;
         targetedPlayer = null;

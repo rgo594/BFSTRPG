@@ -29,6 +29,7 @@ public class MovementController : MonoBehaviour
     public TileFunctions actualTargetTile;
     public bool enemyDetected;
     public bool ree = false;
+    public Player[] playerCharacters;
 
     public bool showRange = false;
     protected void Init()
@@ -36,6 +37,8 @@ public class MovementController : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");
+
+        playerCharacters = FindObjectsOfType<Player>();
     }
 
     public void GetCurrentTile()

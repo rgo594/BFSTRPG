@@ -44,6 +44,8 @@ public class TurnManager : MonoBehaviour
     //TODO deselected is a flag for clicking on an enemy unit so FindSelectableTiles is not triggered simultaneously between multiple units, might need further testing
     public static bool deselected = true;
 
+    public static bool actionCompleted = false;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");

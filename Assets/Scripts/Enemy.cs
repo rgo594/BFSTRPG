@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class Enemy : AiMove
 {
     public bool enemySelected = false;
+    bool playerActionComplreted = false;
 
+    //List<Player> playerCharacters = new List<Player>;
+   // Player[] playerCharacters;
 /*    private void OnMouseOver()
     {
         if(TurnManager.enemyPhase || enemySelected) { return; }
@@ -24,9 +28,18 @@ public class Enemy : AiMove
         GetComponentInChildren<SpriteRenderer>().color = color;
     }
 
+    void Woot()
+    {
+        WoogaBooga();
+        FindEnemyRangeTiles();
+    }
+
     void Update()
     {
-        Debug.Log(enemySelected + " " + selectableTiles.Count);
+        if (playerCharacters.Any(character => character.actionCompleted) && enemySelected && TurnManager.actionCompleted)
+        {
+            Woot();
+        }
         if (healthPoints <= 0)
         {
             //not sure if it works with multiple ai teams
@@ -67,11 +80,13 @@ public class Enemy : AiMove
             catch (NullReferenceException) { }
         }
 
+        //if(gameObject.transform.position)
 
         if (!turn)
         {
             return;
         }
+        //Debug.Log(originalPosition);
         FindEnemiesInRange();
         if (!enemyDetected)
         {
@@ -80,6 +95,11 @@ public class Enemy : AiMove
         }
         if (!moving)
         {
+            if (enemySelected)
+            {
+                WoogaBooga();
+                StartCoroutine(DelayFindSelectableTiles());
+            }
             FindNearestTarget();
             CalculatePath();
             FindSelectableTiles();

@@ -116,6 +116,7 @@ public class PlayerMove : MovementController
 
     public void StartTurn()
     {
+        TurnManager.actionCompleted = false;
         TurnManager.attackStep = false;
         turn = true;
         originalPosition = gameObject.transform.position;
@@ -125,6 +126,7 @@ public class PlayerMove : MovementController
 
     public void EndTurn()
     {
+        TurnManager.actionCompleted = true;
         currentTile = null;
         ResetEnemyAddedTiles();
         targetedEnemy = null;
