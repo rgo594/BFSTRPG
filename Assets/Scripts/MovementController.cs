@@ -23,7 +23,6 @@ public class MovementController : MonoBehaviour
     public TurnManager turnManager;
 
     public List<TileFunctions> selectableTiles = new List<TileFunctions>();
-    List<TileFunctions> selectableAttackTiles = new List<TileFunctions>();
 
     GameObject[] tiles;
 

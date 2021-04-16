@@ -11,6 +11,7 @@ public class AiMove : MovementController
     Slider healthBar;
     public GameObject targetedPlayer;
     public bool attacking = false;
+    public List<TileFunctions> selectableAttackTiles = new List<TileFunctions>();
 
     private void Awake()
     {
@@ -299,7 +300,8 @@ public class AiMove : MovementController
             currentTile = null;
         }
 
-        foreach (TileFunctions tile in selectableTiles)
+        //foreach (TileFunctions tile in selectableTiles)
+        foreach (TileFunctions tile in selectableAttackTiles)
         {
             tile.HideEnemyRange();
             tile.enemiesUsingTile.Remove(gameObject);
@@ -309,7 +311,7 @@ public class AiMove : MovementController
                 {
                     tile.Reset();
                 }*/
-        selectableTiles.Clear();
+        selectableAttackTiles.Clear();
     }
 
     public void EnemyRangeMap(int range)
@@ -330,7 +332,7 @@ public class AiMove : MovementController
             //remove and return the tile
             TileFunctions dequeuedTile = process.Dequeue();
 
-            selectableTiles.Add(dequeuedTile);
+            selectableAttackTiles.Add(dequeuedTile);
 
             if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
             {
@@ -396,7 +398,7 @@ public class AiMove : MovementController
         while (borderTiles.Count > 0)
         {
             TileFunctions dequeuedTile = borderTiles.Dequeue();
-            selectableTiles.Add(dequeuedTile);
+            selectableAttackTiles.Add(dequeuedTile);
 
             foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {

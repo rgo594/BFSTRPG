@@ -26,6 +26,7 @@ public class Enemy : AiMove
 
     void Update()
     {
+        Debug.Log(enemySelected + " " + selectableTiles.Count);
         if (healthPoints <= 0)
         {
             //not sure if it works with multiple ai teams
