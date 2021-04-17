@@ -467,7 +467,7 @@ PrefabInstance:
     - target: {fileID: 4923323704391760924, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4923323704391760924, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
@@ -38341,7 +38341,7 @@ PrefabInstance:
     - target: {fileID: 4923323704391760924, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4923323704391760924, guid: 44aa7d2eeda7942468618c930d5bf242,
         type: 3}
@@ -77469,7 +77469,7 @@ GameObject:
   - component: {fileID: 2059749975}
   - component: {fileID: 2059749974}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TestBlocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

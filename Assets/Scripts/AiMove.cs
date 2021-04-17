@@ -46,8 +46,6 @@ public class AiMove : MovementController
         while (openList.Count > 0)
         {
             TileFunctions lowest = FindLowestF(openList);
-/*            Debug.Log("lowest: " + lowest);
-            Debug.Log("parent: " + lowest.parent);*/
 
             closedList.Add(lowest);
 
@@ -57,10 +55,8 @@ public class AiMove : MovementController
                 MoveToTile(actualTargetTile);
                 return;
             }
-
             foreach (TileFunctions tile in lowest.adjacencyList)
             {
-                //Debug.Log(target);
                 if (tile == target || !tile.occupied)
                 {
                     if (closedList.Contains(tile))
@@ -81,13 +77,10 @@ public class AiMove : MovementController
                             tile.f = tile.g + tile.h;
                         }
                     }
-                    else //if(!tile.occupied || target)
+                    else
                     {
-                        //completely unprocessed tile =
                         tile.parent = lowest;
 
-
-                        //Debug.Log(tile.parent);
                         //distance to the beginning
                         //the g of the parent plus the distance to the parent
                         tile.g = lowest.g + Vector3.Distance(tile.transform.position, lowest.transform.position);
@@ -162,11 +155,9 @@ public class AiMove : MovementController
         TileFunctions lowest = list[0];
         foreach (TileFunctions t in list)
         {
+            if (t.f < lowest.f)
             {
-                if (t.f < lowest.f)
-                {
-                    lowest = t;
-                }
+                lowest = t;
             }
 
         }
@@ -242,7 +233,7 @@ public class AiMove : MovementController
         RemoveSelectableTiles();
         moving = false;
 
-        targetedPlayer = detectedEnemies[0].detectedEnemy.gameObject;
+        targetedPlayer = detectedEnemies[0].detectedCharacter.gameObject;
 
         Vector3 playerPos = targetedPlayer.transform.position;
         Vector3 enemyPos = gameObject.transform.position;
@@ -307,7 +298,6 @@ public class AiMove : MovementController
     {
         ComputeAdjacencyLists(null, false);
 
-        bool coo = false;
         GetCurrentTile();
 
         Queue<TileFunctions> process = new Queue<TileFunctions>();
@@ -323,7 +313,7 @@ public class AiMove : MovementController
 
             EnemyRangeTiles.Add(dequeuedTile);
 
-            if (dequeuedTile.distance < range && !coo && !dequeuedTile.borderTile)
+            if (dequeuedTile.distance < range && !dequeuedTile.borderTile)
             {
                 //if unit is on border tile need to check both of its adjacency lists
                 foreach (TileFunctions tile in dequeuedTile.adjacencyList)
@@ -394,22 +384,22 @@ public class AiMove : MovementController
                 {
                     if (dequeuedTile.erBorderTile || dequeuedTile.distance < attackRange)
                     {
-                            if (dequeuedTile.erBorderTile == true)
-                            {
-                                tile.colorEnemyRange = true;
-                                tile.erVisited = true;
-                                tile.distance = 1;
-                                //tile.enemiesUsingTile.Add(gameObject);
-                                borderTiles.Enqueue(tile);
-                            }
-                            else
-                            {
-                                tile.colorEnemyRange = true;
-                                tile.erVisited = true;
-                                tile.distance = 1 + dequeuedTile.distance;
-                                //tile.enemiesUsingTile.Add(gameObject);
-                                borderTiles.Enqueue(tile);
-                            }
+                        if (dequeuedTile.erBorderTile == true)
+                        {
+                            tile.colorEnemyRange = true;
+                            tile.erVisited = true;
+                            tile.distance = 1;
+                            //tile.enemiesUsingTile.Add(gameObject);
+                            borderTiles.Enqueue(tile);
+                        }
+                        else
+                        {
+                            tile.colorEnemyRange = true;
+                            tile.erVisited = true;
+                            tile.distance = 1 + dequeuedTile.distance;
+                            //tile.enemiesUsingTile.Add(gameObject);
+                            borderTiles.Enqueue(tile);
+                        }
                     }
                 }
             }
@@ -419,7 +409,6 @@ public class AiMove : MovementController
     public void FindEnemyRangeTiles()
     {
         ShowEnemyRangeTiles(move);
-        //BFSTileMap(move, false, false, false, true, true);
     }
 
     public IEnumerator DelayShowEnemyRangeTiles()

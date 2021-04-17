@@ -61,7 +61,7 @@ public class Enemy : AiMove
         {
             return;
         }
-        FindEnemiesInRange();
+        FindPlayersInRange();
         if (!enemyDetected)
         {
             EndTurn();

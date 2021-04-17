@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
     public static bool attackStep = false;
     public GameObject unitMenu;
 
-    public static bool playerTurn = true;
+    public static bool playerPhase = true;
     public static bool enemyPhase;
 
     private bool displayEnemyPhaseText = true;
@@ -237,7 +237,7 @@ public class TurnManager : MonoBehaviour
 
     public static void StartNpcTurn()
     {
-        playerTurn = false;
+        playerPhase = false;
         if (unitTurnOrder.Count > 0)
         {
             unitTurnOrder.Peek().StartTurn();
@@ -268,7 +268,7 @@ public class TurnManager : MonoBehaviour
                 PhaseTextAnimation.PhaseTextPresent = true;
                 phaseController.transform.GetChild(0).GetComponent<Animator>().SetTrigger("PlayerPhase");
 
-                playerTurn = true;
+                playerPhase = true;
                 turnManager.playerCharacterTurnCounter = 0;
                 turnManager.aiPhaseCounter = 0;
             }

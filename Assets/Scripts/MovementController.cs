@@ -27,9 +27,7 @@ public class MovementController : MonoBehaviour
 
     public TileFunctions actualTargetTile;
     public bool enemyDetected;
-    public bool ree = false;
 
-    public bool showRange = false;
     protected void Init()
     {
         turnManager = FindObjectOfType<TurnManager>();
@@ -76,7 +74,7 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false, bool enemyRangeTile = false, bool counterPresent = false)
+    public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false, bool enemyRangeTile = false)
     {
         //Debug.Log(detectable);
         if (detectable && enemyDetected) { return; }
@@ -103,7 +101,7 @@ public class MovementController : MonoBehaviour
                 foreach (TileFunctions tile in dequeuedTile.adjacencyList)
                 {
 
-                    if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded && !tile.visited)
+                    if (tile.detectedCharacter != null && tile.detectedCharacter.tag != gameObject.tag && !tile.enemyAdded && !tile.visited)
                     {
                         if (detectable)
                         {
@@ -142,11 +140,11 @@ public class MovementController : MonoBehaviour
         }
         if(process.Count == 0)
         {
-            ShowAttackRange(detectable, enemyRangeTile, counterPresent);
+            ShowAttackRange(detectable, enemyRangeTile);
         }
     }
 
-    public void ShowAttackRange(bool detectable, bool enemyRangeTile, bool counterPresent)
+    public void ShowAttackRange(bool detectable, bool enemyRangeTile)
     {
         float rng = ((float)move + (float)attackRange) * 2.4f;
         Collider2D[] tilesInRange = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(rng, rng), 1f);
@@ -171,17 +169,20 @@ public class MovementController : MonoBehaviour
 
             foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {
-                if (tile.detectedEnemy && detectable)
-                {
-                    enemyDetected = true;
-                    tile.colorAttackable = true;
-                }
                 if (!tile.visited)
                 {
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
+                        if (tile.detectedCharacter && detectable)
+                        {
+                            if(tile.detectedCharacter.tag != gameObject.tag)
+                            {
+                                enemyDetected = true;
+                                tile.colorAttackable = true;
+                            }
+                        }
                         //TODO needs to be refactored
-                        if(enemyRangeTile)
+                        if (enemyRangeTile)
                         {
                             if (dequeuedTile.borderTile == true)
                             {
@@ -237,7 +238,7 @@ public class MovementController : MonoBehaviour
     }
 
 
-    public void FindEnemiesInRange()
+    public void FindPlayersInRange()
     {
         BFSTileMap(move, true);
     }

@@ -151,14 +151,14 @@ public class PlayerMove : MovementController
 
         foreach (TileFunctions enemyTile in detectedEnemies)
         {
-            AiMove enemyMove = enemyTile.detectedEnemy.gameObject.GetComponent<AiMove>();
+            AiMove enemyMove = enemyTile.detectedCharacter.gameObject.GetComponent<AiMove>();
 
             if (Input.GetMouseButtonUp(0))
             {
                
-                if (hit.collider.gameObject == enemyTile.detectedEnemy.gameObject)
+                if (hit.collider.gameObject == enemyTile.detectedCharacter.gameObject)
                 {
-                    targetedEnemy = enemyTile.detectedEnemy.gameObject;
+                    targetedEnemy = enemyTile.detectedCharacter.gameObject;
 
                     Vector3 enemyPos = targetedEnemy.transform.position;
                     Vector3 playerPos = gameObject.transform.position;
