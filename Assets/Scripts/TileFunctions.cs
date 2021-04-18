@@ -24,7 +24,7 @@ public class TileFunctions : MonoBehaviour
 
     //public List<GameObject> enemiesUsingTile = new List<GameObject>();
 
-    public Collider2D detectedCharacter = null;
+    public Collider2D detectedEnemy = null;
 
     public List<TileFunctions> adjacencyList = new List<TileFunctions>();
 
@@ -153,12 +153,12 @@ public class TileFunctions : MonoBehaviour
         if (DetectedObject.gameObject.tag != "Tile")
         {
             occupied = true;
-            detectedCharacter = DetectedObject;
+            detectedEnemy = DetectedObject;
         }
         else
         {
             occupied = false;
-            detectedCharacter = null;
+            detectedEnemy = null;
         }
     }
 

@@ -111,7 +111,6 @@ public class TurnManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && hit.collider != null)
         {
-            //Debug.Log(hit.collider.gameObject.transform.position);
             bool characterMoving = false;
 
             
@@ -158,11 +157,13 @@ public class TurnManager : MonoBehaviour
                     {
                         if (hit.collider.gameObject.GetComponent<TileFunctions>().selectable) { return; }
                     }
+
                     InitDeselectCharacter(currentCharacter);
-                    if (hit.collider.gameObject.GetComponent<Enemy>() && noneClicked)
+                    if (hit.collider.gameObject.GetComponent<Enemy>())
                     {
                         StartCoroutine(SelectEnemy(hit.collider.gameObject));
                     }
+
                     currentCharacter = null;
                 }
             }

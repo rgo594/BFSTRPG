@@ -101,7 +101,7 @@ public class MovementController : MonoBehaviour
                 foreach (TileFunctions tile in dequeuedTile.adjacencyList)
                 {
 
-                    if (tile.detectedCharacter != null && tile.detectedCharacter.tag != gameObject.tag && !tile.enemyAdded && !tile.visited)
+                    if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded && !tile.visited)
                     {
                         if (detectable)
                         {
@@ -169,20 +169,17 @@ public class MovementController : MonoBehaviour
 
             foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {
+                if (tile.detectedEnemy && detectable)
+                {
+                    enemyDetected = true;
+                    tile.colorAttackable = true;
+                }
                 if (!tile.visited)
                 {
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
-                        if (tile.detectedCharacter && detectable)
-                        {
-                            if(tile.detectedCharacter.tag != gameObject.tag)
-                            {
-                                enemyDetected = true;
-                                tile.colorAttackable = true;
-                            }
-                        }
                         //TODO needs to be refactored
-                        if (enemyRangeTile)
+                        if(enemyRangeTile)
                         {
                             if (dequeuedTile.borderTile == true)
                             {
@@ -238,7 +235,7 @@ public class MovementController : MonoBehaviour
     }
 
 
-    public void FindPlayersInRange()
+    public void FindEnemiesInRange()
     {
         BFSTileMap(move, true);
     }

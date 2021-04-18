@@ -32,7 +32,7 @@ public class Enemy : AiMove
         }
 
         //shows enemy move range
-        if (Input.GetMouseButtonDown(0) && !TurnManager.enemyPhase && !TurnManager.attackStep && turnManager.noneClicked)
+        if (Input.GetMouseButtonDown(0) && !TurnManager.enemyPhase && !TurnManager.attackStep) //&& turnManager.noneClicked)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
@@ -61,7 +61,7 @@ public class Enemy : AiMove
         {
             return;
         }
-        FindPlayersInRange();
+        FindEnemiesInRange();
         if (!enemyDetected)
         {
             EndTurn();

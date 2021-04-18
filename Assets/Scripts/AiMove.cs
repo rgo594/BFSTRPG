@@ -233,7 +233,7 @@ public class AiMove : MovementController
         RemoveSelectableTiles();
         moving = false;
 
-        targetedPlayer = detectedEnemies[0].detectedCharacter.gameObject;
+        targetedPlayer = detectedEnemies[0].detectedEnemy.gameObject;
 
         Vector3 playerPos = targetedPlayer.transform.position;
         Vector3 enemyPos = gameObject.transform.position;
