@@ -158,13 +158,19 @@ public class TurnManager : MonoBehaviour
                         if (hit.collider.gameObject.GetComponent<TileFunctions>().selectable) { return; }
                     }
 
-                    InitDeselectCharacter(currentCharacter);
+                    //InitDeselectCharacter(currentCharacter);
                     if (hit.collider.gameObject.GetComponent<Enemy>())
                     {
+                        deselected = true;
                         StartCoroutine(SelectEnemy(hit.collider.gameObject));
                     }
+                    else
+                    {
+                        InitDeselectCharacter(currentCharacter);
+                        currentCharacter = null;
+                    }
 
-                    currentCharacter = null;
+                    //currentCharacter = null;
                 }
             }
         }
