@@ -6,24 +6,12 @@ using System.Linq;
 
 public class Enemy : AiMove
 {
-    public bool enemySelected = false;
-
-    void ChangeSpriteColor(Color color)
-    {
-        GetComponentInChildren<SpriteRenderer>().color = color;
-    }
-
-    void RefreshEnemyRange()
-    {
-        RemoveEnemyRangeTiles();
-        FindEnemyRangeTiles();
-    }
 
     void Update()
     {
-        if(TurnManager.preventClicking) { return; }
+        if(turnManager.preventClicking) { return; }
         //refresh enemy range after player completes an action
-        if (enemySelected && TurnManager.actionCompleted)
+        if (enemySelected && TurnManager.pcActionCompleted)
         {
             RefreshEnemyRange();
         }
@@ -60,11 +48,9 @@ public class Enemy : AiMove
             catch (NullReferenceException) { }
         }
 
-        if (!turn)
-        {
-            return;
-        }
-        FindEnemiesInRange();
+        if (!turn) { return; }
+
+        FindPcsInRange();
         if (!enemyDetected)
         {
             EndTurn();
@@ -72,10 +58,10 @@ public class Enemy : AiMove
         }
         if (!moving)
         {
+            //refreshes enemy range after enemy has completed an action
             if (enemySelected)
             {
-                RemoveEnemyRangeTiles();
-                StartCoroutine(DelayShowEnemyRangeTiles());
+                RefreshEnemyRange();
             }
             FindNearestTarget();
             CalculatePath();

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class AiMove : MovementController
 {
     GameObject target;
+    Slider healthBar;
     public int healthPoints = 100;
     public int attack = 25;
-    Slider healthBar;
     public GameObject targetedPlayer;
     public bool attacking = false;
     public List<TileFunctions> EnemyRangeTiles = new List<TileFunctions>();
-    public Vector3 originalPosition;
+    public bool enemySelected = false;
 
     private void Awake()
     {
@@ -180,7 +180,7 @@ public class AiMove : MovementController
         if (attacking) { return; }
 
         //FindAttackAbleTiles(); //works just as well as AIDetectPlayers, but I think AiDetectPlayers might be less costly
-        AiDetectPlayerCharacters();
+        DetectPcsInAttackRange();
         if (path.Count > 0)
         {
             //returns obj at the top of the stack without removing;
@@ -215,7 +215,14 @@ public class AiMove : MovementController
         }
     }
 
-    public void AiDetectPlayerCharacters()
+    //Will move to and attack player character if it enters its move + attackrange. Otherwise won't move;
+    public void FindPcsInRange()
+    {
+        BFSTileMap(move, true);
+    }
+
+    //While moving to pc, this function will detect if player character is within range to attack.
+    public void DetectPcsInAttackRange()
     {
         float detectRange = (attackRange + 0.95f) + attackRange;
         Vector3 rng = new Vector3(detectRange, detectRange, -1f);
@@ -308,17 +315,14 @@ public class AiMove : MovementController
 
         while (process.Count > 0)
         {
-            //remove and return the tile
             TileFunctions dequeuedTile = process.Dequeue();
 
             EnemyRangeTiles.Add(dequeuedTile);
 
             if (dequeuedTile.distance < range && !dequeuedTile.borderTile)
             {
-                //if unit is on border tile need to check both of its adjacency lists
                 foreach (TileFunctions tile in dequeuedTile.adjacencyList)
                 {
-                    //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                     if (!tile.erVisited)
                     {
                         if (tile.occupied)
@@ -327,17 +331,10 @@ public class AiMove : MovementController
                         }
                         if (!tile.occupied)
                         {
-                            //TileFunctions ModifiedTile;
-
-
-                            //ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true, false);
                             tile.colorEnemyRange = true;
                             tile.erVisited = true;
                             tile.distance = 1 + dequeuedTile.distance;
-                            //tile.enemiesUsingTile.Add(gameObject);
 
-
-                            //TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
                             if (tile.distance == move)
                             {
                                 tile.erBorderTile = true;
@@ -350,11 +347,14 @@ public class AiMove : MovementController
         }
         if (process.Count == 0)
         {
-            //ShowAttackRange(detectable, enemyRangeTile, counterPresent);
            ShowEnemyAttackRangeTiles();
         }
     }
 
+    public void ChangeSpriteColor(Color color)
+    {
+        GetComponentInChildren<SpriteRenderer>().color = color;
+    }
     public void ShowEnemyAttackRangeTiles()
     {
         float rng = ((float)move + (float)attackRange) * 2.4f;
@@ -404,6 +404,12 @@ public class AiMove : MovementController
                 }
             }
         }
+    }
+
+    public void RefreshEnemyRange()
+    {
+        RemoveEnemyRangeTiles();
+        FindEnemyRangeTiles();
     }
 
     public void FindEnemyRangeTiles()

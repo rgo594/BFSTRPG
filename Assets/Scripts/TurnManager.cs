@@ -35,18 +35,16 @@ public class TurnManager : MonoBehaviour
 
     public static bool attacking = false;
 
-    public GameObject mappedTile;
-
     public bool noneClicked = false;
 
     public static bool EnemyRangePresent = false;
 
     //TODO deselected is a flag for clicking on an enemy unit so FindSelectableTiles is not triggered simultaneously between multiple units, might need further testing
-    public static bool deselected = true;
+    public bool deselected = true;
 
-    public static bool actionCompleted = false;
+    public static bool pcActionCompleted = false;
 
-    public static bool preventClicking = false;
+    public bool preventClicking = false;
 
     private void Start()
     {
@@ -163,9 +161,7 @@ public class TurnManager : MonoBehaviour
                     //InitDeselectCharacter(currentCharacter);
                     if (hit.collider.gameObject.GetComponent<Enemy>())
                     {
-                        //.Log("happens");
-/*                        deselected = true;
-                        StartCoroutine(SelectEnemy(hit.collider.gameObject));*/
+                        //functions for clicking on an enemy are handled in Enemy and AiMove files
                     }
                     else
                     {
@@ -177,14 +173,6 @@ public class TurnManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    IEnumerator SelectEnemy(GameObject e)
-    {
-        //yield return new WaitForEndOfFrame();
-        yield return new WaitUntil(() => deselected);
-        e.GetComponent<Enemy>().FindEnemyRangeTiles();
-
     }
 
     public void InitStartTurn(GameObject c)

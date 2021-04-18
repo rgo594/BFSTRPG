@@ -80,7 +80,6 @@ public class MovementController : MonoBehaviour
 
     public void BFSTileMap(int range, bool detectable = false, bool selectable = false, bool attackable = false, bool enemyRangeTile = false)
     {
-        //Debug.Log(detectable);
         if (detectable && enemyDetected) { return; }
 
         ComputeAdjacencyLists(null, attackable);
@@ -104,23 +103,22 @@ public class MovementController : MonoBehaviour
                 //if unit is on border tile need to check both of its adjacency lists
                 foreach (TileFunctions tile in dequeuedTile.adjacencyList)
                 {
-
-                    if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded && !tile.visited)
-                    {
-                        if (detectable)
-                        {
-                            enemyDetected = true;
-                            tile.colorAttackable = true;
-                        }
-                        if (attackable)
-                        {
-                            tile.enemyAdded = true;
-                            detectedEnemies.Add(tile);
-                        }
-                    }
-                    //dequeuedTile.selectable = true; (just in case having selectable be in the foreach messes things up)
                     if (!tile.visited)
                     {
+                        if (tile.detectedEnemy != null && tile.detectedEnemy.tag != gameObject.tag && !tile.enemyAdded)
+                        {
+                            if (detectable)
+                            {
+                                enemyDetected = true;
+                                tile.colorAttackable = true;
+                            }
+                            if (attackable)
+                            {
+                                tile.enemyAdded = true;
+                                detectedEnemies.Add(tile);
+                            }
+                        }
+
                         if (tile.occupied)
                         {
                             dequeuedTile.borderTile = true;
@@ -129,9 +127,8 @@ public class MovementController : MonoBehaviour
                         {
                             TileFunctions ModifiedTile;
 
-
                             ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable, false, enemyRangeTile);
-                            //TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable);
+
                             if (ModifiedTile.distance == move)
                             {
                                 ModifiedTile.borderTile = true;
@@ -173,17 +170,17 @@ public class MovementController : MonoBehaviour
 
             foreach (TileFunctions tile in dequeuedTile.adjacencyList)
             {
-                if (tile.detectedEnemy && detectable)
-                {
-                    enemyDetected = true;
-                    tile.colorAttackable = true;
-                }
                 if (!tile.visited)
                 {
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
+                        if (tile.detectedEnemy && detectable && tile.detectedEnemy.gameObject.tag != gameObject.tag)
+                        {
+                            enemyDetected = true;
+                            tile.colorAttackable = true;
+                        }
                         //TODO needs to be refactored
-                        if(enemyRangeTile)
+                        if (enemyRangeTile)
                         {
                             if (dequeuedTile.borderTile == true)
                             {
@@ -236,12 +233,6 @@ public class MovementController : MonoBehaviour
     public void FindSelectableTiles()
     {
         BFSTileMap(move, false, true);
-    }
-
-
-    public void FindEnemiesInRange()
-    {
-        BFSTileMap(move, true);
     }
 
     public void MoveToTile(TileFunctions tile)

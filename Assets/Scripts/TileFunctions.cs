@@ -53,10 +53,15 @@ public class TileFunctions : MonoBehaviour
 
     void Update()
     {
-        DetectEnemy();
+        DetectCharacter();
         if (TurnManager.playerPhase)
         {
-            if (current)
+            if (erVisited && current)
+            {
+                selectable = false;
+                colorEnemyRange = true;
+            }
+            if (!erVisited && current)
             {
                 selectable = false;
                 actionColor.color = new Color32(255, 235, 4, 100);
@@ -128,9 +133,9 @@ public class TileFunctions : MonoBehaviour
         erVisited = false;
         TurnManager.EnemyRangePresent = false;
         colorEnemyRange = false;
-        borderTile = false;
         erBorderTile = false;
-        parent = null;
+        //borderTile = false;
+        //parent = null;
         distance = 0;
 
         f = g = h = 0;
@@ -146,7 +151,7 @@ public class TileFunctions : MonoBehaviour
         CheckTile(Vector3.left, target, attackable);
     }
 
-    public void DetectEnemy()
+    public void DetectCharacter()
     {
         Collider2D DetectedObject = Physics2D.OverlapBox(transform.position, new Vector2(0.8f, 0.8f), 1f);
 

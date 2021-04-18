@@ -36,11 +36,11 @@ public class Player : PlayerMove
         }
         if (moving)
         {
-            TurnManager.preventClicking = true;
+            turnManager.preventClicking = true;
         }
         else
         {
-            TurnManager.preventClicking = false;
+            turnManager.preventClicking = false;
         }
         if (turn)
         {
