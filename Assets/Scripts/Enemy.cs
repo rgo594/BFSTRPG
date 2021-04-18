@@ -13,7 +13,7 @@ public class Enemy : AiMove
         GetComponentInChildren<SpriteRenderer>().color = color;
     }
 
-    void Woot()
+    void RefreshEnemyRange()
     {
         RemoveEnemyRangeTiles();
         FindEnemyRangeTiles();
@@ -21,9 +21,11 @@ public class Enemy : AiMove
 
     void Update()
     {
+        if(TurnManager.preventClicking) { return; }
+        //refresh enemy range after player completes an action
         if (enemySelected && TurnManager.actionCompleted)
         {
-            Woot();
+            RefreshEnemyRange();
         }
         if (healthPoints <= 0)
         {
@@ -34,6 +36,7 @@ public class Enemy : AiMove
         //shows enemy move range
         if (Input.GetMouseButtonDown(0) && !TurnManager.enemyPhase && !TurnManager.attackStep) //&& turnManager.noneClicked)
         {
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.up);
             try
@@ -43,11 +46,11 @@ public class Enemy : AiMove
                 {
                     enemySelected = true;
                     ChangeSpriteColor(Color.white);
+                    //FindEnemyRangeTiles();
                     StartCoroutine(DelayShowEnemyRangeTiles());
                 }
                 else if (hit.collider.gameObject.tag == "Enemy" && enemySelected)
                 {
-
                     //might need to change to its own function
                     RemoveEnemyRangeTiles();
                     enemySelected = false;

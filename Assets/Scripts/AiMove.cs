@@ -287,7 +287,7 @@ public class AiMove : MovementController
 
         foreach (TileFunctions tile in EnemyRangeTiles)
         {
-            tile.HideEnemyRangeTiles();
+            tile.HideEnemyRangeTile();
             //tile.enemiesUsingTile.Remove(gameObject);
         }
 
@@ -413,7 +413,8 @@ public class AiMove : MovementController
 
     public IEnumerator DelayShowEnemyRangeTiles()
     {
-        yield return new WaitUntil(() => TurnManager.deselected);
+        //yield return new WaitUntil(() => TurnManager.deselected);
+        yield return new WaitForEndOfFrame();
         FindEnemyRangeTiles();
     }
 

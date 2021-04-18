@@ -28,8 +28,12 @@ public class MovementController : MonoBehaviour
     public TileFunctions actualTargetTile;
     public bool enemyDetected;
 
+    public GameObject preventClicking;
+
     protected void Init()
     {
+        //preventClicking = GameObject.Find("PreventClicking");
+
         turnManager = FindObjectOfType<TurnManager>();
 
         tiles = GameObject.FindGameObjectsWithTag("Tile");

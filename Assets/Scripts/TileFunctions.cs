@@ -120,7 +120,7 @@ public class TileFunctions : MonoBehaviour
         f = g = h = 0;
     }
 
-    public void HideEnemyRangeTiles()
+    public void HideEnemyRangeTile()
     {
         adjacencyList.Clear();
 

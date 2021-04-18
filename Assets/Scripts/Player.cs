@@ -34,7 +34,15 @@ public class Player : PlayerMove
         {
             return;
         }
-        if(turn)
+        if (moving)
+        {
+            TurnManager.preventClicking = true;
+        }
+        else
+        {
+            TurnManager.preventClicking = false;
+        }
+        if (turn)
         {
             GetComponentInChildren<SpriteRenderer>().color = Color.white;
         }

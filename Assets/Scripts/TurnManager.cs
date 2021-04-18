@@ -46,6 +46,8 @@ public class TurnManager : MonoBehaviour
 
     public static bool actionCompleted = false;
 
+    public static bool preventClicking = false;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");
@@ -161,8 +163,9 @@ public class TurnManager : MonoBehaviour
                     //InitDeselectCharacter(currentCharacter);
                     if (hit.collider.gameObject.GetComponent<Enemy>())
                     {
-                        deselected = true;
-                        StartCoroutine(SelectEnemy(hit.collider.gameObject));
+                        //.Log("happens");
+/*                        deselected = true;
+                        StartCoroutine(SelectEnemy(hit.collider.gameObject));*/
                     }
                     else
                     {
