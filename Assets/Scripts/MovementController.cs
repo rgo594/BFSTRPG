@@ -125,9 +125,7 @@ public class MovementController : MonoBehaviour
                         }
                         if (!tile.occupied || attackable)
                         {
-                            TileFunctions ModifiedTile;
-
-                            ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable, false, enemyRangeTile);
+                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, attackable, selectable, false);
 
                             if (ModifiedTile.distance == move)
                             {
@@ -180,31 +178,15 @@ public class MovementController : MonoBehaviour
                             tile.colorAttackable = true;
                         }
                         //TODO needs to be refactored
-                        if (enemyRangeTile)
+                        if (dequeuedTile.borderTile == true)
                         {
-                            if (dequeuedTile.borderTile == true)
-                            {
-                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, false, false, false, true);
-                                borderTiles.Enqueue(ModifiedTile);
-                            }
-                            else
-                            {
-                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, false, false, false, true);
-                                borderTiles.Enqueue(ModifiedTile);
-                            }
+                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
+                            borderTiles.Enqueue(ModifiedTile);
                         }
                         else
                         {
-                            if (dequeuedTile.borderTile == true)
-                            {
-                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1, true, false, true);
-                                borderTiles.Enqueue(ModifiedTile);
-                            }
-                            else
-                            {
-                                TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
-                                borderTiles.Enqueue(ModifiedTile);
-                            }
+                            TileFunctions ModifiedTile = TileSetFlags(tile, dequeuedTile, 1 + dequeuedTile.distance, true, false, true);
+                            borderTiles.Enqueue(ModifiedTile);
                         }
                     }
                 }
@@ -212,13 +194,13 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false, bool enemyRange = false, bool visited = true)
+    public TileFunctions TileSetFlags(TileFunctions t, TileFunctions dequeuedTile, int distance, bool attackable = false, bool selectable = false, bool showAttackableTiles = false)
     {
         TileFunctions tile = t;
         tile.selectable = selectable;
         tile.attackable = attackable;
         tile.colorAttackable = showAttackableTiles;
-        tile.visited = visited;
+        tile.visited = true;
         tile.parent = dequeuedTile;
         tile.distance = distance;
 

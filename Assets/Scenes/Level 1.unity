@@ -3265,7 +3265,7 @@ PrefabInstance:
     - target: {fileID: 9106556177672833840, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: attackRange
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833840, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -29111,6 +29111,7 @@ GameObject:
   - component: {fileID: 738689491}
   - component: {fileID: 738689490}
   - component: {fileID: 738689489}
+  - component: {fileID: 738689492}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -29153,7 +29154,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.979993
+  orthographic size: 6.3303566
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -29183,6 +29184,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &738689492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738689488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c862bd6e9c7b9b4298cca331c846ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &739808408
 GameObject:
   m_ObjectHideFlags: 0
@@ -46998,6 +47012,42 @@ MonoBehaviour:
   g: 0
   h: 0
   f: 0
+--- !u!1 &1194712532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194712533}
+  m_Layer: 5
+  m_Name: LevelResultController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1194712533
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194712532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1429593667}
+  m_Father: {fileID: 1857814501}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1194890164
 GameObject:
   m_ObjectHideFlags: 0
@@ -55311,16 +55361,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429593666}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1857814501}
-  m_RootOrder: 2
+  m_Father: {fileID: 1194712533}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -122.8, y: 26.8}
+  m_AnchoredPosition: {x: 34, y: 30}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1429593668
@@ -55342,7 +55392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Cleared
+  m_text: Cleared!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -55405,7 +55455,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -41.218742, y: 6.711673, z: -256.8985, w: -37.39374}
+  m_margin: {x: -41.218742, y: 6.711673, z: -74.663765, w: -37.39374}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -59422,10 +59472,11 @@ MonoBehaviour:
   aiTeamCount: 0
   currentCharacter: {fileID: 0}
   characterSelected: 0
-  unitMenu: {fileID: 0}
   noneClicked: 0
   deselected: 1
   preventClicking: 0
+  unitMenu: {fileID: 0}
+  levelResult: {fileID: 0}
 --- !u!4 &1540195078
 Transform:
   m_ObjectHideFlags: 0
@@ -72105,7 +72156,7 @@ RectTransform:
   m_Children:
   - {fileID: 1684213324}
   - {fileID: 1712674552}
-  - {fileID: 1429593667}
+  - {fileID: 1194712533}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

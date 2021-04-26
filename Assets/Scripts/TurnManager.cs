@@ -26,7 +26,7 @@ public class TurnManager : MonoBehaviour
     public bool characterSelected = false;
 
     public static bool attackStep = false;
-    public GameObject unitMenu;
+
 
     public static bool playerPhase = true;
     public static bool enemyPhase;
@@ -46,9 +46,13 @@ public class TurnManager : MonoBehaviour
 
     public bool preventClicking = false;
 
+    public GameObject unitMenu;
+    public GameObject levelResult;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");
+        levelResult = GameObject.Find("LevelResultController");
         //GameObject phaseController = GameObject.Find("PhaseTextController");
     }
 
@@ -102,6 +106,11 @@ public class TurnManager : MonoBehaviour
     public void ToggleEndPhaseButton(bool active)
     {
         unitMenu.transform.GetChild(1).gameObject.SetActive(active);
+    }    
+    
+    public void ToggleClearedScreen(bool active)
+    {
+        levelResult.transform.GetChild(0).gameObject.SetActive(active);
     }
 
     public void SelectPlayerCharacter()
