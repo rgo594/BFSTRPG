@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Player : PlayerMove
 {
-
+    IEnumerator DelayFindTiles()
+    {
+        yield return new WaitForEndOfFrame();
+        FindSelectableTiles();
+    }
 
     void Update()
     {
@@ -42,12 +46,12 @@ public class Player : PlayerMove
 
         if (!moving && !unitMenuPresent && !TurnManager.attackStep && !actionCompleted)
         {
-            //if (startFindTiles)
+            if (startFindTiles)
             {
-
+                startFindTiles = false;
+                //FindSelectableTiles();
+                StartCoroutine(DelayFindTiles());
             }
-            startFindTiles = false;
-            FindSelectableTiles();
             TargetTileToTravel();
         }
         else

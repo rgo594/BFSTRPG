@@ -100,6 +100,7 @@ public class PlayerMove : MovementController
 
     public void ResetCharacterTurn()
     {
+        startFindTiles = true;
         ResetEnemyAddedTiles();
         TurnManager.attackStep = false;
         ToggleUnitMenu(false);
@@ -107,19 +108,11 @@ public class PlayerMove : MovementController
 
         gameObject.transform.position = originalPosition;
         detectedEnemies.Clear();
-        //StartCoroutine(DelayStartFindTiles());
-        //startFindTiles = true;
-
-    }
-
-    IEnumerator DelayStartFindTiles()
-    {
-        yield return new WaitForEndOfFrame();
-        startFindTiles = true;
     }
 
     public void StartTurn()
     {
+        startFindTiles = true;
         TurnManager.pcActionCompleted = false;
         TurnManager.attackStep = false;
         turn = true;
@@ -138,7 +131,7 @@ public class PlayerMove : MovementController
         TurnManager.attackStep = false;
         unitMenuPresent = false;
         actionCompleted = true;
-
+        startFindTiles = false;
         SetCharacterColor(Color.grey);
         turnManager.playerCharacterTurnCounter++;
         turnManager.InitDeselectCharacter(gameObject);
@@ -148,6 +141,7 @@ public class PlayerMove : MovementController
 
     public void DeselectCharacter()
     {
+        startFindTiles = true;
         turn = false;
         RemoveSelectableTiles();
         turnManager.characterSelected = false;

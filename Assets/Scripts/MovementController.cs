@@ -32,6 +32,8 @@ public class MovementController : MonoBehaviour
 
     public Collider2D DetectedCharacter;
 
+    //public bool selectableReady = true;
+
     public void SetTileDetectCharacter()
     {
         if (DetectedCharacter == null)
@@ -235,6 +237,12 @@ public class MovementController : MonoBehaviour
     {
         BFSTileMap(move, false, true);
     }
+
+/*    public IEnumerator DelayFindSelectableTiles()
+    {
+        yield return new WaitUntil(() => selectableReady);
+        FindSelectableTiles();
+    }*/
 
     public void MoveToTile(TileFunctions tile)
     {
