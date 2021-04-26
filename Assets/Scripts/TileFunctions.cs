@@ -53,7 +53,7 @@ public class TileFunctions : MonoBehaviour
 
     void Update()
     {
-        DetectCharacter();
+        //DetectCharacter();
         if (TurnManager.playerPhase)
         {
             if (erVisited && current)

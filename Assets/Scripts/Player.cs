@@ -5,17 +5,8 @@ using UnityEngine;
 public class Player : PlayerMove
 {
 
-/*    private void OnMouseOver()
+    public void DetectCharacter()
     {
-        if(turn) { return; }
-        GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-    }
-
-    private void OnMouseExit()
-    {
-        if (turn) { return; }
-        GetComponentInChildren<SpriteRenderer>().color = Color.white;
-    }*/
 
     void Update()
     {
@@ -29,7 +20,6 @@ public class Player : PlayerMove
             actionCompleted = false;
             SetCharacterColor(Color.white);
         }
-
         if (!turn || actionCompleted)
         {
             return;
