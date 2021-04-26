@@ -30,6 +30,25 @@ public class MovementController : MonoBehaviour
 
     public GameObject preventClicking;
 
+    public Collider2D DetectedCharacter;
+
+    public void SetTileDetectCharacter()
+    {
+        if (DetectedCharacter == null)
+        {
+            //TODO give tiles their own layer
+            DetectedCharacter = Physics2D.OverlapBox(transform.position, new Vector3(0.8f, 0.8f, 0), 1f, 1);
+            TileFunctions tileDetected = DetectedCharacter.gameObject.GetComponent<TileFunctions>();
+            tileDetected.detectedEnemy = gameObject.GetComponent<Collider2D>();
+        }
+        else if (new Vector2(DetectedCharacter.transform.position.x, DetectedCharacter.transform.position.y) != new Vector2(gameObject.transform.position.x, gameObject.transform.position.y))
+        {
+            TileFunctions tileDetected = DetectedCharacter.gameObject.GetComponent<TileFunctions>();
+            tileDetected.detectedEnemy = null;
+            DetectedCharacter = null;
+        }
+    }
+
     protected void Init()
     {
         //preventClicking = GameObject.Find("PreventClicking");

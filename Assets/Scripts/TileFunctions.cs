@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TileFunctions : MonoBehaviour
 {
@@ -43,12 +44,14 @@ public class TileFunctions : MonoBehaviour
 
     SpriteRenderer actionColor;
     SpriteRenderer enemyRangeTile;
+   //MovementController[] characters;
 
     // Update is called once per frame
     private void Start()
     {
         actionColor = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         enemyRangeTile = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        //characters = FindObjectsOfType<MovementController>();
     }
 
     void Update()
@@ -56,6 +59,14 @@ public class TileFunctions : MonoBehaviour
         //DetectCharacter();
         if (TurnManager.playerPhase)
         {
+            if (detectedEnemy)
+            {
+                occupied = true;
+            }
+            else
+            {
+                occupied = false;
+            }
             if (erVisited && current)
             {
                 selectable = false;
@@ -101,7 +112,7 @@ public class TileFunctions : MonoBehaviour
             }
             else
             {
-                enemyRangeTile.color = new Color32(0,0,0,0);
+                enemyRangeTile.color = new Color32(0, 0, 0, 0);
             }
         }
     }
@@ -151,7 +162,7 @@ public class TileFunctions : MonoBehaviour
         CheckTile(Vector3.left, target, attackable);
     }
 
-    public void DetectCharacter()
+/*    public void DetectCharacter()
     {
         Collider2D DetectedObject = Physics2D.OverlapBox(transform.position, new Vector2(0.8f, 0.8f), 1f);
 
@@ -165,7 +176,7 @@ public class TileFunctions : MonoBehaviour
             occupied = false;
             detectedEnemy = null;
         }
-    }
+    }*/
 
     public void CheckTile(Vector3 direction, TileFunctions target, bool attackable)
     {

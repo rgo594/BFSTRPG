@@ -11,6 +11,8 @@ public class UnitMenu : MonoBehaviour
     {
         selectedUnit.GetComponent<PlayerMove>().EndTurn();
         gameObject.SetActive(false);
+        selectedUnit.GetComponent<PlayerMove>().startFindTiles = true;
+
     }
 
     public void InitAttack()

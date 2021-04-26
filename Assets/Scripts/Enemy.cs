@@ -9,7 +9,8 @@ public class Enemy : AiMove
 
     void Update()
     {
-        if(turnManager.preventClicking) { return; }
+        SetTileDetectCharacter();
+        if (turnManager.preventClicking) { return; }
         //refresh enemy range after player completes an action
         if (enemySelected && TurnManager.pcActionCompleted)
         {

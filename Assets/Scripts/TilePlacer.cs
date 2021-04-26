@@ -35,7 +35,6 @@ public class TilePlacer : Tile
 
                 GameObject tileObject = new GameObject();
 
-
                 GameObject actionColor = new GameObject();
                 actionColor.transform.SetParent(tileObject.transform);
                 tileObject.transform.GetChild(0).transform.position = new Vector3(0, 0, 0);                

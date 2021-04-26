@@ -21,6 +21,8 @@ public class PlayerMove : MovementController
     public bool attacking = false;
 
     //public GameObject preventClicking;
+    public bool startFindTiles = true;
+
 
     private void Awake()
     {
@@ -105,6 +107,15 @@ public class PlayerMove : MovementController
 
         gameObject.transform.position = originalPosition;
         detectedEnemies.Clear();
+        //StartCoroutine(DelayStartFindTiles());
+        //startFindTiles = true;
+
+    }
+
+    IEnumerator DelayStartFindTiles()
+    {
+        yield return new WaitForEndOfFrame();
+        startFindTiles = true;
     }
 
     public void StartTurn()

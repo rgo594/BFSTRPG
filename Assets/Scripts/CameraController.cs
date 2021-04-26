@@ -9,8 +9,8 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        float xAxisValue = Input.GetAxis("Horizontal") / speed;
-        float zAxisValue = Input.GetAxis("Vertical") / speed;
+        float xAxisValue = Input.GetAxis("Horizontal"); /// speed;
+        float zAxisValue = Input.GetAxis("Vertical"); /// speed;
 
         if (Camera.current != null)
         {

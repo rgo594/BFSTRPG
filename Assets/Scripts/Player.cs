@@ -5,8 +5,6 @@ using UnityEngine;
 public class Player : PlayerMove
 {
 
-    public void DetectCharacter()
-    {
 
     void Update()
     {
@@ -20,6 +18,7 @@ public class Player : PlayerMove
             actionCompleted = false;
             SetCharacterColor(Color.white);
         }
+        SetTileDetectCharacter();
         if (!turn || actionCompleted)
         {
             return;
@@ -43,7 +42,11 @@ public class Player : PlayerMove
 
         if (!moving && !unitMenuPresent && !TurnManager.attackStep && !actionCompleted)
         {
-            //BFSTileMap(move, false, true);
+            //if (startFindTiles)
+            {
+
+            }
+            startFindTiles = false;
             FindSelectableTiles();
             TargetTileToTravel();
         }
