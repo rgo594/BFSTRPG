@@ -171,6 +171,7 @@ public class TurnManager : MonoBehaviour
                     if (hit.collider.gameObject.GetComponent<Enemy>())
                     {
                         //functions for clicking on an enemy are handled in Enemy and AiMove files
+                        currentCharacter.GetComponent<Player>().startFindTiles = true;
                     }
                     else
                     {

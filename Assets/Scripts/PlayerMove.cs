@@ -142,6 +142,7 @@ public class PlayerMove : MovementController
 
     public void DeselectCharacter()
     {
+        startFindTiles = true;
         turn = false;
 
         //not sure RemoveSelectableTiles needs to be here?
