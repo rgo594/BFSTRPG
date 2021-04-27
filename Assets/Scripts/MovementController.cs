@@ -30,25 +30,29 @@ public class MovementController : MonoBehaviour
 
     public GameObject preventClicking;
 
-    public Collider2D DetectedCharacter;
+    public Collider2D detectedTile;
+
+    public bool reset = true;
 
     //public bool selectableReady = true;
 
     public void SetTileDetectCharacter()
     {
-        if (DetectedCharacter == null)
+        //reset = false;
+        if (detectedTile == null)
         {
             //TODO give tiles their own layer
-            DetectedCharacter = Physics2D.OverlapBox(transform.position, new Vector3(0.8f, 0.8f, 0), 1f, 1);
-            TileFunctions tileDetected = DetectedCharacter.gameObject.GetComponent<TileFunctions>();
-            tileDetected.detectedEnemy = gameObject.GetComponent<Collider2D>();
+            detectedTile = Physics2D.OverlapBox(transform.position, new Vector3(0.8f, 0.8f, 0), 1f, 1);
+            TileFunctions tile = detectedTile.gameObject.GetComponent<TileFunctions>();
+            tile.detectedEnemy = gameObject.GetComponent<Collider2D>();
         }
-        else if (new Vector2(DetectedCharacter.transform.position.x, DetectedCharacter.transform.position.y) != new Vector2(gameObject.transform.position.x, gameObject.transform.position.y))
+        else if (new Vector2(detectedTile.transform.position.x, detectedTile.transform.position.y) != new Vector2(gameObject.transform.position.x, gameObject.transform.position.y))
         {
-            TileFunctions tileDetected = DetectedCharacter.gameObject.GetComponent<TileFunctions>();
+            TileFunctions tileDetected = detectedTile.gameObject.GetComponent<TileFunctions>();
             tileDetected.detectedEnemy = null;
-            DetectedCharacter = null;
+            detectedTile = null;
         }
+        reset = true;
     }
 
     protected void Init()
@@ -191,6 +195,7 @@ public class MovementController : MonoBehaviour
             {
                 if (!tile.visited)
                 {
+                    tile.selectAttackable = true;
                     if(dequeuedTile.borderTile || dequeuedTile.distance < attackRange)
                     {
                         if (tile.detectedEnemy && detectable && tile.detectedEnemy.gameObject.tag != gameObject.tag)
@@ -258,17 +263,20 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void RemoveSelectableTiles()
+    public void RemoveSelectableTiles(bool resetAttackable = false)
     {
         if (currentTile != null)
         {
             currentTile.current = false;
             currentTile = null;
         }
-
         foreach (TileFunctions tile in selectableTiles)
         {
             tile.Reset();
+            if (resetAttackable)
+            {
+                tile.ResetAttackable();
+            }
         }
 
         selectableTiles.Clear();

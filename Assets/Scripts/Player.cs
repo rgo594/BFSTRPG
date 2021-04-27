@@ -6,7 +6,8 @@ public class Player : PlayerMove
 {
     IEnumerator DelayFindTiles()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitUntil(() => reset);
+        yield return new WaitForFixedUpdate();
         FindSelectableTiles();
     }
 
@@ -22,7 +23,12 @@ public class Player : PlayerMove
             actionCompleted = false;
             SetCharacterColor(Color.white);
         }
-        SetTileDetectCharacter();
+        if (reset)
+        {
+            reset = false;
+            SetTileDetectCharacter();
+        }
+
         if (!turn || actionCompleted)
         {
             return;
@@ -42,6 +48,8 @@ public class Player : PlayerMove
         if (!moving && Input.GetMouseButtonUp(1))
         {
             ResetCharacterTurn();
+            startFindTiles = true;
+            //StartCoroutine(Yeet());
         }
 
         if (!moving && !unitMenuPresent && !TurnManager.attackStep && !actionCompleted)
@@ -50,6 +58,7 @@ public class Player : PlayerMove
             {
                 startFindTiles = false;
                 //FindSelectableTiles();
+                //pleasework = false;
                 StartCoroutine(DelayFindTiles());
             }
             TargetTileToTravel();
@@ -61,7 +70,11 @@ public class Player : PlayerMove
         }
         if (unitMenuPresent && !attacking)
         {
-            FindAttackAbleTiles();
+            if (attackTiles)
+            {
+                attackTiles = false;
+                FindAttackAbleTiles();
+            }
         }
         //if there are enemies in range show attack button
         if (detectedEnemies.Count > 0)

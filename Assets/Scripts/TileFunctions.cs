@@ -14,6 +14,7 @@ public class TileFunctions : MonoBehaviour
     public bool selectable = false;
     public bool attackable = false;
     public bool colorAttackable = false;
+    public bool selectAttackable = false;
 
 
     public bool visited = false;
@@ -62,10 +63,12 @@ public class TileFunctions : MonoBehaviour
             if (detectedEnemy)
             {
                 occupied = true;
+                //Debug.Log("occupied");
             }
             else
             {
                 occupied = false;
+                //Debug.Log("not occupied");
             }
             if (erVisited && current)
             {
@@ -102,6 +105,7 @@ public class TileFunctions : MonoBehaviour
             }
             else
             {
+
                 actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
             }
 
@@ -125,15 +129,24 @@ public class TileFunctions : MonoBehaviour
         current = false;
         target = false;
         selectable = false;
-        attackable = false;
-        colorAttackable = false;
+        if (selectAttackable)
+        {
+            ResetAttackable();
+        }
 
+        selectAttackable = false;
         borderTile = false;
         visited = false;
         parent = null;
         distance = 0;
 
         f = g = h = 0;
+    }
+
+    public void ResetAttackable()
+    {
+        attackable = false;
+        colorAttackable = false;
     }
 
     public void HideEnemyRangeTile()

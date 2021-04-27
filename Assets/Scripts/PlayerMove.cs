@@ -22,6 +22,7 @@ public class PlayerMove : MovementController
 
     //public GameObject preventClicking;
     public bool startFindTiles = true;
+    public bool attackTiles = true;
 
 
     private void Awake()
@@ -100,18 +101,18 @@ public class PlayerMove : MovementController
 
     public void ResetCharacterTurn()
     {
-        startFindTiles = true;
+        attackTiles = true;
         ResetEnemyAddedTiles();
         TurnManager.attackStep = false;
         ToggleUnitMenu(false);
         turnManager.characterSelected = false;
-
         gameObject.transform.position = originalPosition;
         detectedEnemies.Clear();
     }
 
     public void StartTurn()
     {
+        attackTiles = true;
         startFindTiles = true;
         TurnManager.pcActionCompleted = false;
         TurnManager.attackStep = false;
@@ -141,10 +142,12 @@ public class PlayerMove : MovementController
 
     public void DeselectCharacter()
     {
-        startFindTiles = true;
         turn = false;
-        RemoveSelectableTiles();
+
+        //not sure RemoveSelectableTiles needs to be here?
+        RemoveSelectableTiles(true);
         turnManager.characterSelected = false;
+        startFindTiles = true;
     }
 
     public IEnumerator AttackAction()
