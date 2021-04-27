@@ -14,7 +14,11 @@ public class Enemy : AiMove
         //refresh enemy range after player completes an action
         if (enemySelected && TurnManager.pcActionCompleted)
         {
-            RefreshEnemyRange();
+            if (TurnManager.refresh)
+            {
+                TurnManager.refresh = false;
+                RefreshEnemyRange();
+            }
         }
         if (healthPoints <= 0)
         {
@@ -37,6 +41,7 @@ public class Enemy : AiMove
                     ChangeSpriteColor(Color.white);
                     //FindEnemyRangeTiles();
                     StartCoroutine(DelayShowEnemyRangeTiles());
+                    //Debug.Log("");
                 }
                 else if (hit.collider.gameObject.tag == "Enemy" && enemySelected)
                 {
@@ -62,6 +67,7 @@ public class Enemy : AiMove
             //refreshes enemy range after enemy has completed an action
             if (enemySelected)
             {
+                //enemySelected = false;
                 RefreshEnemyRange();
             }
             FindNearestTarget();

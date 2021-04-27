@@ -49,6 +49,8 @@ public class TurnManager : MonoBehaviour
     public GameObject unitMenu;
     public GameObject levelResult;
 
+    public static bool refresh = true;
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");

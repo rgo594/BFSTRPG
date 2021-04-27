@@ -116,6 +116,7 @@ public class PlayerMove : MovementController
         startFindTiles = true;
         TurnManager.pcActionCompleted = false;
         TurnManager.attackStep = false;
+        TurnManager.refresh = true;
         turn = true;
         originalPosition = gameObject.transform.position;
     }
