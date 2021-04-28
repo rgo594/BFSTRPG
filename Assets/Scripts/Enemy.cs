@@ -12,7 +12,20 @@ public class Enemy : AiMove
         SetTileDetectCharacter();
         if (turnManager.preventClicking) { return; }
         //refresh enemy range after player completes an action
-        if (enemySelected && TurnManager.pcActionCompleted)
+        if (TurnManager.enemyPhase)
+        {
+            coo = true;
+            RemoveEnemyRangeTiles();
+        }
+        else if (enemySelected && !TurnManager.enemyPhase)
+        {
+            if (coo)
+            {
+                coo = false;
+                RefreshEnemyRange();
+            }
+        }
+        if (enemySelected && TurnManager.pcActionCompleted && TurnManager.playerPhase)
         {
             if (TurnManager.refresh)
             {
@@ -65,11 +78,10 @@ public class Enemy : AiMove
         if (!moving)
         {
             //refreshes enemy range after enemy has completed an action
-            if (enemySelected)
+/*            if (enemySelected)
             {
-                //enemySelected = false;
                 RefreshEnemyRange();
-            }
+            }*/
             FindNearestTarget();
             CalculatePath();
             FindSelectableTiles();

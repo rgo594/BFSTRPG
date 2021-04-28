@@ -147,7 +147,8 @@ public class PlayerMove : MovementController
         turn = false;
 
         //not sure RemoveSelectableTiles needs to be here?
-        RemoveSelectableTiles(true);
+        RemoveSelectableTiles();
+        RemoveAttackableTiles();
         turnManager.characterSelected = false;
         startFindTiles = true;
     }

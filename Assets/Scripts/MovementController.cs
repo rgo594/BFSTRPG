@@ -22,6 +22,7 @@ public class MovementController : MonoBehaviour
     public TurnManager turnManager;
 
     public List<TileFunctions> selectableTiles = new List<TileFunctions>();
+    public List<TileFunctions> attackableTiles = new List<TileFunctions>();
 
     GameObject[] tiles;
 
@@ -122,6 +123,11 @@ public class MovementController : MonoBehaviour
             TileFunctions dequeuedTile = process.Dequeue();
 
             selectableTiles.Add(dequeuedTile);
+
+            if (attackable)
+            {
+                attackableTiles.Add(dequeuedTile);
+            }
 
             if (dequeuedTile.distance < range && !dequeuedTile.borderTile)
                 {
@@ -243,11 +249,6 @@ public class MovementController : MonoBehaviour
         BFSTileMap(move, false, true);
     }
 
-/*    public IEnumerator DelayFindSelectableTiles()
-    {
-        yield return new WaitUntil(() => selectableReady);
-        FindSelectableTiles();
-    }*/
 
     public void MoveToTile(TileFunctions tile)
     {
@@ -263,7 +264,7 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void RemoveSelectableTiles(bool resetAttackable = false)
+    public void RemoveSelectableTiles()
     {
         if (currentTile != null)
         {
@@ -273,13 +274,24 @@ public class MovementController : MonoBehaviour
         foreach (TileFunctions tile in selectableTiles)
         {
             tile.Reset();
-            if (resetAttackable)
-            {
-                tile.ResetAttackable();
-            }
         }
 
         selectableTiles.Clear();
+    }
+
+    public void RemoveAttackableTiles()
+    {
+        if (currentTile != null)
+        {
+            currentTile.current = false;
+            currentTile = null;
+        }
+        foreach (TileFunctions tile in attackableTiles)
+        {
+            tile.ResetAttackable();
+        }
+
+        attackableTiles.Clear();
     }
 
     //prevents InvalidOperationException error

@@ -1039,6 +1039,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -1374,6 +1375,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -1709,6 +1711,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -1963,6 +1966,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -2865,6 +2869,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -2957,6 +2962,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -3130,6 +3136,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -3426,6 +3433,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -3599,6 +3607,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -3691,6 +3700,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -3945,6 +3955,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -4280,6 +4291,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -4453,6 +4465,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -4626,6 +4639,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -4799,6 +4813,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -4891,6 +4906,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -4983,6 +4999,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -5237,6 +5254,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -5329,6 +5347,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -5421,6 +5440,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -5513,6 +5533,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -6019,6 +6040,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -6273,6 +6295,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -6365,6 +6388,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -6619,6 +6643,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -7089,6 +7114,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -7455,6 +7481,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -7547,6 +7574,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -7720,6 +7748,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -7893,6 +7922,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -8309,6 +8339,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -8644,6 +8675,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -8736,6 +8768,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -8990,6 +9023,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -10089,6 +10123,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -11018,6 +11053,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -11191,6 +11227,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -11526,6 +11563,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -11618,6 +11656,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -12115,6 +12154,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -12801,6 +12841,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -13350,6 +13391,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -13443,12 +13485,12 @@ PrefabInstance:
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 9106556177672833841, guid: 3a1f43b5a6101c848acae798573e00a8,
         type: 3}
@@ -13669,6 +13711,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -13923,6 +13966,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -14015,6 +14059,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -14350,6 +14395,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -14685,6 +14731,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -14939,6 +14986,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -15426,6 +15474,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -15518,6 +15567,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -15880,6 +15930,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -15972,6 +16023,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -16712,6 +16764,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -16966,6 +17019,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -17301,6 +17355,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -17393,6 +17448,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -17485,6 +17541,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -17577,6 +17634,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -17750,6 +17808,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -17923,6 +17982,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -18420,6 +18480,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -18593,6 +18654,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -18847,6 +18909,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -19263,6 +19326,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -19436,6 +19500,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -19528,6 +19593,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -19701,6 +19767,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -19955,6 +20022,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -20047,6 +20115,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -20571,6 +20640,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -21068,6 +21138,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -21241,6 +21312,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -21333,6 +21405,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -21425,6 +21498,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -21598,6 +21672,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -21690,6 +21765,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -22106,6 +22182,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -22279,6 +22356,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -22452,6 +22530,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -23144,6 +23223,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -23236,6 +23316,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -23409,6 +23490,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -23744,6 +23826,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -24079,6 +24162,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -24252,6 +24336,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -24344,6 +24429,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -24436,6 +24522,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -24528,6 +24615,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -24944,6 +25032,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -25036,6 +25125,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -25290,6 +25380,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -25544,6 +25635,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -25798,6 +25890,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -26052,6 +26145,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -26144,6 +26238,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -26884,6 +26979,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -26976,6 +27072,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -27230,6 +27327,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -27484,6 +27582,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -27657,6 +27756,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -28154,6 +28254,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -28327,6 +28428,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -28419,6 +28521,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -28916,6 +29019,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -29008,6 +29112,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -29845,6 +29950,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -30099,6 +30205,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -30272,6 +30379,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -30688,6 +30796,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -31075,6 +31184,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -31167,6 +31277,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -31340,6 +31451,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -31432,6 +31544,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -31524,6 +31637,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -32210,6 +32324,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -32302,6 +32417,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -32556,6 +32672,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -32891,6 +33008,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -32983,6 +33101,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -33237,6 +33356,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -33491,6 +33611,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -33826,6 +33947,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -34188,6 +34310,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -34361,6 +34484,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -34646,6 +34770,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -34819,6 +34944,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -35160,6 +35286,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -35414,6 +35541,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -35668,6 +35796,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -35922,6 +36051,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -36014,6 +36144,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -36349,6 +36480,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -36441,6 +36573,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -36614,6 +36747,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -36787,6 +36921,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -37041,6 +37176,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -37295,6 +37431,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -37387,6 +37524,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -37479,6 +37617,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -37733,6 +37872,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -37825,6 +37965,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -38106,6 +38247,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -38198,6 +38340,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -38533,6 +38676,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -39030,6 +39174,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -39122,6 +39267,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -39214,6 +39360,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -39306,6 +39453,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -39678,6 +39826,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -40094,6 +40243,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -40510,6 +40660,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -41169,6 +41320,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -41261,6 +41413,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -41353,6 +41506,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -41526,6 +41680,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -42027,6 +42182,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -42119,6 +42275,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -42724,6 +42881,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -42897,6 +43055,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -42989,6 +43148,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -43081,6 +43241,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -43401,6 +43562,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -43493,6 +43655,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -43666,6 +43829,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -43839,6 +44003,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -44093,6 +44258,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -44185,6 +44351,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -44439,6 +44606,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -44861,6 +45029,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -45277,6 +45446,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -45369,6 +45539,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -45785,6 +45956,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -46039,6 +46211,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -46563,6 +46736,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -46817,6 +46991,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -46909,6 +47084,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -47001,6 +47177,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -47129,6 +47306,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -47221,6 +47399,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -47509,6 +47688,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -47601,6 +47781,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -48098,6 +48279,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -48271,6 +48453,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -48363,6 +48546,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -48455,6 +48639,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -48628,6 +48813,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -48720,6 +48906,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -48812,6 +48999,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -48904,6 +49092,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -49098,6 +49287,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -49190,6 +49380,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -49444,6 +49635,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -49747,6 +49939,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -50163,6 +50356,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -50255,6 +50449,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -50347,6 +50542,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -50439,6 +50635,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -50936,6 +51133,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -51028,6 +51226,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -51363,6 +51562,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -51455,6 +51655,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -54747,6 +54948,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -55163,6 +55365,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -55712,6 +55915,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -55885,6 +56089,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -55977,6 +56182,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -56231,6 +56437,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -56323,6 +56530,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -56415,6 +56623,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -56912,6 +57121,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -57832,6 +58042,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -58005,6 +58216,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -58259,6 +58471,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -58513,6 +58726,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -58686,6 +58900,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -58778,6 +58993,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -59815,6 +60031,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -60069,6 +60286,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -60323,6 +60541,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -60739,6 +60958,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -60831,6 +61051,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -61004,6 +61225,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -61177,6 +61399,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -61269,6 +61492,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -61629,6 +61853,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -62045,6 +62270,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -62299,6 +62525,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -62391,6 +62618,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -62726,6 +62954,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -63104,6 +63333,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -63196,6 +63426,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -63288,6 +63519,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -63380,6 +63612,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -63796,6 +64029,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -64131,6 +64365,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -64628,6 +64863,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -64882,6 +65118,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -64974,6 +65211,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -65390,6 +65628,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -65838,6 +66077,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -66011,6 +66251,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -66103,6 +66344,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -66195,6 +66437,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -66395,6 +66638,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -66649,6 +66893,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -66741,6 +66986,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -67108,6 +67354,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -67362,6 +67609,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -67454,6 +67702,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -67546,6 +67795,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -68367,6 +68617,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -68751,6 +69002,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -69086,6 +69338,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -69340,6 +69593,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -69513,6 +69767,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -69686,6 +69941,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -70102,6 +70358,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -70923,6 +71180,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -71015,6 +71273,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -71269,6 +71528,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -71361,6 +71621,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -71534,6 +71795,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -71626,6 +71888,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -71718,6 +71981,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -71810,6 +72074,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -72894,6 +73159,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -73148,6 +73414,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -73753,6 +74020,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -74412,6 +74680,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -74909,6 +75178,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -75163,6 +75433,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -75498,6 +75769,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -75914,6 +76186,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -76087,6 +76360,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -77073,6 +77347,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -77489,6 +77764,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -77824,6 +78100,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -78240,6 +78517,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -78737,6 +79015,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -78829,6 +79108,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -79240,6 +79520,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -79575,6 +79856,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -79667,6 +79949,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -79759,6 +80042,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -80126,6 +80410,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -80380,6 +80665,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -80472,6 +80758,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -80564,6 +80851,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -80737,6 +81025,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -81072,6 +81361,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -81407,6 +81697,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -81580,6 +81871,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -81996,6 +82288,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -82439,6 +82732,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -82612,6 +82906,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -82947,6 +83242,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
@@ -83039,6 +83335,7 @@ MonoBehaviour:
   selectable: 0
   attackable: 0
   colorAttackable: 0
+  selectAttackable: 0
   visited: 0
   colorEnemyRange: 0
   erVisited: 0
