@@ -6,7 +6,6 @@ using System.Linq;
 
 public class Enemy : AiMove
 {
-
     void Update()
     {
         SetTileDetectCharacter();
@@ -22,7 +21,7 @@ public class Enemy : AiMove
             if (coo)
             {
                 coo = false;
-                RefreshEnemyRange();
+                StartCoroutine(DelayRefreshEnemyRange());
             }
         }
         if (enemySelected && TurnManager.pcActionCompleted && TurnManager.playerPhase)

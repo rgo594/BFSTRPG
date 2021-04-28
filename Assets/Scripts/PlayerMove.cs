@@ -222,4 +222,11 @@ public class PlayerMove : MovementController
     {
         gameObject.GetComponentInChildren<SpriteRenderer>().color = color;
     }
+
+    public IEnumerator DelayFindTiles()
+    {
+        yield return new WaitUntil(() => reset);
+        yield return new WaitForFixedUpdate();
+        FindSelectableTiles();
+    }
 }

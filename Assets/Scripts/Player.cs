@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class Player : PlayerMove
 {
-    IEnumerator DelayFindTiles()
-    {
-        yield return new WaitUntil(() => reset);
-        yield return new WaitForFixedUpdate();
-        FindSelectableTiles();
-    }
-
     void Update()
     {
         if (healthPoints <= 0)

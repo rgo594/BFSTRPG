@@ -439,4 +439,12 @@ public class AiMove : MovementController
         TurnManager.AiTurnRotation();
     }
 
+    public IEnumerator DelayRefreshEnemyRange()
+    {
+        //yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForFixedUpdate();
+        RefreshEnemyRange();
+
+    }
+
 }
