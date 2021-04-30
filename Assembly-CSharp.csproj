@@ -73,8 +73,6 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
-    <Compile Include="Assets\Scripts\Test.cs" />
-    <Compile Include="Assets\Scripts\TestScript.cs" />
     <Compile Include="Assets\Scripts\TileFunctions.cs" />
     <Compile Include="Assets\Scripts\TilePlacer.cs" />
     <Compile Include="Assets\Scripts\TurnManager.cs" />

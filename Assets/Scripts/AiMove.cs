@@ -30,6 +30,7 @@ public class AiMove : MovementController
 
     public void FindPath(TileFunctions target)
     {
+
         ComputeAdjacencyLists(target, false);
         GetCurrentTile();
 
@@ -65,6 +66,7 @@ public class AiMove : MovementController
                     }
                     else if (openList.Contains(tile))
                     {
+             
                         //this case is triggered when multiple paths exist in the open list, and compares them to find the shortest path among them
                         //determines which path is better if multiple exists
                         float tempG = lowest.g + Vector3.Distance(tile.transform.position, lowest.transform.position);

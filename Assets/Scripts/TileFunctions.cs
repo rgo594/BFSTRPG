@@ -124,7 +124,6 @@ public class TileFunctions : MonoBehaviour
 
         if (tileColor != new Color32(0, 0, 0, 0))
         {
-            Debug.Log("happening");
             actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
         }
     }

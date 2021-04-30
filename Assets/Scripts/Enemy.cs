@@ -8,7 +8,11 @@ public class Enemy : AiMove
 {
     void Update()
     {
-        SetTileDetectCharacter();
+        if (reset)
+        {
+            reset = false;
+            SetTileDetectCharacter();
+        }
         if (turnManager.preventClicking) { return; }
         //refresh enemy range after player completes an action
         if (TurnManager.enemyPhase)

@@ -64,16 +64,23 @@ public class TurnManager : MonoBehaviour
         //GameObject phaseController = GameObject.Find("PhaseTextController");
     }
 
-    // Update is called once per frame
     void Update()
     {
+        playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
+        //Debug.Log(playerCharacterCount);
         if (teamUnits["Enemy"].Count == 0)
         {
             levelResult.transform.GetChild(0).gameObject.SetActive(true);
             StartCoroutine(PlayNext());
             return;
         }
-        playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
+        if (playerCharacterCount == 0)
+        {
+            levelResult.transform.GetChild(1).gameObject.SetActive(true);
+            PhaseTextAnimation.PhaseTextPresent = false;
+            return;
+        }
+
         aiTeamCount = teamPhaseOrder.Count;
         if (!currentCharacter)
         {
@@ -282,7 +289,7 @@ public class TurnManager : MonoBehaviour
             turnManager.aiPhaseCounter++;
 
             //switches to player phase
-            if(turnManager.aiPhaseCounter == turnManager.aiTeamCount)
+            if(turnManager.aiPhaseCounter == turnManager.aiTeamCount && turnManager.playerCharacterCount != 0)
             {
                 turnManager.displayEnemyPhaseText = true;
                 enemyPhase = false;

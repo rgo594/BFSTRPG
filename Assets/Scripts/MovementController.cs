@@ -50,6 +50,10 @@ public class MovementController : MonoBehaviour
         else if (new Vector2(detectedTile.transform.position.x, detectedTile.transform.position.y) != new Vector2(gameObject.transform.position.x, gameObject.transform.position.y))
         {
             TileFunctions tileDetected = detectedTile.gameObject.GetComponent<TileFunctions>();
+
+            //needed for ai to turn occupied false for some reason
+            tileDetected.occupied = false;
+
             tileDetected.detectedEnemy = null;
             detectedTile = null;
         }
