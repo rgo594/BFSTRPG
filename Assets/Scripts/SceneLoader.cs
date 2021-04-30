@@ -15,11 +15,16 @@ public class SceneLoader : MonoBehaviour
         }*/
     }
 
-    public void LoadNextScene()
+    public static void LoadNextScene()
     {
+        Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex + 1);
 /*        Debug.Log(scene.buildIndex);
         SceneManager.LoadScene(1);*/
+    }
+    public void NextScene()
+    {
+        SceneManager.LoadScene(scene.buildIndex + 1);
     }
 
     public IEnumerator LoadGameOver()

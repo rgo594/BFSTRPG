@@ -42,7 +42,6 @@ public class Player : PlayerMove
         {
             ResetCharacterTurn();
             startFindTiles = true;
-            //StartCoroutine(Yeet());
         }
 
         if (!moving && !unitMenuPresent && !TurnManager.attackStep && !actionCompleted)
@@ -50,9 +49,7 @@ public class Player : PlayerMove
             if (startFindTiles)
             {
                 startFindTiles = false;
-                //FindSelectableTiles();
-                //pleasework = false;
-                StartCoroutine(DelayFindTiles());
+                StartCoroutine(DelayFindSelectable());
             }
             TargetTileToTravel();
         }

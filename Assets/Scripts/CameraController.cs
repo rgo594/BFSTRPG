@@ -5,12 +5,12 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    public float speed = 0.06f;
+    public float speed = 0.15f;
 
     private void Update()
     {
-        float xAxisValue = Input.GetAxis("Horizontal") * (speed * Time.deltaTime);
-        float zAxisValue = Input.GetAxis("Vertical") * (speed * Time.deltaTime);
+        float xAxisValue = Input.GetAxis("Horizontal") * 0.035f;  //* (speed * Time.deltaTime);
+        float zAxisValue = Input.GetAxis("Vertical") * 0.035f; //* (speed * Time.deltaTime);
 
         if (Camera.current != null)
         {

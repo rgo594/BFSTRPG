@@ -13,7 +13,7 @@ public class AiMove : MovementController
     public bool attacking = false;
     public List<TileFunctions> EnemyRangeTiles = new List<TileFunctions>();
     public bool enemySelected = false;
-    public bool coo = true;
+    public bool allowEnemyRange = true;
     private void Awake()
     {
         healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();

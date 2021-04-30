@@ -28,6 +28,7 @@ public class TileFunctions : MonoBehaviour
 
     public Collider2D detectedEnemy = null;
 
+    //TODO need to make a seperate adjacency list for ai
     public List<TileFunctions> adjacencyList = new List<TileFunctions>();
 
     //Needed BFS (Breadth First Search)
@@ -63,12 +64,10 @@ public class TileFunctions : MonoBehaviour
             if (detectedEnemy)
             {
                 occupied = true;
-                //Debug.Log("occupied");
             }
             else
             {
                 occupied = false;
-                //Debug.Log("not occupied");
             }
             if (erVisited && current)
             {
@@ -105,10 +104,8 @@ public class TileFunctions : MonoBehaviour
             }
             else
             {
-
-                actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
+                    actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
             }
-
 
             if (colorEnemyRange)
             {
@@ -118,6 +115,17 @@ public class TileFunctions : MonoBehaviour
             {
                 enemyRangeTile.color = new Color32(0, 0, 0, 0);
             }
+        }
+    }
+
+    void White()
+    {
+        Color tileColor = actionColor.GetComponent<SpriteRenderer>().color;
+
+        if (tileColor != new Color32(0, 0, 0, 0))
+        {
+            Debug.Log("happening");
+            actionColor.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 0);
         }
     }
 
@@ -167,6 +175,7 @@ public class TileFunctions : MonoBehaviour
 
     public void FindNeighbors(TileFunctions target, bool attackable)
     {
+        //TODO need to change how it resets so you can click on an enemy and player unit at the same time
         Reset();
 
         CheckTile(new Vector2(0, 1), target, attackable);

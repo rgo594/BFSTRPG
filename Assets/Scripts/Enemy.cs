@@ -13,14 +13,14 @@ public class Enemy : AiMove
         //refresh enemy range after player completes an action
         if (TurnManager.enemyPhase)
         {
-            coo = true;
+            allowEnemyRange = true;
             RemoveEnemyRangeTiles();
         }
         else if (enemySelected && !TurnManager.enemyPhase)
         {
-            if (coo)
+            if (allowEnemyRange)
             {
-                coo = false;
+                allowEnemyRange = false;
                 StartCoroutine(DelayRefreshEnemyRange());
             }
         }
@@ -76,11 +76,6 @@ public class Enemy : AiMove
         }
         if (!moving)
         {
-            //refreshes enemy range after enemy has completed an action
-/*            if (enemySelected)
-            {
-                RefreshEnemyRange();
-            }*/
             FindNearestTarget();
             CalculatePath();
             FindSelectableTiles();

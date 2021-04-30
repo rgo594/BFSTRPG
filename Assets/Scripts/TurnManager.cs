@@ -51,6 +51,12 @@ public class TurnManager : MonoBehaviour
 
     public static bool refresh = true;
 
+    IEnumerator PlayNext()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        SceneLoader.LoadNextScene();
+    }
+
     private void Start()
     {
         unitMenu = GameObject.Find("UnitMenuController");
@@ -61,6 +67,12 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (teamUnits["Enemy"].Count == 0)
+        {
+            levelResult.transform.GetChild(0).gameObject.SetActive(true);
+            StartCoroutine(PlayNext());
+            return;
+        }
         playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
         aiTeamCount = teamPhaseOrder.Count;
         if (!currentCharacter)
@@ -123,7 +135,6 @@ public class TurnManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && hit.collider != null)
         {
             bool characterMoving = false;
-
             
             if (currentCharacter != null)
             {
@@ -173,6 +184,7 @@ public class TurnManager : MonoBehaviour
                     if (hit.collider.gameObject.GetComponent<Enemy>())
                     {
                         //functions for clicking on an enemy are handled in Enemy and AiMove files
+                        //TODO temporary fix, shouldn't  need to refresh player tile map
                         currentCharacter.GetComponent<Player>().startFindTiles = true;
                     }
                     else
@@ -181,7 +193,6 @@ public class TurnManager : MonoBehaviour
                         currentCharacter = null;
                     }
 
-                    //currentCharacter = null;
                 }
             }
         }
@@ -197,6 +208,7 @@ public class TurnManager : MonoBehaviour
    
     public void InitDeselectCharacter(GameObject c)
     {
+        //Debug.Log("happens");
         deselected = true;
         var character = c.GetComponent<PlayerMove>();
 
