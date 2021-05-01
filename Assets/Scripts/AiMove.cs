@@ -14,8 +14,24 @@ public class AiMove : MovementController
     public List<TileFunctions> EnemyRangeTiles = new List<TileFunctions>();
     public bool enemySelected = false;
     public bool allowEnemyRange = true;
+
+    GameObject card;
+
+    private void OnMouseOver()
+    {
+        //card = gameObject.transform.GetChild(2).gameObject;
+        card.transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        //card = gameObject.transform.GetChild(2).gameObject;
+        card.transform.GetChild(0).gameObject.SetActive(false);
+    }
+
     private void Awake()
     {
+        card = gameObject.transform.GetChild(2).gameObject;
         healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
         healthBar.maxValue = healthPoints;
         healthBar.value = healthPoints;

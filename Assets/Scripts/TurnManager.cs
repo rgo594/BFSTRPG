@@ -86,7 +86,7 @@ public class TurnManager : MonoBehaviour
 
 
         aiTeamCount = teamPhaseOrder.Count;
-        if (!currentCharacter)
+        if (!currentCharacter && playerPhase && displayEnemyPhaseText)
         {
             noneClicked = true;
             ToggleEndPhaseButton(true);
