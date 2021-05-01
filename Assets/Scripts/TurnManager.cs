@@ -59,27 +59,31 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
+        //playerphase needs to be reset for if you lose or change level
+        playerPhase = true;
         unitMenu = GameObject.Find("UnitMenuController");
         levelResult = GameObject.Find("LevelResultController");
+        playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
         //GameObject phaseController = GameObject.Find("PhaseTextController");
     }
 
     void Update()
     {
         playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
-        //Debug.Log(playerCharacterCount);
-        if (teamUnits["Enemy"].Count == 0)
+        if (playerCharacterCount == 0)
+        {
+            levelResult.transform.GetChild(1).gameObject.SetActive(true);
+            PhaseTextAnimation.PhaseTextPresent = false;
+            teamUnits["Enemy"].Clear();
+            return;
+        }
+        else if (teamUnits["Enemy"].Count == 0)
         {
             levelResult.transform.GetChild(0).gameObject.SetActive(true);
             StartCoroutine(PlayNext());
             return;
         }
-        if (playerCharacterCount == 0)
-        {
-            levelResult.transform.GetChild(1).gameObject.SetActive(true);
-            PhaseTextAnimation.PhaseTextPresent = false;
-            return;
-        }
+
 
         aiTeamCount = teamPhaseOrder.Count;
         if (!currentCharacter)
@@ -215,7 +219,6 @@ public class TurnManager : MonoBehaviour
    
     public void InitDeselectCharacter(GameObject c)
     {
-        //Debug.Log("happens");
         deselected = true;
         var character = c.GetComponent<PlayerMove>();
 

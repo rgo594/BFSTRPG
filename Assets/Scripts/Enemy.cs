@@ -57,7 +57,6 @@ public class Enemy : AiMove
                     ChangeSpriteColor(Color.white);
                     //FindEnemyRangeTiles();
                     StartCoroutine(DelayShowEnemyRangeTiles());
-                    //Debug.Log("");
                 }
                 else if (hit.collider.gameObject.tag == "Enemy" && enemySelected)
                 {
