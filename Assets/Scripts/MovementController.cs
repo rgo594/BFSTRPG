@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour
     public List<TileFunctions> selectableTiles = new List<TileFunctions>();
     public List<TileFunctions> attackableTiles = new List<TileFunctions>();
 
-    GameObject[] tiles;
+    //GameObject[] tiles;
 
     public TileFunctions actualTargetTile;
     public bool enemyDetected;
@@ -66,7 +66,7 @@ public class MovementController : MonoBehaviour
 
         turnManager = FindObjectOfType<TurnManager>();
 
-        tiles = GameObject.FindGameObjectsWithTag("Tile");
+        //tiles = GameObject.FindGameObjectsWithTag("Tile");
     }
 
     public void GetCurrentTile()

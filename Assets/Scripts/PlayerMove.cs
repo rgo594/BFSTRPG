@@ -46,16 +46,30 @@ public class PlayerMove : MovementController
 
     private void Awake()
     {
+        //DontDestroyOnLoad(this.gameObject);
         card = gameObject.transform.GetChild(2).gameObject;
         healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
         healthBar.maxValue = healthPoints;
         healthBar.value = healthPoints;
+        unitMenuController = GameObject.Find("UnitMenuController");
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        actionCompleted = false;
+        SetCharacterColor(Color.white);
+        Init();
+        card = gameObject.transform.GetChild(2).gameObject;
+        healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
+        healthBar.maxValue = healthPoints;
+        healthBar.value = healthPoints;
+        unitMenuController = GameObject.Find("UnitMenuController");
     }
 
     void Start()
     {
         Init();
-        unitMenuController = GameObject.Find("UnitMenuController");
+        
     }
 
     public void Move()
