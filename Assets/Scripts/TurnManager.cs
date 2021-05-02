@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -51,6 +52,8 @@ public class TurnManager : MonoBehaviour
 
     public static bool refresh = true;
 
+    int activeSceneIndex;
+
     IEnumerator PlayNext()
     {
         yield return new WaitForSecondsRealtime(2f);
@@ -65,6 +68,7 @@ public class TurnManager : MonoBehaviour
         levelResult = GameObject.Find("LevelResultController");
         playerCharacterCount = FindObjectsOfType<PlayerMove>().Length;
         //GameObject phaseController = GameObject.Find("PhaseTextController");
+        activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
     void Update()
@@ -73,6 +77,13 @@ public class TurnManager : MonoBehaviour
         if (playerCharacterCount == 0)
         {
             levelResult.transform.GetChild(1).gameObject.SetActive(true);
+            PhaseTextAnimation.PhaseTextPresent = false;
+            teamUnits["Enemy"].Clear();
+            return;
+        }
+        else if (teamUnits["Enemy"].Count == 0 && SceneManager.sceneCountInBuildSettings - 1 == activeSceneIndex)
+        {
+            levelResult.transform.GetChild(2).gameObject.SetActive(true);
             PhaseTextAnimation.PhaseTextPresent = false;
             teamUnits["Enemy"].Clear();
             return;

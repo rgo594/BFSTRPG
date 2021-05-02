@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMove : MovementController
 {
@@ -20,13 +21,32 @@ public class PlayerMove : MovementController
 
     public bool attacking = false;
 
+    GameObject card;
+
     //public GameObject preventClicking;
     public bool startFindTiles = true;
     public bool attackTiles = true;
 
+    private void OnMouseOver()
+    {
+        //card = gameObject.transform.GetChild(2).gameObject;
+        if (!turnManager.currentCharacter)
+        {
+            card.transform.GetChild(0).gameObject.SetActive(true);
+            TextMeshProUGUI cardText = card.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            cardText.text = "<3 : " + healthPoints + "\n \n A  : " + attack;
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        //card = gameObject.transform.GetChild(2).gameObject;
+        card.transform.GetChild(0).gameObject.SetActive(false);
+    }
 
     private void Awake()
     {
+        card = gameObject.transform.GetChild(2).gameObject;
         healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
         healthBar.maxValue = healthPoints;
         healthBar.value = healthPoints;
@@ -125,6 +145,7 @@ public class PlayerMove : MovementController
 
     public void EndTurn()
     {
+        turnManager.currentCharacter = null;
         TurnManager.pcActionCompleted = true;
         currentTile = null;
         ResetEnemyAddedTiles();

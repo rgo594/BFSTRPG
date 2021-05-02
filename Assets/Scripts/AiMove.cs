@@ -21,10 +21,12 @@ public class AiMove : MovementController
     private void OnMouseOver()
     {
         //card = gameObject.transform.GetChild(2).gameObject;
-
-        card.transform.GetChild(0).gameObject.SetActive(true);
-        TextMeshProUGUI cardText = card.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-        cardText.text = "<3 : "+ healthPoints +"\n \n A  : " + attack;
+        if (!turnManager.currentCharacter)
+        {
+            card.transform.GetChild(0).gameObject.SetActive(true);
+            TextMeshProUGUI cardText = card.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            cardText.text = "<3 : " + healthPoints + "\n \n A  : " + attack;
+        }
     }
 
     private void OnMouseExit()
