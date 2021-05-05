@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
         }
         else if (transform.position.y <= maxY)
         {
-            transform.position = new Vector3(transform.position.x, -8f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, maxY, transform.position.z);
         }
             
     }

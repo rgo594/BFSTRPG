@@ -28,6 +28,11 @@ public class PlayerMove : MovementController
     public bool startFindTiles = true;
     public bool attackTiles = true;
 
+    Vector3[] startLevelLocations = new Vector3[] { new Vector3(7f, -10f), new Vector3(9f, -10f), new Vector3(7f, -12f), new Vector3(9f, -12f) };
+
+    Player[] playerCharacters;
+
+
     private void OnMouseOver()
     {
         //card = gameObject.transform.GetChild(2).gameObject;
@@ -47,6 +52,7 @@ public class PlayerMove : MovementController
 
     private void Awake()
     {
+        playerCharacters = FindObjectsOfType<Player>();
         //DontDestroyOnLoad(this.gameObject);
         card = gameObject.transform.GetChild(2).gameObject;
         healthBar = gameObject.transform.GetChild(1).GetComponentInChildren<Slider>();
@@ -77,6 +83,14 @@ public class PlayerMove : MovementController
         healthBar.maxValue = healthPoints;
         healthBar.value = healthPoints;
         unitMenuController = GameObject.Find("UnitMenuController");
+
+        if (scene.name == "Level 2")
+        {
+            for(int i = 0; i < playerCharacters.Length; i++)
+            {
+                playerCharacters[i].gameObject.transform.position = startLevelLocations[i];
+            }
+        }
     }
 
 void Start()
