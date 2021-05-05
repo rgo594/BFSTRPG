@@ -71,11 +71,14 @@ public class Enemy : AiMove
 
         if (!turn) { return; }
 
-        FindPcsInRange();
-        if (!enemyDetected)
+        if (!aggro)
         {
-            EndTurn();
-            return;
+            FindPcsInRange();
+            if (!enemyDetected)
+            {
+                EndTurn();
+                return;
+            }
         }
         if (!moving)
         {

@@ -6,16 +6,16 @@ using TMPro;
 
 public class AiMove : MovementController
 {
-    GameObject target;
-    Slider healthBar;
-    public int healthPoints = 100;
-    public int attack = 25;
-    public GameObject targetedPlayer;
-    public bool attacking = false;
-    public List<TileFunctions> EnemyRangeTiles = new List<TileFunctions>();
+    public bool aggro = false;
     public bool enemySelected = false;
     public bool allowEnemyRange = true;
-
+    public bool attacking = false;
+    public GameObject targetedPlayer;
+    public int healthPoints = 100;
+    public int attack = 25;
+    GameObject target;
+    Slider healthBar;
+    public List<TileFunctions> EnemyRangeTiles = new List<TileFunctions>();
     GameObject card;
 
     private void OnMouseOver()
